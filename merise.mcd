@@ -1,17 +1,16 @@
 Places: id, postcode, street, number, city, name
-IS AT, 11 Events, 0N Places
+IS AT, 0N Events, 0N Places
 Users: id, first_name, last_name, pseudo, mail, phone, password_hash, photo_url, status
 IS PART OF, 0N Promotions, 11 Users
 Promotions: end_year
 
-IS A, 0N Event_Types, 11 Events
+IS A, 0N Event_Types, 0N Events
 Events: id, title, description, date_start, date_end, date_created
-USE, 0N Users, 0N Events, 0N Modules
+IS REGISTERED, 0N Users, 1N Events, 0N Modules
 Modules: id, name
-:
 
 Event_Types: id, name
-DESCRIBE, 0N Events, 0N Posts
+DESCRIBE, 0N Events, 11 Posts
 Posts: id, title, content, date_created, date_edited
-ARGUES, 11 Comments, ON Posts
+ARGUES, 11 Comments, 0N Posts
 Comments: id, content, date_created, date_edited
