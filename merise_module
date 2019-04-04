@@ -1,0 +1,8 @@
+Events: id, title, description, date_start, date_end, date_created
+HAVE ADMIN, 11 Events, 0N Module_Admin
+Module_Admin : id
+
+HAVE PLAYLIST, 01 Events, 0N Module_Playlist
+Module_Playlist : id, name
+CONTAINS, 0N Module_Playlist, 0N Songs
+Songs : id, name, autor, duration
