@@ -19,7 +19,7 @@ class User {
 		$this->hydrate($data);
 	}
 
-  //gère la récupération de données des attributs lorsqu'elle proviennent de la bdd
+  //Gère la récupération de données des attributs lorsqu'elle proviennent de la bdd
 	public function hydrate(array $data) {
     foreach ($data as $key => $value) {
      	$method = 'set'.ucfirst($key);
@@ -35,11 +35,11 @@ class User {
   }
 
   public function getFirstname() {
-    return $this->id;
+    return $this->firstname;
   }
 
   public function getLastname() {
-    return $this->id;
+    return $this->lastname;
   }
 
   public function getPseudo() {
@@ -47,27 +47,27 @@ class User {
   }
 
   public function getPwd_hash() {
-  	return $this->mdp;
+  	return $this->pwd_hash;
   }
 
   public function getMail() {
-    return $this->mdp;
+    return $this->mail;
   }
 
   public function getPhone() {
-    return $this->mdp;
+    return $this->phone;
   }
 
   public function getPhoto_url() {
-    return $this->mdp;
+    return $this->photo_url;
   }
 
   public function getStatus() {
     return $this->status;
   }
 
-  public function getYear_Promotion() {
-    return $this->nbPublication;
+  public function getYear_promotion() {
+    return $this->year_promotion;
   }
 
   //Assesseurs
