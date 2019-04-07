@@ -8,16 +8,16 @@
 
 
 class UserCRUD {
-	
+
 	public function add($dataIn) {
-		$scanDataIn = new ScanDataIn(); 
+		$scanDataIn = new ScanDataIn();
         $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd_hash", "mail", "phone", "photo_url", "status", "year_promotion"]);
         $data = $scanDataIn->failleXSS($dataIn);
         $data["pwd_hash"] = password_hash($data["pwd_hash"], PASSWORD_DEFAULT);
 		$user = new User($data);
 
 		$userManager = new UserManager();
-		if (!$userManager->readByPseudo($user->getPseudo())) {
+		if ($userManager->readByPseudo($user->getPseudo()) === FALSE) {
 			$userManager->add($user);
 		} else {
 			throw new \Exception('Pseudo déjà existant.');
@@ -27,7 +27,7 @@ class UserCRUD {
 
 	public function update($dataIn) {
 		$scanDataIn = new ScanDataIn();
-        $data = $scanDataIn->failleXSS($dataIn);	
+        $data = $scanDataIn->failleXSS($dataIn);
 		$userManager = new UserManager();
 		$user = $userManager->readById($data["id"]);
 		if($user) {
@@ -39,7 +39,7 @@ class UserCRUD {
 	}
 
 	public function read($dataIn) {
-		$scanDataIn = new ScanDataIn(); 
+		$scanDataIn = new ScanDataIn();
         $scanDataIn->exists($dataIn, ["id"]);
         $data = $scanDataIn->failleXSS($dataIn);
 		$userManager = new UserManager();
@@ -53,7 +53,7 @@ class UserCRUD {
 	}
 
 	public function delete($dataIn) {
-		$scanDataIn = new ScanDataIn(); 
+		$scanDataIn = new ScanDataIn();
         $scanDataIn->exists($dataIn, ["id"]);
         $data = $scanDataIn->failleXSS($dataIn);
 		$userManager = new UserManager();
