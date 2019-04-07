@@ -72,7 +72,7 @@ class User {
 
   //Assesseurs
   //Attention le nom de méthode doit obligatoirement être composé de "set" suivi du nom de l'attribut correspondant, avec une majuscule, pour que la méthode hydrate soit fonctionnelle.
-	public function setId($id) {
+	public function setId(int $id) {
  	  $id = (int) $id;
  	  if ($id > 0) {
  		 $this->id = $id;
@@ -98,20 +98,20 @@ class User {
   }
 
  	public function setPwd_hash($pwd_hash) {
-  	if (is_string($pwd_hash) && strlen($pwd_hash) <= 30) {
- 		 $this->$pwd_hash = $pwd_hash;
+  	if (is_string($pwd_hash)) {
+ 		 $this->pwd_hash = $pwd_hash;
  	  }
   }
 
   public function setMail($mail) {
     if (is_string($mail) && preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,6}$#i',$mail)) {
-     $this->$mail = $mail;
+     $this->mail = $mail;
     }
   }
 
   public function setPhone($phone) {
-    if (is_string($phone) && preg_match(' \^(\d\d\s){4}(\d\d)$\ ', $phone)) {
-     $this->$phone = $phone;
+    if (is_string($phone) && preg_match('#^(\d\d\s){4}(\d\d)$#', $phone)) {
+     $this->phone = $phone;
     }
   }
 
@@ -121,13 +121,13 @@ class User {
     }
   }
 
- 	public function setStatus($status) {
-  	if (is_bool($status)) {
+ 	public function setStatus(int $status) {
+  	if (is_int($status)) {
  		 $this->status = $status;
  	  }
   }
 
-  public function setYear_promotion($year_promotion) {
+  public function setYear_promotion(int $year_promotion) {
     if (is_int($year_promotion) && $year_promotion > 0) {
      $this->year_promotion = $year_promotion;
     }

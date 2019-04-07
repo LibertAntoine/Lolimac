@@ -3,34 +3,30 @@
 namespace models;
 
 class UserManager extends DBAccess {
-
 	public function add(User $user) {
 		$q = $this->db->prepare("INSERT INTO users 
       (`firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`) 
-      VALUES (:fisrtname, :lastname, :pseudo, :mail, :phone, :pwd_hash, :photo_url, :status, :year_promotion);");
+      VALUES (:firstname, :lastname, :pseudo, :mail, :phone, :pwd_hash, :photo_url, :status, :year_promotion);");
       
 		$q->bindValue(':firstname', $user->getFirstname());
     $q->bindValue(':lastname', $user->getLastname());
     $q->bindValue(':pseudo', $user->getPseudo());
-    $q->bindValue(':mail', $user->getMail());
     $q->bindValue(':phone', $user->getPhone());
+    $q->bindValue(':mail', $user->getMail());
     $q->bindValue(':pwd_hash', $user->getPwd_hash());
     $q->bindValue(':photo_url', $user->getPhoto_url());
     $q->bindValue(':status', $user->getStatus());
     $q->bindValue(':year_promotion', $user->getYear_promotion());
 
-		$q->execute();
+	  $q->execute();
 
     $user->hydrate(['id' => $this->db->lastInsertId()]);
-
     return $user;
   }
 
   public function count() {
     return $this->db->query('SELECT COUNT(*) FROM users;')->fetchColumn();
   }
-
-
 
   public function readById($id) {
       $q = $this->db->query('SELECT * FROM users WHERE id = '.$id);
@@ -39,10 +35,10 @@ class UserManager extends DBAccess {
   }
 
   public function readByPseudo($pseudo) {
-      $q = $this->db->prepare('SELECT * WHERE pseudo = :pseudo');
+      $q = $this->db->prepare('SELECT * FROM users WHERE pseudo = :pseudo');
       $q->execute([':pseudo' => $pseudo]);
       $user = $q->fetch(\PDO::FETCH_ASSOC); 
-      return new User($user);
+      return ($user) ? new User($user) : false;
   }
 
   public function readAll() {
@@ -56,8 +52,8 @@ class UserManager extends DBAccess {
   }
 
   public function update(User $user) {
-    $q = $this->db->prepare('UPDATE users SET firstname = :firstname, lastname = :lastname, pseudo = :pseudo, mail = :mail, phone = :phone, pwd_hash = :pwd_hash, photo_url = :photo_url, status = :status WHERE id = :id');
-    
+    $q = $this->db->prepare('UPDATE users SET firstname = :firstname, lastname = :lastname, pseudo = :pseudo, mail = :mail, phone = :phone, pwd_hash = :pwd_hash, photo_url = :photo_url, status = :status, year_promotion = :year_promotion WHERE id = :id');
+
     $q->bindValue(':id', $user->getId());
     $q->bindValue(':firstname', $user->getFirstname());
     $q->bindValue(':lastname', $user->getLastname());
@@ -74,8 +70,8 @@ class UserManager extends DBAccess {
     return $user;
   }
 
-  public function deleteById($id) {
-    $this->db->exec('DELETE FROM user WHERE id = '.$id);
+  public function deleteById(int $id) {
+    $this->db->exec('DELETE FROM users WHERE id = '.$id.';');
     return TRUE;
   }
 }
