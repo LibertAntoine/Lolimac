@@ -50,12 +50,12 @@ class PlaceManager extends DBAccess {
   public function update(Place $place) {
     $q = $this->db->prepare('UPDATE places SET postcode = :postcode, street = :street, number = :number, city = :city, name = :name WHERE id = :id');
 
-    $q->bindValue(':id', $user->getId());
-    $q->bindValue(':postcode', $user->getPostcode());
-    $q->bindValue(':street', $user->getStreet());
-    $q->bindValue(':number', $user->getNumber());
-    $q->bindValue(':city', $user->getCity());
-    $q->bindValue(':name', $user->getName());
+    $q->bindValue(':id', $place->getId());
+    $q->bindValue(':postcode', $place->getPostcode());
+    $q->bindValue(':street', $place->getStreet());
+    $q->bindValue(':number', $place->getNumber());
+    $q->bindValue(':city', $place->getCity());
+    $q->bindValue(':name', $place->getName());
 
     $q->execute();
 
