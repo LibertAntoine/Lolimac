@@ -13,7 +13,7 @@ class PlaceCRUD {
 		$scanDataIn = new ScanDataIn();
         $scanDataIn->exists($dataIn, ["postcode", "street", "number", "city", "name"]);
         $data = $scanDataIn->failleXSS($dataIn);
-		$user = new Place($data);
+		$place = new Place($data);
 
 		$placeManager = new PlaceManager();
 		$placeManager->add($place);
