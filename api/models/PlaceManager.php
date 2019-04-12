@@ -8,16 +8,16 @@ class PlaceManager extends DBAccess {
       (`postcode`, `street`, `number`, `city`, `name`) 
       VALUES (:postcode, :street, :number, :city, :name);");
       
-		$q->bindValue(':postcode', $user->getPostcode());
-    $q->bindValue(':street', $user->getStreet());
-    $q->bindValue(':number', $user->getNumber());
-    $q->bindValue(':city', $user->getCity());
-    $q->bindValue(':name', $user->getName());
+		$q->bindValue(':postcode', $place->getPostcode());
+    $q->bindValue(':street', $place->getStreet());
+    $q->bindValue(':number', $place->getNumber());
+    $q->bindValue(':city', $place->getCity());
+    $q->bindValue(':name', $place->getName());
 
 	  $q->execute();
 
-    $user->hydrate(['id' => $this->db->lastInsertId()]);
-    return $user;
+    $place->hydrate(['id' => $this->db->lastInsertId()]);
+    return $place;
   }
 
   public function count() {

@@ -62,7 +62,6 @@ class Place {
   public function setPostcode($postcode) {
     $postcode = (int) $postcode;
     $this->postcode = $postcode;
-    }
   }
 
   public function setStreet($street) {
@@ -87,3 +86,5 @@ class Place {
      $this->name = $name;
     }
   }
+
+}
