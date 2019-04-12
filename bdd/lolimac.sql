@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 05 avr. 2019 à 15:48
+-- Généré le :  ven. 12 avr. 2019 à 09:29
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -181,15 +181,28 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(22) NOT NULL,
   `lastname` varchar(22) NOT NULL,
   `pseudo` varchar(25) NOT NULL,
-  `mail` varchar(50) DEFAULT NULL,
-  `phone` int(10) NOT NULL,
+  `mail` varchar(100) NOT NULL,
+  `phone` varchar(14) NOT NULL,
   `pwd_hash` varchar(255) NOT NULL,
   `photo_url` varchar(255) NOT NULL,
   `status` int(1) NOT NULL,
   `year_promotion` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`pseudo`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`) VALUES
+(8, 'Fromage', 'top', 'ozzaoi', 'antoine.libert@outlook.com', '06 01 21 96 91', '$2y$10$Wj3jlbdY5mo6OCUgS6PtwOmfGjsazpitpAAsaa3UGQJml.XHqpUt2', 'blablabla', 1, 2021),
+(11, 'Antoine', 'Libert', 'Lolil', 'antoine.libert@outlook.com', '06 01 21 96 91', '$2y$10$vhaWPGo9TmwK.cJPGXdRGuAuV0z3nvyHvntjt/W/YcQJGePh3cTP6', 'blablabla', 1, 2021),
+(10, 'Antoine', 'Libert', 'Jules', 'antoine.libert@outlook.com', '06 01 21 96 91', '$2y$10$0Xm6jKPWJdFCClgZEjyxNuKCAsOucsDBOkiDy8yXVm2XgomHn63De', 'blablabla', 1, 2021),
+(19, 'Nicolas', 'Lienart', 'Nicoluioyuunt', 'julie.libert@outlook.com', '06 01 21 96 91', '$2y$10$aDljRW7DUCJ51GVtIxLllOiE3JFl8JU.pa5plqhxVjEyv/rtm4PV2', 'jiojzoi', 1, 2021),
+(15, 'okioejfe', 'Libpkooi', 'Lokdkoazpkosopfoe', 'antoine.libert@outlook.com', '06 01 21 96 91', '$2y$10$WfkZzA6JHUIakAzko2bPC.qZF7TslLiSHJs7FiJ1S72TvKGrDOCAq', 'blablabla', 1, 2021),
+(18, 'Nicolas', 'Lienart', 'Nicolnt', 'julie.libert@outlook.com', '06 01 21 96 91', '$2y$10$AQduOxzwY2H6UJS09Om/vuxwEzhhF0ZVZmHft6skkzVYkHGq1PQ7i', 'jiojzoi', 1, 2021),
+(20, 'Nicolas', 'Lienart', 'Nict', 'julie.libert@outlook.com', '06 01 21 96 91', '$2y$10$dgHDTpqbfIZ9kzhoaT76ZOS2YZdyQDzDTXZGO1mCYqe2hs/PqR7Yu', 'jiojzoi', 1, 2021);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
