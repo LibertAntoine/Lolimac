@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	namespace controllers\scans;
 
@@ -10,11 +10,11 @@ class ScanDataIn {
 
     public function exists(array $dataIn, array $champs) {
     	foreach ($champs as $champ) {
-    		if(!isset($dataIn[$champ])) {
-    			throw new \Exception('Champ ' . $champ . ' non inexistant.');
-    	   }
+        if(!isset($dataIn[$champ])) {
+          throw new \Exception('Champ ' . $champ . ' non inexistant.');
         }
-	}
+      }
+    }
 
 	public function failleXSS(array $dataIn) {
     	foreach ($dataIn as $data) {

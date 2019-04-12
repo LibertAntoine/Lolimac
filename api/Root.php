@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Fichier de routage de l'api.
 
@@ -9,7 +9,7 @@
 
 class Root {
     function __construct($action) {
-        $this->$action(); 
+        $this->$action();
     }
 
 
@@ -74,4 +74,4 @@ class Root {
                 break;
         }
     }
-}    
+}
