@@ -56,7 +56,7 @@ class EventManager extends DBAccess {
   }
 
   public function deleteById(int $id) {
-    $this->db->exec('DELETE FROM events WHERE id = '.$id.';');
+    $this->db->exec("DELETE FROM events WHERE id = {$id};");
     return TRUE;
   }
 }
