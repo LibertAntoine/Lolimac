@@ -85,8 +85,9 @@ class Event {
  	  //}
   }
 
-  public function setDate_created($date_created) {
-    // TODO: Check date format
+  /*
+  public function setDate_created() {
      $this->date_created = $date_created;
   }
+  */
 }
