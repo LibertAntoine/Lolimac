@@ -29,7 +29,7 @@ class User {
     }
   }
 
-  // Getters 
+  // Getters
   public function getId() {
     return $this->id;
   }
@@ -104,7 +104,8 @@ class User {
   }
 
   public function setMail($mail) {
-    if (is_string($mail) && preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,6}$#i',$mail)) {
+    $mail = filter_var($mail, FILTER_VALIDATE_EMAIL);
+    if ($mail === TRUE) {
      $this->mail = $mail;
     }
   }
