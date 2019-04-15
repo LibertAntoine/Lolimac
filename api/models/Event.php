@@ -60,15 +60,13 @@ class Event {
   }
 
   public function setTitle($title) {
-    // TODO: Check length
-    if (is_string($title)) {
+    if (is_string($title) && strlen($title) <= 255) {
     $this->title = $title;
     }
   }
 
   public function setDecription($description) {
-    // TODO: Check length
-    if (is_string($description)) {
+    if (is_string($description) && strlen($description) <= 65535) {
     $this->description = $description;
     }
   }
@@ -87,8 +85,9 @@ class Event {
  	  //}
   }
 
-  public function setDate_created($date_created) {
-    // TODO: Check date format
+  /*
+  public function setDate_created() {
      $this->date_created = $date_created;
   }
+  */
 }

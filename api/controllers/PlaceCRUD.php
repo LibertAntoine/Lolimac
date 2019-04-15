@@ -2,9 +2,9 @@
 
 	namespace controllers;
 
-	use \controllers\scans\ScanDataIn;
-    use \models\Place;
-    use \models\PlaceManager;
+  use \controllers\scans\ScanDataIn;
+  use \models\Place;
+  use \models\PlaceManager;
 
 
 class PlaceCRUD {
