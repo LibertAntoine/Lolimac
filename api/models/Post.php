@@ -7,8 +7,8 @@ class Post {
 	protected $id,
   	$title,
   	$content,
-	$date_created,
-	$date_edited,
+	 $date_created,
+	 $date_edited,
   	$id_event;
 
 	public function __construct(array $data) {
