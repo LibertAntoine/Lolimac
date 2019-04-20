@@ -71,12 +71,6 @@ class Post {
     }
   }
 
- 	public function setPseudo($pseudo) {
-  	if (is_string($pseudo) && strlen($pseudo) <= 25) {
- 		$this->pseudo = $pseudo;
- 	  }
-  }
-
  	public function setDate_created($date_created) {
   	if (is_string($date_created)) {
  		 $this->date_created = $date_created;
