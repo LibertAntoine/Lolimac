@@ -41,7 +41,7 @@ class CommentCRUD {
     $commentManager = new CommentManager();
     $comment = $commentManager->readById($data["id"]);
     if($comment) {
-      echo json_encode(array("content" => $post->GetContent(), "id_post" => $post->GetId_post(), "id_user" => $post->GetId_user(), "date_created" => $post->GetDate_created(), "date_edited" => $post->GetDate_edited()));
+      echo json_encode(array("content" => $comment->GetContent(), "id_post" => $comment->GetId_post(), "id_user" => $comment->GetId_user(), "date_created" => $comment->GetDate_created(), "date_edited" => $comment->GetDate_edited()));
     } else {
       throw new Exception("Le commentaire n'existe pas.");
     }

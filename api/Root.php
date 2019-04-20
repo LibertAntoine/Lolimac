@@ -5,6 +5,7 @@
     use \controllers\UserCRUD;
     use \controllers\PlaceCRUD;
     use \controllers\PostCRUD;
+    use \controllers\CommentCRUD;
     use \controllers\scans\ScanDataIn; // prise en concidérations des namespaces.
 
 
@@ -100,6 +101,37 @@ class Root {
                 $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
                 $postCRUD = new PostCRUD();
                 $postCRUD->delete($_DELETE);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public function comment() {
+        // verif de token à ajouter.
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                $commentCRUD = new CommentCRUD();
+                $commentCRUD->read($_GET);
+                break;
+
+            case 'POST':
+                $_POST = json_decode(file_get_contents("php://input"), TRUE);
+                $commentCRUD = new CommentCRUD();
+                $commentCRUD->add($_POST);
+                break;
+            
+            case 'PUT':
+                $_PUT = json_decode(file_get_contents("php://input"), TRUE);
+                $commentCRUD = new CommentCRUD();
+                $commentCRUD->update($_PUT);
+                break;
+
+            case 'DELETE':
+                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
+                $commentCRUD = new CommentCRUD();
+                $commentCRUD->delete($_DELETE);
                 break;
 
             default:

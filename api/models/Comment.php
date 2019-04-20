@@ -8,7 +8,7 @@ class Comment {
   $content,
   $date_created,
   $date_edited,
-  $id_user;
+  $id_user,
   $id_post;
 
 public function __construct(array $data) {
@@ -48,7 +48,7 @@ public function __construct(array $data) {
     return $this->id_post;
   }
 
-  public function setId(int $id) {
+  public function setId($id) {
     $id = (int) $id;
     if ($id > 0) {
      $this->id = $id;
@@ -80,10 +80,10 @@ public function __construct(array $data) {
     }
   }
 
-  public function setId_event($id_event) {
-    $id_event = (int) $id_event;
-    if ($id_event > 0) {
-     $this->id_event = $id_event;
+  public function setId_post($id_post) {
+    $id_post = (int) $id_post;
+    if ($id_post > 0) {
+     $this->id_post = $id_post;
     }
   }
 }
