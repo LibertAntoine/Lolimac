@@ -5,11 +5,12 @@ namespace models;
 class PostManager extends DBAccess {
 	public function add(Post $post) {
 		$q = $this->db->prepare("INSERT INTO posts 
-      (`title`, `content`, `date_created`, `date_edited`, `id_event`) 
-      VALUES (:title, :content, NOW(), NOW(), :id_event);");
-      
+      (`title`, `content`, `date_created`, `date_edited`,`id_user` ,`id_event`) 
+      VALUES (:title, :content, NOW(), NOW(), :id_user, :id_event);");
+    
 		$q->bindValue(':title', $post->getTitle());
     $q->bindValue(':content', $post->getContent());
+    $q->bindValue(':id_user', $post->getId_user());
     $q->bindValue(':id_event', $post->getId_event());
 
 	  $q->execute();
@@ -46,11 +47,12 @@ class PostManager extends DBAccess {
   }
 
   public function update(Post $post) {
-    $q = $this->db->prepare('UPDATE posts SET  title = :title, content = :content, date_edited = NOW(), id_event = :id_event WHERE id = :id');
+    $q = $this->db->prepare('UPDATE posts SET  title = :title, content = :content, date_edited = NOW(), id_user = :id_user, id_event = :id_event WHERE id = :id');
 
     $q->bindValue(':id', $post->getId());
     $q->bindValue(':title', $post->getTitle());
     $q->bindValue(':content', $post->getContent());
+    $q->bindValue(':id_user', $post->getId_user());
     $q->bindValue(':id_event', $post->getId_event());
 
     $q->execute();
@@ -58,7 +60,7 @@ class PostManager extends DBAccess {
     return $post;
   }
 
-  public function deleteById(int $id) {
+  public function deleteById($id) {
     $this->db->exec('DELETE FROM posts WHERE id = '.$id.';');
     return TRUE;
   }

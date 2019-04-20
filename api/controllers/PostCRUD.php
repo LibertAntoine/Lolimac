@@ -11,7 +11,7 @@ class PostCRUD {
 
   public function add($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["title", "content", "id_event"]);
+    $scanDataIn->exists($dataIn, ["title", "content", "id_user", "id_event"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $post = new Post($data);
 

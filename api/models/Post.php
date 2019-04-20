@@ -7,8 +7,9 @@ class Post {
 	protected $id,
   	$title,
   	$content,
-	 $date_created,
-	 $date_edited,
+	  $date_created,
+	  $date_edited,
+    $id_user,
   	$id_event;
 
 	public function __construct(array $data) {
@@ -46,13 +47,17 @@ class Post {
   	return $this->date_edited;
   }
 
+  public function getId_user() {
+    return $this->id_user;
+  }
+
   public function getId_event() {
     return $this->id_event;
   }
 
   //Assesseurs
   //Attention le nom de méthode doit obligatoirement être composé de "set" suivi du nom de l'attribut correspondant, avec une majuscule, pour que la méthode hydrate soit fonctionnelle.
-	public function setId(int $id) {
+	public function setId($id) {
  	  $id = (int) $id;
  	  if ($id > 0) {
  		 $this->id = $id;
@@ -80,6 +85,13 @@ class Post {
   public function setDate_edited($date_edited) {
     if (is_string($date_edited)) {
      $this->date_edited = $date_edited;
+    }
+  }
+
+  public function setId_user($id_user) {
+    $id_user = (int) $id_user;
+    if ($id_user > 0) {
+     $this->id_user = $id_user;
     }
   }
 
