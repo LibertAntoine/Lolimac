@@ -6,13 +6,11 @@ class PostManager extends DBAccess {
 	public function add(Post $post) {
 		$q = $this->db->prepare("INSERT INTO posts 
       (`title`, `content`, `date_created`, `date_edited`, `id_event`) 
-      VALUES (:title, :content, :date_created, :date_edited, :id_event);");
+      VALUES (:title, :content, NOW(), NOW(), :id_event);");
       
-		$q->bindValue(':title', $user->getTitle());
-    $q->bindValue(':content', $user->getContent());
-    $q->bindValue(':date_created', $user->getDate_created());
-    $q->bindValue(':date_edited', $user->getDate_edited());
-    $q->bindValue(':id_event', $user->getId_event());
+		$q->bindValue(':title', $post->getTitle());
+    $q->bindValue(':content', $post->getContent());
+    $q->bindValue(':id_event', $post->getId_event());
 
 	  $q->execute();
 
@@ -47,15 +45,13 @@ class PostManager extends DBAccess {
     return $allPosts;
   }
 
-  public function update(User $post) {
-    $q = $this->db->prepare('UPDATE posts SET  title = :title, content = :content, date_created = :date_created, date_edited = :date_edited, id_event = :id-event WHERE id = :id');
+  public function update(Post $post) {
+    $q = $this->db->prepare('UPDATE posts SET  title = :title, content = :content, date_edited = NOW(), id_event = :id_event WHERE id = :id');
 
-    $q->bindValue(':id', $user->getId());
-    $q->bindValue(':title', $user->getTitle());
-    $q->bindValue(':content', $user->getContent());
-    $q->bindValue(':date_created', $user->getDate_created());
-    $q->bindValue(':date_edited', $user->getDate_edited());
-    $q->bindValue(':id_event', $user->getId_event());
+    $q->bindValue(':id', $post->getId());
+    $q->bindValue(':title', $post->getTitle());
+    $q->bindValue(':content', $post->getContent());
+    $q->bindValue(':id_event', $post->getId_event());
 
     $q->execute();
 

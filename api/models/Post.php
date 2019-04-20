@@ -5,11 +5,11 @@ namespace models;
 class Post {
 
 	protected $id,
-  $title,
-  $content,
+  	$title,
+  	$content,
 	$date_created,
 	$date_edited,
-  $id_event;
+  	$id_event;
 
 	public function __construct(array $data) {
 		$this->hydrate($data);
@@ -47,7 +47,7 @@ class Post {
   }
 
   public function getId_event() {
-    return $this->Id_event;
+    return $this->id_event;
   }
 
   //Assesseurs
@@ -61,7 +61,7 @@ class Post {
 
   public function setTitle($title) {
     if (is_string($title) && strlen($title) <= 255) {
-    $this->titre = $titre;
+    $this->title = $title;
     }
   }
 

@@ -4,6 +4,7 @@
 
     use \controllers\UserCRUD;
     use \controllers\PlaceCRUD;
+    use \controllers\PostCRUD;
     use \controllers\scans\ScanDataIn; // prise en concidérations des namespaces.
 
 
@@ -68,6 +69,37 @@ class Root {
                 $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
                 $placeCRUD = new PlaceCRUD();
                 $placeCRUD->delete($_DELETE);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public function post() {
+        // verif de token à ajouter.
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                $postCRUD = new PostCRUD();
+                $postCRUD->read($_GET);
+                break;
+
+            case 'POST':
+                $_POST = json_decode(file_get_contents("php://input"), TRUE);
+                $postCRUD = new PostCRUD();
+                $postCRUD->add($_POST);
+                break;
+            
+            case 'PUT':
+                $_PUT = json_decode(file_get_contents("php://input"), TRUE);
+                $postCRUD = new PostCRUD();
+                $postCRUD->update($_PUT);
+                break;
+
+            case 'DELETE':
+                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
+                $postCRUD = new PostCRUD();
+                $postCRUD->delete($_DELETE);
                 break;
 
             default:
