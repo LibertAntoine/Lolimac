@@ -3,6 +3,7 @@
 
 # Private files
 dbID.php
+configVar.php
 
 # Other stuff
 .tags
