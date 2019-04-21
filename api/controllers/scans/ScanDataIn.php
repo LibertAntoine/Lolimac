@@ -16,6 +16,18 @@ class ScanDataIn {
       }
     }
 
+    public function orgenize(array $dataIn, $numberIn, array $keys) {
+        $data = [];
+        for ($i=0; $i < $numberIn; $i++) { 
+            if(!isset($dataIn[$i])) {
+                throw new \Exception('Champ ' . $keys[$i] . ' manquant pour satisfaire la requête.');
+            }
+            $data[$keys[$i]] = $dataIn[$i];
+        } 
+            return $data;
+    }
+
+
 	public function failleXSS(array $dataIn) {
     	foreach ($dataIn as $data) {
     		if(is_string($data)) {
