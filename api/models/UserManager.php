@@ -6,7 +6,7 @@ class UserManager extends DBAccess {
 	public function add(User $user) {
 		$q = $this->db->prepare("INSERT INTO users 
       (`firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`) 
-      VALUES (:firstname, :lastname, :pseudo, :mail, :phone, :pwd_hash, :photo_url, :status, :year_promotion);");
+      VALUES (:firstname, :lastname, :pseudo, :mail, :phone, :pwd_hash, :photo_url, 3, :year_promotion);");
 
 		$q->bindValue(':firstname', $user->getFirstname());
     $q->bindValue(':lastname', $user->getLastname());
@@ -15,7 +15,6 @@ class UserManager extends DBAccess {
     $q->bindValue(':mail', $user->getMail());
     $q->bindValue(':pwd_hash', $user->getPwd_hash());
     $q->bindValue(':photo_url', $user->getPhoto_url());
-    $q->bindValue(':status', $user->getStatus());
     $q->bindValue(':year_promotion', $user->getYear_promotion());
 
 	  $q->execute();
@@ -70,7 +69,7 @@ class UserManager extends DBAccess {
     return $user;
   }
 
-  public function deleteById(int $id) {
+  public function deleteById($id) {
     $this->db->exec('DELETE FROM users WHERE id = '.$id.';');
     return TRUE;
   }

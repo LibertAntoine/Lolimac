@@ -13,11 +13,11 @@ class UserCRUD {
 
   public function add($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd_hash", "mail", "phone", "photo_url", "status", "year_promotion"]);
+    $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd_hash", "mail", "phone", "photo_url", "year_promotion"]);
     $data = $scanDataIn->failleXSS($dataIn);
+    // restriction à voir
     $data["pwd_hash"] = password_hash($data["pwd_hash"], PASSWORD_DEFAULT);
     $user = new User($data);
-
     $userManager = new UserManager();
     if ($userManager->readByPseudo($user->getPseudo()) === FALSE) {
       $userManager->add($user);
@@ -32,7 +32,7 @@ class UserCRUD {
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $token = new TokenAccess();
-    if($token->acompteAccess($data["id"])) {
+    if($token->acompteAccess($data["id"]) OR $token->adminAccess(1)) {
       $userManager = new UserManager();
       $user = $userManager->readById($data["id"]);
       if($user) {
@@ -61,9 +61,12 @@ class UserCRUD {
     $scanDataIn = new ScanDataIn();
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
-    $userManager = new UserManager();
-    $userManager->deleteById($data["id"]);
-    return TRUE;
+    $token = new TokenAccess();
+    if($token->acompteAccess($data["id"]) OR $token->adminAccess(1)) {
+        $userManager = new UserManager();
+        $userManager->deleteById($data["id"]);
+        return TRUE;
+    }
   }
 
   public function auth($dataIn) {

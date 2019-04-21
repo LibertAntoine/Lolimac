@@ -17,7 +17,6 @@ class TokenAccess {
         if($headers['Authorization']) {
         list($jwt) = sscanf($headers['Authorization'], 'Bearer %s');
             if ($jwt) {
-                //echo($jwt);
                 $this->token = JWT::decode($jwt, $config->getJwtKey(), array('HS512'));
             }
         }   
@@ -26,7 +25,7 @@ class TokenAccess {
     public function adminAccess($level) {
         $userManager = new UserManager();
         $user = $userManager->readById($this->token["id"]);
-        if($user->getStatus() >= $level) {
+        if($user->getStatus() <= $level) {
             return TRUE;
         }
     }
@@ -35,11 +34,10 @@ class TokenAccess {
         $userManager = new UserManager();
         $user = $userManager->readById($this->token->data->userId);
         if($user->getId() == $id) {
-            echo "ok";
             return TRUE;
         }
     }
 
-    public function moduleAccess($module_id, $event_id) {
+    public function moduleAccess($event_id, $module_id) {
     }
 }
