@@ -7,7 +7,7 @@ class UserManager extends DBAccess {
 		$q = $this->db->prepare("INSERT INTO users 
       (`firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`) 
       VALUES (:firstname, :lastname, :pseudo, :mail, :phone, :pwd_hash, :photo_url, :status, :year_promotion);");
-      
+
 		$q->bindValue(':firstname', $user->getFirstname());
     $q->bindValue(':lastname', $user->getLastname());
     $q->bindValue(':pseudo', $user->getPseudo());

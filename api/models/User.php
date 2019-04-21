@@ -105,7 +105,7 @@ class User {
 
   public function setMail($mail) {
     $mail = filter_var($mail, FILTER_VALIDATE_EMAIL);
-    if ($mail === TRUE) {
+    if ($mail == TRUE) {
      $this->mail = $mail;
     }
   }
@@ -123,13 +123,13 @@ class User {
   }
 
  	public function setStatus($status) {
-  	if (is_int($status)) {
- 		 $this->status = $status;
- 	  }
-  }
+  	$status = (int) $status;
+ 		$this->status = $status;
+ 	}
 
   public function setYear_promotion($year_promotion) {
-    if (is_int($year_promotion) && $year_promotion > 0) {
+    $year_promotion = (int) $year_promotion; 
+    if ($year_promotion > 0) {
      $this->year_promotion = $year_promotion;
     }
   }

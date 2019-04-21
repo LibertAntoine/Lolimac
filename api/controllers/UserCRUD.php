@@ -3,6 +3,8 @@
 namespace controllers;
 
 use \controllers\scans\ScanDataIn;
+use \controllers\scans\TokenAccess;
+use \controllers\scans\TokenCreater;
 use \models\User;
 use \models\UserManager;
 
@@ -11,7 +13,7 @@ class UserCRUD {
 
   public function add($dataIn) {
     $scanDataIn = new ScanDataIn();
-    //$scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd_hash", "mail", "phone", "photo_url", "status", "year_promotion"]);
+    $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd_hash", "mail", "phone", "photo_url", "status", "year_promotion"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $data["pwd_hash"] = password_hash($data["pwd_hash"], PASSWORD_DEFAULT);
     $user = new User($data);
@@ -27,14 +29,18 @@ class UserCRUD {
 
   public function update($dataIn) {
     $scanDataIn = new ScanDataIn();
+    $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
-    $userManager = new UserManager();
-    $user = $userManager->readById($data["id"]);
-    if($user) {
-      $user->hydrate($data);
-      $userManager->update($user);
-    } else {
-      throw new Exception("L'utilisateur n'existe pas.");
+    $token = new TokenAccess();
+    if($token->acompteAccess($data["id"])) {
+      $userManager = new UserManager();
+      $user = $userManager->readById($data["id"]);
+      if($user) {
+        $user->hydrate($data);
+        $userManager->update($user);
+      } else {
+        throw new Exception("L'utilisateur n'existe pas.");
+      }
     }
   }
 
@@ -49,7 +55,6 @@ class UserCRUD {
     } else {
       throw new Exception("L'utilisateur n'existe pas.");
     }
-
   }
 
   public function delete($dataIn) {
@@ -59,5 +64,19 @@ class UserCRUD {
     $userManager = new UserManager();
     $userManager->deleteById($data["id"]);
     return TRUE;
+  }
+
+  public function auth($dataIn) {
+    $scanDataIn = new ScanDataIn();
+    $scanDataIn->exists($dataIn, ["pseudo", "pwd"]);
+    $data = $scanDataIn->failleXSS($dataIn);
+    $userManager = new UserManager();
+    $user = $userManager->readByPseudo($data["pseudo"]);
+    if(password_verify($data["pwd"], $user->getPwd_hash())) {
+        $tokenCreater = new TokenCreater();
+        $tokenCreater->createToken($user->GetId());
+    } else {
+      throw new \Exception("Le pseudo ou mot de passe est incorrect.");
+    }
   }
 }

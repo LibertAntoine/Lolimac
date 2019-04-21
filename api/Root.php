@@ -33,7 +33,12 @@ class Root {
             case 'POST':
                 $_POST = json_decode(file_get_contents("php://input"), TRUE);
                 $userCRUD = new UserCRUD();
-                $userCRUD->add($_POST);
+                if ($this->root[1] == "add") {
+                    $userCRUD->add($_POST);
+                } else if ($this->root[1] == "auth") {
+                    $userCRUD->auth($_POST);
+                }
+                
                 break;
             
             case 'PUT':
