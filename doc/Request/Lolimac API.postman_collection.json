@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "62834e27-cc7b-48cb-a23a-fb76d31abb24",
+		"name": "Lolimac API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pseudo\" : \"fjoizefjojs\",\r\n    \"pwd\" : \"lolitop\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/user/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"user",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creation d'un utilisateur",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"prénom_test\",\r\n    \"lastname\" : \"nom_test\",\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"phone\" : \"06 06 06 06 06\",\r\n    \"mail\" : \"mail@gmail.com\",\r\n    \"pwd_hash\" : \"mot_de_passe\",\r\n    \"photo_url\" : \"nom_photo.jpg\",\r\n    \"year_promotion\" : 2021\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/user/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"user",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Renome utilisateur",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\" : 22,\r\n\t\"firstname\" : \"liuiyiuyl\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suppression d'un utilisateur",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\" : 22\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Avoir les infos publiques d'un user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/user/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"user",
+						"24"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
