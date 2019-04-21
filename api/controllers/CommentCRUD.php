@@ -36,8 +36,8 @@ class CommentCRUD {
 
    public function read($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
+    $data = $scanDataIn->orgenize($data, 2 ,["user", "id"]);
     $commentManager = new CommentManager();
     $comment = $commentManager->readById($data["id"]);
     if($comment) {

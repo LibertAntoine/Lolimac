@@ -6,12 +6,19 @@
     use \controllers\PlaceCRUD;
     use \controllers\PostCRUD;
     use \controllers\CommentCRUD;
-    use \controllers\scans\ScanDataIn; // prise en concidérations des namespaces.
+    use \controllers\scans\ScanDataIn;
+    use \controllers\scans\CutURL; // prise en concidérations des namespaces.
 
 
 class Root {
-    function __construct($action) {
-        $this->$action();
+
+    protected $root;
+
+    function __construct() {
+        $CutURL = new CutURL($_SERVER["REQUEST_URI"]);
+        $this->root = $CutURL->getURL_cut();
+        $key = $this->root[0];
+        $this->$key();
     }
 
 
@@ -20,7 +27,7 @@ class Root {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $userCRUD = new UserCRUD();
-                $userCRUD->read($_GET);
+                $userCRUD->read($this->root);
                 break;
 
             case 'POST':
@@ -51,7 +58,7 @@ class Root {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $placeCRUD = new PlaceCRUD();
-                $placeCRUD->read($_GET);
+                $placeCRUD->read($this->root);
                 break;
 
             case 'POST':
@@ -82,7 +89,7 @@ class Root {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $postCRUD = new PostCRUD();
-                $postCRUD->read($_GET);
+                $postCRUD->read($this->root);
                 break;
 
             case 'POST':
@@ -113,7 +120,7 @@ class Root {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $commentCRUD = new CommentCRUD();
-                $commentCRUD->read($_GET);
+                $commentCRUD->read($this->root);
                 break;
 
             case 'POST':

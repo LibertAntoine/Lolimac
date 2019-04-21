@@ -52,7 +52,7 @@ class Place {
 
   //Assesseurs
   //Attention le nom de méthode doit obligatoirement être composé de "set" suivi du nom de l'attribut correspondant, avec une majuscule, pour que la méthode hydrate soit fonctionnelle.
-	public function setId(int $id) {
+	public function setId($id) {
  	  $id = (int) $id;
  	  if ($id > 0) {
  		 $this->id = $id;

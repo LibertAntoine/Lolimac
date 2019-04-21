@@ -35,8 +35,8 @@ class PlaceCRUD {
 
 	public function read($dataIn) {
 		$scanDataIn = new ScanDataIn();
-        $scanDataIn->exists($dataIn, ["id"]);
-        $data = $scanDataIn->failleXSS($dataIn);
+		$data = $scanDataIn->failleXSS($dataIn);
+        $data = $scanDataIn->orgenize($data, 2, ["type", "id"]);
 		$placeManager = new PlaceManager();
 		$place = $placeManager->readById($data["id"]);
 		if($place) {

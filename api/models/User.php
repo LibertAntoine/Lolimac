@@ -72,7 +72,7 @@ class User {
 
   //Assesseurs
   //Attention le nom de méthode doit obligatoirement être composé de "set" suivi du nom de l'attribut correspondant, avec une majuscule, pour que la méthode hydrate soit fonctionnelle.
-	public function setId(int $id) {
+	public function setId($id) {
  	  $id = (int) $id;
  	  if ($id > 0) {
  		 $this->id = $id;
@@ -122,13 +122,13 @@ class User {
     }
   }
 
- 	public function setStatus(int $status) {
+ 	public function setStatus($status) {
   	if (is_int($status)) {
  		 $this->status = $status;
  	  }
   }
 
-  public function setYear_promotion(int $year_promotion) {
+  public function setYear_promotion($year_promotion) {
     if (is_int($year_promotion) && $year_promotion > 0) {
      $this->year_promotion = $year_promotion;
     }

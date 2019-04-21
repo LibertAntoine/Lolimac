@@ -39,8 +39,8 @@ class PostCRUD {
 
   public function read($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
+    $data = $scanDataIn->orgenize($data, 2, ["type", "id"]);
     $postManager = new PostManager();
     $post = $postManager->readById($data["id"]);
     if($post) {

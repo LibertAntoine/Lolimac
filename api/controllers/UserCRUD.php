@@ -11,7 +11,7 @@ class UserCRUD {
 
   public function add($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd_hash", "mail", "phone", "photo_url", "status", "year_promotion"]);
+    //$scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd_hash", "mail", "phone", "photo_url", "status", "year_promotion"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $data["pwd_hash"] = password_hash($data["pwd_hash"], PASSWORD_DEFAULT);
     $user = new User($data);
@@ -40,8 +40,8 @@ class UserCRUD {
 
   public function read($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
+    $data = $scanDataIn->orgenize($data, 2, ["type", "id"]);
     $userManager = new UserManager();
     $user = $userManager->readById($data["id"]);
     if($user) {
