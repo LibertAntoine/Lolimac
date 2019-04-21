@@ -1,0 +1,77 @@
+
+Légende : 
+	=> Les requêtes sont trier par catégories de données (user, event, ...)
+	=> Est spécifié à chaque fois l'url et le protocole REST de la requête.
+	=> Des varaibles peuvent être présentes dans l'URL, dans ce cas un notice en dessous précisera de quelle type elle peut être et à quoi elle correspond.
+	=> Dans certains cas, des informations parsés en JSON sont necessaire dans le corps de la requête. Dans ce cas la partie JSON précise les données obligatoire à fournir avec "=>" et les facultatives à la suite avec "-".
+	=> Enfin "retourne" spécifie les données que retourne l'api (en JSON). 
+
+
+
+USER REQUESTS
+
+requête : GET nom_domaine.fr/api/user/$identifiant
+
+Si identifiant => int (> 0) : recherche un utilisateur par son id.
+Si identifiant => !int : recherche un utilisateur par son pseudo.
+Si identifiant => null : message => "Le champ id manquant pour satisfaire la requête."
+
+retourne :
+	=> code : 202
+	=> firstname
+	=> lastname
+	=> pseudo
+
+-----------------
+
+requête : POST nom_domaine.fr/api/user/add
+
+body : 
+	=> firstname
+	=> lastname
+	=> pseudo
+	=> pwd_hash : le mot de passe.
+	=> mail
+	=> year_promotion.
+	- phone
+	- photo_url : photo de profil de l'utilisateur.
+
+retourne :
+	=> code : 202
+	=> message : "new user added."
+
+-----------------
+
+requête : PUT nom_domaine.fr/api/user
+
+body : 
+	=> id
+	- firstname
+	- lastname
+	- pseudo
+	- pwd_hash : le mot de passe.
+	- mail
+	- year_promotion.
+	- phone
+	- photo_url : photo de profil de l'utilisateur.
+
+retourne :
+	=> code : 202
+	=> message : "user edited."
+
+-----------------
+
+requête : DELETE nom_domaine.fr/api/user
+
+body : 
+	=> id
+
+retourne :
+	=> code : 202
+	=> message : "user deleted."
+
+_______________________________________________________
+
+PLACE REQUESTS
+
+...
