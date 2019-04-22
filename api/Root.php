@@ -5,6 +5,7 @@
     use \controllers\PostCRUD;
     use \controllers\CommentCRUD;
     use \controllers\ModuleCRUD;
+    use \controllers\Link_events_users_modulesCRUD;
     use \controllers\scans\ScanDataIn;
     use \controllers\scans\CutURL;
 
@@ -149,7 +150,7 @@ class Root {
     public function module() {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-                $moduleCRUD = new ModuleCRUD();
+                $moduleCRUD = new ink_events_users_modulesCRUD();
                 $moduleCRUD->read($this->root);
                 break;
 
@@ -169,6 +170,27 @@ class Root {
                 $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
                 $moduleCRUD = new ModuleCRUD();
                 $moduleCRUD->delete($_DELETE);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public function linkEUM() {
+        switch ($_SERVER['REQUEST_METHOD']) {
+
+            case 'POST':
+                $_POST = json_decode(file_get_contents("php://input"), TRUE);
+                $linkCRUD = new Link_events_users_modulesCRUD();
+                $linkCRUD->add($_POST);
+                break;
+            
+
+            case 'DELETE':
+                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
+                $linkCRUD = new Link_events_users_modulesCRUD();
+                $linkCRUD->delete($_DELETE);
                 break;
 
             default:
