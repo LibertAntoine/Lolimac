@@ -8,11 +8,21 @@
 		{
 			"name": "Authentification",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pseudo\" : \"fjoizefjojs\",\r\n    \"pwd\" : \"lolitop\"\r\n}"
+					"raw": "{\r\n    \"pseudo\" : \"pseudo_tes\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost/lolimac-back/api/user/auth",
@@ -153,6 +163,211 @@
 						"api",
 						"user",
 						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Création d'un module",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"module_test\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/module",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modufication d'un module",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"module\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/module",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Avoir les infos d'un module",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/module/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"module",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer un module",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/module",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajouter un lien event/user/mod",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_event\" : 1,\r\n    \"id_user\" : 2,\r\n    \"id_module\" : 3\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/linkEUM",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"linkEUM"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer un event/user/mod",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_event\" : 1,\r\n    \"id_user\" : 2,\r\n    \"id_module\" : 3\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/lolimac-back/api/linkEUM",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"lolimac-back",
+						"api",
+						"linkEUM"
 					]
 				}
 			},
