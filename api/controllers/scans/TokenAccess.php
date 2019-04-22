@@ -24,7 +24,7 @@ class TokenAccess {
 
     public function adminAccess($level) {
         $userManager = new UserManager();
-        $user = $userManager->readById($this->token["id"]);
+        $user = $userManager->readById($this->token->data->userId);
         if($user->getStatus() <= $level) {
             return TRUE;
         }

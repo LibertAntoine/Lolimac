@@ -1,13 +1,12 @@
 <?php
 
-// Fichier de routage de l'api.
-
     use \controllers\UserCRUD;
     use \controllers\PlaceCRUD;
     use \controllers\PostCRUD;
     use \controllers\CommentCRUD;
+    use \controllers\ModuleCRUD;
     use \controllers\scans\ScanDataIn;
-    use \controllers\scans\CutURL; // prise en concidérations des namespaces.
+    use \controllers\scans\CutURL;
 
 
 class Root {
@@ -23,7 +22,6 @@ class Root {
 
 
     public function user() {
-        // verif de token à ajouter.
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $userCRUD = new UserCRUD();
@@ -59,7 +57,6 @@ class Root {
     }
 
     public function place() {
-        // verif de token à ajouter.
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $placeCRUD = new PlaceCRUD();
@@ -90,7 +87,6 @@ class Root {
     }
 
     public function post() {
-        // verif de token à ajouter.
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $postCRUD = new PostCRUD();
@@ -121,7 +117,6 @@ class Root {
     }
 
     public function comment() {
-        // verif de token à ajouter.
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $commentCRUD = new CommentCRUD();
@@ -144,6 +139,36 @@ class Root {
                 $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
                 $commentCRUD = new CommentCRUD();
                 $commentCRUD->delete($_DELETE);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public function module() {
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                $moduleCRUD = new ModuleCRUD();
+                $moduleCRUD->read($this->root);
+                break;
+
+            case 'POST':
+                $_POST = json_decode(file_get_contents("php://input"), TRUE);
+                $moduleCRUD = new ModuleCRUD();
+                $moduleCRUD->add($_POST);
+                break;
+            
+            case 'PUT':
+                $_PUT = json_decode(file_get_contents("php://input"), TRUE);
+                $moduleCRUD = new ModuleCRUD();
+                $moduleCRUD->update($_PUT);
+                break;
+
+            case 'DELETE':
+                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
+                $moduleCRUD = new ModuleCRUD();
+                $moduleCRUD->delete($_DELETE);
                 break;
 
             default:

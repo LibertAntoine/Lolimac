@@ -26,7 +26,7 @@ class Module {
   }
 
   public function getName() {
-    return $this->firstname;
+    return $this->name;
   }
 
   public function setId($id) {

@@ -44,10 +44,10 @@ class ModuleManager extends DBAccess {
   }
 
   public function update(Module $module) {
-    $q = $this->db->prepare('UPDATE modules SET name = name WHERE id = :id');
+    $q = $this->db->prepare('UPDATE modules SET name = :name WHERE id = :id');
 
-    $q->bindValue(':id', $user->getId());
-    $q->bindValue(':name', $user->getName());
+    $q->bindValue(':id', $module->getId());
+    $q->bindValue(':name', $module->getName());
 
     $q->execute();
 
