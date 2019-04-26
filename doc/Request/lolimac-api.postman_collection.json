@@ -57,7 +57,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\" : \"prénom_test\",\r\n    \"lastname\" : \"nom_test\",\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"phone\" : \"06 06 06 06 06\",\r\n    \"mail\" : \"mail@gmail.com\",\r\n    \"pwd_hash\" : \"mot_de_passe\",\r\n    \"photo_url\" : \"nom_photo.jpg\",\r\n    \"year_promotion\" : 2021\r\n}"
+							"raw": "{\r\n    \"firstname\" : \"prénom_test\",\r\n    \"lastname\" : \"nom_test\",\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"phone\" : \"06 06 06 06 06\",\r\n    \"mail\" : \"mail@gmail.com\",\r\n    \"pwd\" : \"mot_de_passe\",\r\n    \"photo_url\" : \"nom_photo.jpg\",\r\n    \"year_promotion\" : 2021\r\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users",
@@ -94,31 +94,6 @@
 							],
 							"path": [
 								"{{userId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update whole data",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"firstname\": \"liuiyiuyl\",\r\n\t\"password\": \"monnouveaupassword\"\r\n}"
-						},
-						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}users",
-							"host": [
-								"{{serverUrl}}{{apiVersion}}users"
 							]
 						}
 					},
@@ -220,12 +195,76 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"mon évenement\"\n}"
+							"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							],
+							"path": [
+								"{{eventId}}"
+							]
+						},
+						"description": "Réponse beaucoup plus détaillée que sur les autres"
+					},
+					"response": []
+				},
+				{
+					"name": "Update partial info",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							],
+							"path": [
+								"{{eventId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							],
+							"path": [
+								"{{eventId}}"
 							]
 						}
 					},
@@ -276,28 +315,6 @@
 					"response": []
 				},
 				{
-					"name": "Read one",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
-							"host": [
-								"{{serverUrl}}{{apiVersion}}events"
-							],
-							"path": [
-								"{{eventId}}"
-							]
-						},
-						"description": "Réponse beaucoup plus détaillée que sur les autres"
-					},
-					"response": []
-				},
-				{
 					"name": "Read all lasts",
 					"request": {
 						"method": "GET",
@@ -307,44 +324,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/lasts/?from=0&limit=20",
+							"raw": "{{serverUrl}}{{apiVersion}}events/?from=0&limit=20",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"lasts",
-								""
-							],
-							"query": [
-								{
-									"key": "from",
-									"value": "0"
-								},
-								{
-									"key": "limit",
-									"value": "20"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Read all lasts sorted by importance",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/importance/?from=0&limit=20",
-							"host": [
-								"{{serverUrl}}{{apiVersion}}events"
-							],
-							"path": [
-								"importance",
 								""
 							],
 							"query": [
@@ -481,25 +465,25 @@
 	],
 	"variable": [
 		{
-			"id": "c2e7bb09-60c5-41d1-ab21-7389dfa64cc2",
+			"id": "365a4346-115c-42a0-9bb8-d2fee131d38f",
 			"key": "serverUrl",
 			"value": "http://localhost/lolimac-back",
 			"type": "string"
 		},
 		{
-			"id": "b97e93d3-6863-47d2-96c1-4624aa2d717d",
+			"id": "5c9243b6-d8d2-4d28-879e-6600a05f508f",
 			"key": "apiVersion",
 			"value": "api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "aa65198c-b4f7-4de4-a95c-ff3a0eab1730",
+			"id": "e4738308-3472-4384-8368-d10fbaf9aaf3",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "ab71d486-a2b6-4b0a-bdf2-118b79a429af",
+			"id": "1b9b97f3-c01a-4a16-a569-2f3d45aff5e8",
 			"key": "eventId",
 			"value": "1",
 			"type": "string"
