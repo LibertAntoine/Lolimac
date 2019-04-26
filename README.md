@@ -35,6 +35,7 @@ Il faut aussi vérifier que `Mcrpyt` (déprécié) est bien installé
 
 - [REST errors](https://blog.restcase.com/rest-api-error-codes-101/) - Best practices gestion erreurs api rest
 - [Open Api errors](https://github.com/OAI/OpenAPI-Specification/issues/1392) - Proposition d'erreurs standardisés OpenAPI
+- [Best practices](https://medium.com/studioarmix/learn-restful-api-design-ideals-c5ec915a430f) - Conseils quant à la création des endpoints
 
 ## Dépendences
 

@@ -6,43 +6,35 @@
 	},
 	"item": [
 		{
-			"name": "User",
+			"name": "Me",
 			"item": [
 				{
-					"name": "Authentification",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenKey}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
-						},
-						"url": {
-							"raw": "{{serverUrl}}/api/user/auth",
-							"host": [
-								"{{serverUrl}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"auth"
-							]
-						}
-					},
-					"response": []
+					"name": "Participations",
+					"item": [],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Création",
+					"name": "Comments",
+					"item": [],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Invitations",
+					"item": [],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Settings",
+					"item": [],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -55,27 +47,29 @@
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"firstname\" : \"prénom_test\",\r\n    \"lastname\" : \"nom_test\",\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"phone\" : \"06 06 06 06 06\",\r\n    \"mail\" : \"mail@gmail.com\",\r\n    \"pwd_hash\" : \"mot_de_passe\",\r\n    \"photo_url\" : \"nom_photo.jpg\",\r\n    \"year_promotion\" : 2021\r\n}"
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/user/add",
+							"raw": "{{serverUrl}}{{apiVersion}}users",
 							"host": [
-								"{{serverUrl}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"add"
+								"{{serverUrl}}{{apiVersion}}users"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Infos",
+					"name": "Read",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -94,21 +88,44 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/user/24",
+							"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
 							"host": [
-								"{{serverUrl}}"
+								"{{serverUrl}}{{apiVersion}}users"
 							],
 							"path": [
-								"api",
-								"user",
-								"24"
+								"{{userId}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "Update whole data",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"firstname\": \"liuiyiuyl\",\r\n\t\"password\": \"monnouveaupassword\"\r\n}"
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}users",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update partial info",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -120,27 +137,30 @@
 								}
 							]
 						},
-						"method": "PUT",
-						"header": [],
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"id\" : 22,\r\n\t\"firstname\" : \"liuiyiuyl\"\r\n}"
+							"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"firstname\" : \"liuiyiuyl\"\r\n}"
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/user",
+							"raw": "{{serverUrl}}{{apiVersion}}users",
 							"host": [
-								"{{serverUrl}}"
-							],
-							"path": [
-								"api",
-								"user"
+								"{{serverUrl}}{{apiVersion}}users"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Suppression",
+					"name": "Delete",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -156,16 +176,15 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"id\" : 22\r\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/user",
+							"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
 							"host": [
-								"{{serverUrl}}"
+								"{{serverUrl}}{{apiVersion}}users"
 							],
 							"path": [
-								"api",
-								"user"
+								"{{userId}}"
 							]
 						}
 					},
@@ -174,85 +193,91 @@
 			]
 		},
 		{
-			"name": "Module",
+			"name": "Events",
 			"item": [
 				{
-					"name": "Création",
+					"name": "Posts",
+					"item": [
+						{
+							"name": "Comments",
+							"item": [],
+							"_postman_isSubFolder": true
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenKey}}",
-									"type": "string"
-								}
-							]
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"mon évenement\"\n}"
 						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Join",
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"module_test\"\r\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/module",
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/join",
 							"host": [
-								"{{serverUrl}}"
+								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"api",
-								"module"
+								"{{eventId}}",
+								"join"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "Leave",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenKey}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"module\"\r\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/module",
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/leave",
 							"host": [
-								"{{serverUrl}}"
+								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"api",
-								"module"
+								"{{eventId}}",
+								"leave"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Infos",
+					"name": "Read one",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenKey}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -260,46 +285,116 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/module/1",
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
 							"host": [
-								"{{serverUrl}}"
+								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"api",
-								"module",
-								"1"
+								"{{eventId}}"
+							]
+						},
+						"description": "Réponse beaucoup plus détaillée que sur les autres"
+					},
+					"response": []
+				},
+				{
+					"name": "Read all lasts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events/lasts/?from=0&limit=20",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							],
+							"path": [
+								"lasts",
+								""
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Suppression",
+					"name": "Read all lasts sorted by importance",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenKey}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 1\r\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}/api/module",
+							"raw": "{{serverUrl}}{{apiVersion}}events/importance/?from=0&limit=20",
 							"host": [
-								"{{serverUrl}}"
+								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"api",
-								"module"
+								"importance",
+								""
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events/search/?q=ma+recherche&opt=date+participe",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							],
+							"path": [
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "ma+recherche"
+								},
+								{
+									"key": "opt",
+									"value": "date+participe"
+								}
 							]
 						}
 					},
@@ -308,73 +403,58 @@
 			]
 		},
 		{
-			"name": "Event",
-			"item": [
-				{
-					"name": "Création",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenKey}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_event\" : 1,\r\n    \"id_user\" : 2,\r\n    \"id_module\" : 3\r\n}"
-						},
-						"url": {
-							"raw": "{{serverUrl}}/api/linkEUM",
-							"host": [
-								"{{serverUrl}}"
-							],
-							"path": [
-								"api",
-								"linkEUM"
-							]
-						}
-					},
-					"response": []
+			"name": "Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
 				},
-				{
-					"name": "Suppression",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenKey}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_event\" : 1,\r\n    \"id_user\" : 2,\r\n    \"id_module\" : 3\r\n}"
-						},
-						"url": {
-							"raw": "{{serverUrl}}/api/linkEUM",
-							"host": [
-								"{{serverUrl}}"
-							],
-							"path": [
-								"api",
-								"linkEUM"
-							]
+				"url": {
+					"raw": "{{serverUrl}}{{apiVersion}}",
+					"host": [
+						"{{serverUrl}}{{apiVersion}}"
+					]
+				},
+				"description": "Indique que le serveur fonctionne"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokenKey}}",
+							"type": "string"
 						}
-					},
-					"response": []
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
+				},
+				"url": {
+					"raw": "{{serverUrl}}{{apiVersion}}login",
+					"host": [
+						"{{serverUrl}}{{apiVersion}}login"
+					]
 				}
-			]
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -401,9 +481,27 @@
 	],
 	"variable": [
 		{
-			"id": "f7744dd7-72e0-4b51-b3c6-b3da6f8a996d",
+			"id": "c2e7bb09-60c5-41d1-ab21-7389dfa64cc2",
 			"key": "serverUrl",
 			"value": "http://localhost/lolimac-back",
+			"type": "string"
+		},
+		{
+			"id": "b97e93d3-6863-47d2-96c1-4624aa2d717d",
+			"key": "apiVersion",
+			"value": "api/v1/",
+			"type": "string"
+		},
+		{
+			"id": "aa65198c-b4f7-4de4-a95c-ff3a0eab1730",
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"id": "ab71d486-a2b6-4b0a-bdf2-118b79a429af",
+			"key": "eventId",
+			"value": "1",
 			"type": "string"
 		}
 	]
