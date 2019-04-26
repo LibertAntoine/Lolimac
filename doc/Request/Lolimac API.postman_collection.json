@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "62834e27-cc7b-48cb-a23a-fb76d31abb24",
+		"_postman_id": "3ba135ee-8197-4100-9968-30203a32a6ff",
 		"name": "Lolimac API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -22,16 +22,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pseudo\" : \"pseudo_tes\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
+					"raw": "{\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/user/auth",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/user/auth",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"user",
 						"auth"
@@ -60,13 +58,11 @@
 					"raw": "{\r\n    \"firstname\" : \"prénom_test\",\r\n    \"lastname\" : \"nom_test\",\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"phone\" : \"06 06 06 06 06\",\r\n    \"mail\" : \"mail@gmail.com\",\r\n    \"pwd_hash\" : \"mot_de_passe\",\r\n    \"photo_url\" : \"nom_photo.jpg\",\r\n    \"year_promotion\" : 2021\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/user/add",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/user/add",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"user",
 						"add"
@@ -95,13 +91,11 @@
 					"raw": "{\r\n\t\"id\" : 22,\r\n\t\"firstname\" : \"liuiyiuyl\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/user",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/user",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"user"
 					]
@@ -129,13 +123,11 @@
 					"raw": "{\r\n\t\"id\" : 22\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/user",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/user",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"user"
 					]
@@ -146,6 +138,16 @@
 		{
 			"name": "Avoir les infos publiques d'un user",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1NTYyMDczMTAsImp0aSI6IkN1UWtjQVhWMUJyakRmbWIzb3NFWUVWQzloRFR3eGRXKzRPKzBicHY5QXc9IiwiaXNzIjoiMTI3LjAuMC4xIiwibmJmIjoxNTU2MjA3MzIwLCJleHAiOjE1NTYyMTgxMjAsImRhdGEiOnsidXNlcklkIjoyMX19.uhPxtYCYVM8pXtNV8wZtMQLL464AH6yfuCoZwafJqS1YvCKhAhYZ18DtJzI3VhZs2sU_QXpChc_T8PL29o_8qg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -153,13 +155,11 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/user/24",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/user/24",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"user",
 						"24"
@@ -188,13 +188,11 @@
 					"raw": "{\r\n    \"name\" : \"module_test\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/module",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/module",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"module"
 					]
@@ -222,13 +220,11 @@
 					"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"module\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/module",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/module",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"module"
 					]
@@ -256,13 +252,11 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/module/1",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/module/1",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"module",
 						"1"
@@ -291,13 +285,11 @@
 					"raw": "{\r\n    \"id\" : 1\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/module",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/module",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"module"
 					]
@@ -325,13 +317,11 @@
 					"raw": "{\r\n    \"id_event\" : 1,\r\n    \"id_user\" : 2,\r\n    \"id_module\" : 3\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/linkEUM",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/linkEUM",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"linkEUM"
 					]
@@ -359,19 +349,47 @@
 					"raw": "{\r\n    \"id_event\" : 1,\r\n    \"id_user\" : 2,\r\n    \"id_module\" : 3\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost/lolimac-back/api/linkEUM",
-					"protocol": "http",
+					"raw": "{{serverUrl}}/api/linkEUM",
 					"host": [
-						"localhost"
+						"{{serverUrl}}"
 					],
 					"path": [
-						"lolimac-back",
 						"api",
 						"linkEUM"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8ffc2ce1-f4db-47ab-a255-c5f98fe02247",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bc21610b-5fe4-443e-a731-1a8c3eb4ded5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c1444ace-270b-4c95-9ba2-dff6266c8ad3",
+			"key": "serverUrl",
+			"value": "http://localhost/lolimac-back",
+			"type": "string"
 		}
 	]
 }
