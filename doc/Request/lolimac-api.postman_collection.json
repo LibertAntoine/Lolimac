@@ -259,7 +259,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
+							"raw": "{\n    \"title\": \"euh coucou\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"description\": \"c'est le lol\",\n    \"date_start\": \"2018-12-11 10:10:10\",\n    \"date_end\": \"2018-12-12 10:10:10\"\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events",
@@ -268,7 +268,64 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"description\": \"c'est le lol\",\n    \"date_start\":\"2018-12-11\",\n    \"date_end\":\"2018-12-12\"\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Create BBQ",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
 				},
 				{
 					"name": "Read one",
@@ -296,10 +353,17 @@
 					"name": "Update partial info",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\r\n\t\"title\" : \"MAIS LOL\",\r\n\t\"date_start\": \"2018-12-12 22:22:00\"\r\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
@@ -577,25 +641,25 @@
 	],
 	"variable": [
 		{
-			"id": "6b773d9e-cb30-4001-98b4-cea538fbd931",
+			"id": "4b47fe29-4369-4d88-8706-14971ac7480d",
 			"key": "serverUrl",
 			"value": "http://localhost/lolimac-back/",
 			"type": "string"
 		},
 		{
-			"id": "f9376161-7451-4782-9adc-7fe1339f9c15",
+			"id": "d9df611b-6d2d-4684-b360-4bc055d98bbb",
 			"key": "apiVersion",
 			"value": "api/",
 			"type": "string"
 		},
 		{
-			"id": "dea0f617-1e8d-41f8-9f3d-d0929e790be7",
+			"id": "053eb52b-2d33-4fcb-979b-4f8efdf1ffe3",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "5a0f41aa-9f32-49e8-9e45-aaa40a515f35",
+			"id": "ae827d7c-9dcc-459b-8c8c-f21222a4c245",
 			"key": "eventId",
 			"value": "1",
 			"type": "string"
