@@ -2,6 +2,7 @@
 
     use \controllers\UserCRUD;
     use \controllers\PlaceCRUD;
+    use \controllers\EventCRUD;
     use \controllers\PostCRUD;
     use \controllers\CommentCRUD;
     use \controllers\ModuleCRUD;
@@ -83,8 +84,10 @@ class Root {
                 $eventCRUD->add($_POST);
                 break;
 
-            case 'PUT':
+            case 'PATCH':
+                $idEvent = $this->root[1];
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
+                $_PUT["id"] = $idEvent;
                 $eventCRUD = new EventCRUD();
                 $eventCRUD->update($_PUT);
                 break;

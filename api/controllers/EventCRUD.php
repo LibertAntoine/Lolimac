@@ -3,6 +3,8 @@
 namespace controllers;
 
 use \controllers\scans\ScanDataIn;
+use \controllers\scans\TokenAccess;
+use \controllers\scans\TokenCreater;
 use \models\Event;
 use \models\EventManager;
 
@@ -11,11 +13,13 @@ class EventCRUD {
 
   public function add($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["title", "description", "date_start", "date_end", "date_created"]);
+    $scanDataIn->exists($dataIn, ["title", "photo_url", "description", "date_start", "date_end"]);
+    #$scanDataIn->exists($dataIn, ["title", "photo_url", "date_start", "date_end"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $event = new Event($data);
 
     $eventManager = new EventManager();
+    $eventManager->add($event);
     return TRUE;
   }
 
@@ -24,6 +28,9 @@ class EventCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     $eventManager = new EventManager();
     $event = $eventManager->readById($data["id"]);
+    if (empty($data["id"])) {
+      throw new Exception("Merci de spécifier un événement!");
+    }
     if($event) {
       $event->hydrate($data);
       $eventManager->update($event);
