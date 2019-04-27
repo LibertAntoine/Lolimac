@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3ba135ee-8197-4100-9968-30203a32a6ff",
+		"_postman_id": "3b7809ab-3ffe-4c3d-a2fd-84b9cb9c7a39",
 		"name": "lolimac-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -57,7 +57,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\" : \"prénom_test\",\r\n    \"lastname\" : \"nom_test\",\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"phone\" : \"06 06 06 06 06\",\r\n    \"mail\" : \"mail@gmail.com\",\r\n    \"pwd\" : \"mot_de_passe\",\r\n    \"photo_url\" : \"nom_photo.jpg\",\r\n    \"year_promotion\" : 2021\r\n}"
+							"raw": "{\n    \"firstname\": \"nico\",\n    \"lastname\": \"lien\",\n    \"pseudo\": \"nicolnt\",\n    \"phone\": \"06 06 06 06 06\",\n    \"mail\": \"mail@gmail.com\",\n    \"pwd\": \"mot_de_passe\",\n    \"photo_url\": \"nom_photo.jpg\",\n    \"year_promotion\": 2021\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users",
@@ -66,7 +66,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create User Nicolnt",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"nico\",\n    \"lastname\": \"lien\",\n    \"pseudo\": \"nicolnt\",\n    \"phone\": \"06 06 06 06 06\",\n    \"mail\": \"mail@gmail.com\",\n    \"pwd\": \"mot_de_passe\",\n    \"photo_url\": \"nom_photo.jpg\",\n    \"year_promotion\": 2021\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}users",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 27 Apr 2019 16:45:58 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "208"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "<br />\n<b>Fatal error</b>:  Uncaught Error: Call to undefined method Root::v1() in /var/www/lolimac-back/api/Root.php:21\nStack trace:\n#0 /var/www/lolimac-back/api/index.php(9): Root-&gt;__construct()\n#1 {main}\n  thrown in\n<b>/var/www/lolimac-back/api/Root.php</b> on line\n<b>21</b>\n<br />"
+						}
+					]
 				},
 				{
 					"name": "Read",
@@ -429,7 +493,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pseudo\" : \"pseudo_test\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
+					"raw": "{\r\n    \"pseudo\" : \"nicolnt\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
 				},
 				"url": {
 					"raw": "{{serverUrl}}{{apiVersion}}login",
@@ -437,6 +501,54 @@
 						"{{serverUrl}}{{apiVersion}}login"
 					]
 				}
+			},
+			"response": [
+				{
+					"name": "Login Nicolnt",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pseudo\" : \"nicolnt\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}login",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}login"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{serverUrl}}{{apiVersion}}",
+					"host": [
+						"{{serverUrl}}{{apiVersion}}"
+					]
+				},
+				"description": "Check server status and las commit id"
 			},
 			"response": []
 		}
@@ -465,25 +577,25 @@
 	],
 	"variable": [
 		{
-			"id": "365a4346-115c-42a0-9bb8-d2fee131d38f",
+			"id": "6b773d9e-cb30-4001-98b4-cea538fbd931",
 			"key": "serverUrl",
-			"value": "http://localhost/lolimac-back",
+			"value": "http://localhost/lolimac-back/",
 			"type": "string"
 		},
 		{
-			"id": "5c9243b6-d8d2-4d28-879e-6600a05f508f",
+			"id": "f9376161-7451-4782-9adc-7fe1339f9c15",
 			"key": "apiVersion",
-			"value": "api/v1/",
+			"value": "api/",
 			"type": "string"
 		},
 		{
-			"id": "e4738308-3472-4384-8368-d10fbaf9aaf3",
+			"id": "dea0f617-1e8d-41f8-9f3d-d0929e790be7",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "1b9b97f3-c01a-4a16-a569-2f3d45aff5e8",
+			"id": "5a0f41aa-9f32-49e8-9e45-aaa40a515f35",
 			"key": "eventId",
 			"value": "1",
 			"type": "string"
