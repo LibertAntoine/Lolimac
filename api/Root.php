@@ -18,11 +18,29 @@ class Root {
         $CutURL = new CutURL($_SERVER["REQUEST_URI"]);
         $this->root = $CutURL->getURL_cut();
         $key = $this->root[0];
-        $this->$key();
+        if (!$key) {
+            // Called if the user access /api without any other argument
+            echo json_encode(
+                [
+                    "status" => "running",
+                    "commit" => shell_exec("git rev-parse HEAD")
+                ]
+        );
+        }
+        else {
+            $this->$key();
+        }
     }
 
+    public function login() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = json_decode(file_get_contents("php://input"), TRUE);
+            $userCRUD = new UserCRUD();
+            $userCRUD->auth($_POST);
+        }
+    }
 
-    public function user() {
+    public function users() {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $userCRUD = new UserCRUD();
@@ -32,14 +50,9 @@ class Root {
             case 'POST':
                 $_POST = json_decode(file_get_contents("php://input"), TRUE);
                 $userCRUD = new UserCRUD();
-                if ($this->root[1] == "add") {
-                    $userCRUD->add($_POST);
-                } else if ($this->root[1] == "auth") {
-                    $userCRUD->auth($_POST);
-                }
-                
+                $userCRUD->add($_POST);
                 break;
-            
+
             case 'PUT':
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
                 $userCRUD = new UserCRUD();
@@ -50,6 +63,36 @@ class Root {
                 $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
                 $userCRUD = new UserCRUD();
                 $userCRUD->delete($_DELETE);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public function events() {
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                $eventCRUD = new EventCRUD();
+                $eventCRUD->read($this->root);
+                break;
+
+            case 'POST':
+                $_POST = json_decode(file_get_contents("php://input"), TRUE);
+                $eventCRUD = new EventCRUD();
+                $eventCRUD->add($_POST);
+                break;
+
+            case 'PUT':
+                $_PUT = json_decode(file_get_contents("php://input"), TRUE);
+                $eventCRUD = new EventCRUD();
+                $eventCRUD->update($_PUT);
+                break;
+
+            case 'DELETE':
+                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
+                $eventCRUD = new EventCRUD();
+                $eventCRUD->delete($_DELETE);
                 break;
 
             default:
@@ -69,7 +112,7 @@ class Root {
                 $placeCRUD = new PlaceCRUD();
                 $placeCRUD->add($_POST);
                 break;
-            
+
             case 'PUT':
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
                 $placeCRUD = new PlaceCRUD();
@@ -99,7 +142,7 @@ class Root {
                 $postCRUD = new PostCRUD();
                 $postCRUD->add($_POST);
                 break;
-            
+
             case 'PUT':
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
                 $postCRUD = new PostCRUD();
@@ -129,7 +172,7 @@ class Root {
                 $commentCRUD = new CommentCRUD();
                 $commentCRUD->add($_POST);
                 break;
-            
+
             case 'PUT':
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
                 $commentCRUD = new CommentCRUD();
@@ -159,7 +202,7 @@ class Root {
                 $moduleCRUD = new ModuleCRUD();
                 $moduleCRUD->add($_POST);
                 break;
-            
+
             case 'PUT':
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
                 $moduleCRUD = new ModuleCRUD();
@@ -185,7 +228,7 @@ class Root {
                 $linkCRUD = new Link_events_users_modulesCRUD();
                 $linkCRUD->add($_POST);
                 break;
-            
+
 
             case 'DELETE':
                 $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
