@@ -28,6 +28,7 @@ class UserCRUD {
   }
 
   public function update($dataIn) {
+    // TODO: vérifier les droits
     $scanDataIn = new ScanDataIn();
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
