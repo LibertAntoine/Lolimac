@@ -28,6 +28,19 @@ class EventManager extends DBAccess {
       return new Event($event);
   }
 
+  public function readOffsetLimit($offset, $limit) {
+	  // TODO: finir et lier
+    $allEvents = [];
+
+    $q = $this->db->query('SELECT * FROM events LIMIT :limit OFFSET :offset');
+    $q->bindValue(':limit', $limit);
+    $q->bindValue(':offset', $offset);
+    while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
+     $allEvents[$data['id']] = new Event($data);
+    }
+    return $allEvents;
+  }
+
   public function readAll() {
     $allEvents = [];
 

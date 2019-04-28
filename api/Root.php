@@ -30,6 +30,7 @@ class Root {
         }
         else {
             $this->$key();
+            // TODO: CutURL Error with get args
         }
     }
 
@@ -75,7 +76,16 @@ class Root {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $eventCRUD = new EventCRUD();
-                $eventCRUD->read($this->root);
+                if (isset($this->root[1])) {
+                    // We read one specific event
+                    $eventCRUD->read($this->root[1]);
+                }
+                else {
+                    // TODO: afficher les 10 prochains ?
+                    // TODO gérer le FROM et LIMIT GET?from=&limit
+                    $eventCRUD->readAll();
+                    $eventCRUD->readOffsetLimit($_GET);
+                }
                 break;
 
             case 'POST':
@@ -93,7 +103,7 @@ class Root {
                 break;
 
             case 'DELETE':
-                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
+                $_DELETE[] = json_decode(file_get_contents("php://input"), TRUE);
                 $eventCRUD = new EventCRUD();
                 $eventCRUD->delete($_DELETE);
                 break;

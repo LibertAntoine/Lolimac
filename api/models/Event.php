@@ -8,13 +8,26 @@ class Event {
 	protected $id,
 	$title,
 	$photo_url,
-	$description,
-	$date_start,
-	$date_end,
+	$description = NULL,
+	$date_start = NULL,
+	$date_end = NULL,
 	$date_created;
 
 	public function __construct(array $data) {
 		$this->hydrate($data);
+	}
+
+	public function toArray() {
+		$array = [
+			"id_event" => $this->getId(),
+			"title" => $this->getTitle(),
+			"description" => $this->getDescription(),
+			"date_start" => $this->getDate_start(),
+			"date_end" => $this->getDate_end(),
+			"date_created" => $this->getDate_created(),
+			"photo_url" => $this->getPhoto_url()
+		];
+		return $array;
 	}
 
 	public function __isset($property) {
@@ -89,7 +102,7 @@ class Event {
 
   public function setDate_start($date_start) {
 	  $scanDataIn = new ScanDataIn();
-	  if ($scanDataIn->validateDate($date_start)) {
+	  if ($date_start == NULL || $scanDataIn->validateDate($date_start)) {
 		  $this->date_start = $date_start;
 	  }
 	  else {
@@ -99,7 +112,7 @@ class Event {
 
  	public function setDate_end($date_end) {
 		$scanDataIn = new ScanDataIn();
-		if ($scanDataIn->validateDate($date_end)) {
+		if ($date_end == NULL || $scanDataIn->validateDate($date_end)) {
 			$this->date_end = $date_end;
 		}
 		else {
@@ -109,7 +122,7 @@ class Event {
 
   public function setDate_created($date_created) {
 		$scanDataIn = new ScanDataIn();
-		if ($scanDataIn->validateDate($date_created)) {
+		if ($date_created == NULL || $scanDataIn->validateDate($date_created)) {
 			$this->date_created = $date_created;
 		}
 		else {

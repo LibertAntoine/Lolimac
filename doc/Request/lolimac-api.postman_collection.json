@@ -511,6 +511,51 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Read all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						},
+						"description": "Read all events"
+					},
+					"response": []
+				},
+				{
+					"name": "Read FROM - LIMIT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events?from=0&limit=10",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Read a bunch of events"
+					},
+					"response": []
 				}
 			]
 		},
@@ -641,25 +686,25 @@
 	],
 	"variable": [
 		{
-			"id": "4b47fe29-4369-4d88-8706-14971ac7480d",
+			"id": "8c422155-de6c-4549-b183-3b35b520148f",
 			"key": "serverUrl",
 			"value": "http://localhost/lolimac-back/",
 			"type": "string"
 		},
 		{
-			"id": "d9df611b-6d2d-4684-b360-4bc055d98bbb",
+			"id": "a05b5ceb-8d4d-401b-81a8-87d86cc05f88",
 			"key": "apiVersion",
 			"value": "api/",
 			"type": "string"
 		},
 		{
-			"id": "053eb52b-2d33-4fcb-979b-4f8efdf1ffe3",
+			"id": "683e0112-d104-49d5-9c58-e56715739253",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "ae827d7c-9dcc-459b-8c8c-f21222a4c245",
+			"id": "45d6d85a-7e3a-46ee-8591-fd5396cd5ef1",
 			"key": "eventId",
 			"value": "1",
 			"type": "string"
