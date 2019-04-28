@@ -13,7 +13,7 @@ class EventManager extends DBAccess {
 			$q->bindValue(':date_end', $event->getDate_end());
 
 			$q->execute();
-
+			
 			$event->hydrate(['id' => $this->db->lastInsertId()]);
 			return $event;
   }
@@ -25,16 +25,21 @@ class EventManager extends DBAccess {
   public function readById($id) {
       $q = $this->db->query('SELECT * FROM events WHERE id = '.$id);
       $event = $q->fetch(\PDO::FETCH_ASSOC);
-      return new Event($event);
+	  if ($event) {
+		  return new Event($event);
+	  }
+	  else {
+	  	throw new \Exception("Aucun événement ne correspond à l'id $id");
+	  }
   }
 
-  public function readOffsetLimit($offset, $limit) {
-	  // TODO: finir et lier
+  public function readOffsetLimit(int $offset, int $limit) {
     $allEvents = [];
 
-    $q = $this->db->query('SELECT * FROM events LIMIT :limit OFFSET :offset');
-    $q->bindValue(':limit', $limit);
-    $q->bindValue(':offset', $offset);
+    $q = $this->db->prepare("SELECT * FROM events LIMIT :limit OFFSET :offset");
+    $q->bindValue(":limit", (int) $limit, \PDO::PARAM_INT);
+    $q->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
+	$q->execute();
     while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
      $allEvents[$data['id']] = new Event($data);
     }

@@ -5,11 +5,11 @@ namespace models;
 class Place {
 
 	protected $id,
-  $postcode,
-  $street,
-	$number,
-	$city,
-  $name ;
+	$postcode = NULL,
+	$street = NULL,
+	$number = NULL,
+	$city = NULL,
+	$name = NULL;
 
 	public function __construct(array $data) {
 		$this->hydrate($data);
@@ -25,7 +25,7 @@ class Place {
     }
   }
 
-  // Getters 
+  // Getters
   public function getId() {
     return $this->id;
   }

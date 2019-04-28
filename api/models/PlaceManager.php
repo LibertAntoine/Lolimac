@@ -4,15 +4,15 @@ namespace models;
 
 class PlaceManager extends DBAccess {
 	public function add(Place $place) {
-		$q = $this->db->prepare("INSERT INTO places 
-      (`postcode`, `street`, `number`, `city`, `name`) 
+		$q = $this->db->prepare("INSERT INTO places
+      (`postcode`, `street`, `number`, `city`, `name`)
       VALUES (:postcode, :street, :number, :city, :name);");
-      
-		$q->bindValue(':postcode', $place->getPostcode());
-    $q->bindValue(':street', $place->getStreet());
-    $q->bindValue(':number', $place->getNumber());
-    $q->bindValue(':city', $place->getCity());
-    $q->bindValue(':name', $place->getName());
+
+	  $q->bindValue(':postcode', $place->getPostcode());
+	  $q->bindValue(':street', $place->getStreet());
+	  $q->bindValue(':number', $place->getNumber());
+	  $q->bindValue(':city', $place->getCity());
+	  $q->bindValue(':name', $place->getName());
 
 	  $q->execute();
 
@@ -25,22 +25,26 @@ class PlaceManager extends DBAccess {
   }
 
   public function readById($id) {
-      $q = $this->db->query('SELECT * FROM places WHERE id = '.$id);
+      $q = $this->db->prepare("SELECT * FROM places WHERE id = :id;");
+	  $q->bindValue(':id', $id);
+	  $q->execute();
       $place = $q->fetch(\PDO::FETCH_ASSOC);
+	  //\var_dump($place);
       return new Place($place);
   }
 
   public function readByName($name) {
-      $q = $this->db->prepare('SELECT * FROM places WHERE name = :name');
-      $q->execute([':name' => $name]);
-      $place = $q->fetch(\PDO::FETCH_ASSOC); 
+      $q = $this->db->prepare("SELECT * FROM places WHERE name = :name");
+	  $q->bindValue(':name', $name);
+      //$q->execute([':name' => $name]);
+      $place = $q->fetch(\PDO::FETCH_ASSOC);
       return ($place) ? new Place($place) : false;
   }
 
   public function readAll() {
     $allPlaces = [];
-    
-    $q = $this->db->query('SELECT * FROM places');
+
+    $q = $this->db->query("SELECT * FROM places");
     while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
      $allPlaces[$data['id']] = new Place($data);
     }
@@ -63,7 +67,8 @@ class PlaceManager extends DBAccess {
   }
 
   public function deleteById(int $id) {
-    $this->db->exec('DELETE FROM places WHERE id = '.$id.';');
-    return TRUE;
+    $q = $this->db->prepare("DELETE FROM places WHERE id = :id;");
+    $q->bindValue(':id', $place->getId());
+    return $q->execute();
   }
 }

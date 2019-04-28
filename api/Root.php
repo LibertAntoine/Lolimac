@@ -7,6 +7,7 @@
     use \controllers\CommentCRUD;
     use \controllers\ModuleCRUD;
     use \controllers\Link_events_users_modulesCRUD;
+    use \controllers\Link_events_placesCRUD;
     use \controllers\scans\ScanDataIn;
     use \controllers\scans\CutURL;
 
@@ -16,6 +17,8 @@ class Root {
     protected $root;
 
     function __construct() {
+        header("Content-Type: application/json; charset=UTF-8");
+
         $CutURL = new CutURL($_SERVER["REQUEST_URI"]);
         $this->root = $CutURL->getURL_cut();
         $key = $this->root[0];
@@ -24,7 +27,7 @@ class Root {
             echo json_encode(
                 [
                     "status" => "running",
-                    "commit" => shell_exec("git rev-parse HEAD")
+                    "commit" => trim(shell_exec("git rev-parse HEAD"), "..\n")
                 ]
         );
         }
@@ -76,15 +79,18 @@ class Root {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $eventCRUD = new EventCRUD();
+                $_GET;
+                //print_r($this->root);
                 if (isset($this->root[1])) {
+                    $_GET["id"] = $this->root[1];
                     // We read one specific event
-                    $eventCRUD->read($this->root[1]);
+                    $eventCRUD->read($_GET);
                 }
                 else {
                     // TODO: afficher les 10 prochains ?
                     // TODO gérer le FROM et LIMIT GET?from=&limit
-                    $eventCRUD->readAll();
-                    $eventCRUD->readOffsetLimit($_GET);
+                    $eventCRUD->readMultiple($_GET);
+                    //$eventCRUD->readOffsetLimit($_GET);
                 }
                 break;
 
@@ -103,7 +109,8 @@ class Root {
                 break;
 
             case 'DELETE':
-                $_DELETE[] = json_decode(file_get_contents("php://input"), TRUE);
+                $idEvent = $this->root[1];
+                $_DELETE["id"] = $idEvent;
                 $eventCRUD = new EventCRUD();
                 $eventCRUD->delete($_DELETE);
                 break;

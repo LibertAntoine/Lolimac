@@ -11,7 +11,7 @@ class PlaceCRUD {
 
 	public function add($dataIn) {
 		$scanDataIn = new ScanDataIn();
-        $scanDataIn->exists($dataIn, ["postcode", "street", "number", "city", "name"]);
+        //$scanDataIn->exists($dataIn, ["postcode", "street", "number", "city", "name"]);
         $data = $scanDataIn->failleXSS($dataIn);
 		$place = new Place($data);
 
@@ -36,7 +36,7 @@ class PlaceCRUD {
 	public function read($dataIn) {
 		$scanDataIn = new ScanDataIn();
 		$data = $scanDataIn->failleXSS($dataIn);
-        $data = $scanDataIn->orgenize($data, 2, ["type", "id"]);
+        $data = $scanDataIn->exists($data, ["id"]);
 		$placeManager = new PlaceManager();
 		$place = $placeManager->readById($data["id"]);
 		if($place) {
