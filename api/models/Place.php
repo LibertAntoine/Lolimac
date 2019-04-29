@@ -25,6 +25,18 @@ class Place {
     }
   }
 
+  public function toArray() {
+      $array = [
+          "id_place" => $this->getId(),
+          "postcode" => $this->getPostcode(),
+          "street" => $this->getStreet(),
+          "number" => $this->getNumber(),
+          "city" => $this->getCity(),
+          "name" => $this->getName()
+      ];
+      return $array;
+  }
+
   // Getters
   public function getId() {
     return $this->id;

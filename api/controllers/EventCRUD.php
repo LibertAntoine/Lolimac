@@ -50,17 +50,32 @@ class EventCRUD {
   public function update($dataIn) {
     $scanDataIn = new ScanDataIn();
     $data = $scanDataIn->failleXSS($dataIn);
-    // NOTE: User should not be able to give date_created in $scanDataIn
-    // TODO: Remove if exist cate_created
-    $eventManager = new EventManager();
-    $event = $eventManager->readById($data["id"]);
-    // TODO: Place update - create new or edit
+    unset($data['date_created']); // NOTE: prevents user from modifying creation date
     if (empty($data["id"])) {
       throw new Exception("Merci de spécifier un événement!");
     }
+    $eventManager = new EventManager();
+    $event = $eventManager->readById($data["id"]);
     if($event) {
-      $event->hydrate($data);
-      $eventManager->update($event);
+        $event->hydrate($data);
+        $eventManager->update($event);
+
+        if (isset($data["place"])) {
+            if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
+                $place = new Place($data["place"]);
+                $placeManager = new PlaceManager();
+                $place = $placeManager->add($place);
+            }
+            else { // On lie à un autre endroit déjà existant
+                $placeManager = new PlaceManager();
+                $place = $placeManager->readById($data["place"]);
+                if ($place == NULL) {
+                    throw new \Exception("Le lieu indiqué est inconnu");
+                }
+            }
+            $link_events_placesCRUD = new Link_events_placesCRUD();
+            $link_events_placesCRUD->update(["id_event"=>$event->getId(), "id_place" => $place->getId()]);
+        }
     } else {
       throw new Exception("L'événement n'existe pas.");
     }
@@ -82,23 +97,20 @@ class EventCRUD {
       if($events) {
           foreach ($events as $key => $event) {
               $events[$key] = $event->toArray();
-          }
-          echo json_encode($events);
-      } else {
-          throw new Exception("L'événement n'existe pas.");
-      }
-  }
 
-  public function readOffsetLimit($dataIn) {
-      $scanDataIn = new ScanDataIn();
-      $scanDataIn->exists($dataIn, ["from", "limit"]);
-      $data = $scanDataIn->failleXSS($dataIn);
+              $link_events_placesManager = new Link_events_placesManager();
+              $link_events_places = $link_events_placesManager->readById_event($events[$key]["id_event"]);
+              if ($link_events_places) {
+                  $placeManager = new PlaceManager();
+                  $place = $placeManager->readById($link_events_places->getId_place());
 
-      $eventManager = new EventManager();
-      $events = $eventManager->readOffsetLimit($data["from"], $data["limit"]);
-      if($events) {
-          foreach ($events as $key => $event) {
-              $events[$key] = $event->toArray();
+              }
+              if ($place) {
+                  $events[$key]["place"] = $place->toArray();
+              }
+              else {
+                  $events[$key]["place"] = null;
+              }
           }
           echo json_encode($events);
       } else {
@@ -113,7 +125,20 @@ class EventCRUD {
     $eventManager = new EventManager();
     $event = $eventManager->readById($data["id"]);
     if($event) {
-      echo json_encode($event->toArray());
+        $event = $event->toArray();
+        $link_events_placesManager = new Link_events_placesManager();
+        $link_events_places = $link_events_placesManager->readById_event($event["id_event"]);
+        if ($link_events_places) {
+            $placeManager = new PlaceManager();
+            $place = $placeManager->readById($link_events_places->getId_place());
+        }
+        if ($place) {
+            $event["place"] = $place->toArray();
+        }
+        else {
+            $event["place"] = null;
+        }
+      echo json_encode($event);
     } else {
       throw new Exception("L'événement n'existe pas.");
     }
@@ -124,7 +149,14 @@ class EventCRUD {
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $eventManager = new EventManager();
-    $eventManager->deleteById($data["id"]);
+    $event = $eventManager->readById($data["id"]);
+    if($event) {
+        $link_events_placesManager = new Link_events_placesManager();
+        $link_events_placesManager->deleteByIdEvent($event->getId());
+        $eventManager->deleteById($event->getId());
+    } else {
+      throw new Exception("L'événement n'existe pas.");
+    }
     return TRUE;
   }
 }

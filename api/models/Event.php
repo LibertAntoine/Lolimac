@@ -83,15 +83,21 @@ class Event {
   }
 
   public function setTitle($title) {
-    if (is_string($title) && strlen($title) <= 255) {
-    $this->title = $title;
-    }
+	  if (is_null($title)) {
+		  throw new \Exception("Veuilliez entrer un titre");
+	  }
+	  if (is_string($title) && strlen($title) <= 255) {
+		  $this->title = $title;
+	  }
   }
 
   public function setPhoto_url($photo_url) {
-    if (filter_var($photo_url, FILTER_VALIDATE_URL) && strlen($photo_url) <= 2083) {
-    $this->photo_url = $photo_url;
-    }
+	  if (is_null($photo_url)) {
+		  throw new \Exception("Veuilliez indiquer une photo");
+	  }
+	  if (filter_var($photo_url, FILTER_VALIDATE_URL) && strlen($photo_url) <= 2083) {
+		  $this->photo_url = $photo_url;
+	  }
   }
 
   public function setDescription($description) {
@@ -102,7 +108,7 @@ class Event {
 
   public function setDate_start($date_start) {
 	  $scanDataIn = new ScanDataIn();
-	  if ($date_start == NULL || $scanDataIn->validateDate($date_start)) {
+	  if (\is_null($date_start) || $scanDataIn->validateDate($date_start)) {
 		  $this->date_start = $date_start;
 	  }
 	  else {
@@ -112,7 +118,7 @@ class Event {
 
  	public function setDate_end($date_end) {
 		$scanDataIn = new ScanDataIn();
-		if ($date_end == NULL || $scanDataIn->validateDate($date_end)) {
+		if (\is_null($date_end) || $scanDataIn->validateDate($date_end)) {
 			$this->date_end = $date_end;
 		}
 		else {
@@ -122,7 +128,7 @@ class Event {
 
   public function setDate_created($date_created) {
 		$scanDataIn = new ScanDataIn();
-		if ($date_created == NULL || $scanDataIn->validateDate($date_created)) {
+		if (\is_null($date_created) || $scanDataIn->validateDate($date_created)) {
 			$this->date_created = $date_created;
 		}
 		else {

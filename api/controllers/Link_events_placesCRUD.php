@@ -8,7 +8,6 @@ use \controllers\scans\TokenCreater;
 use \models\Link_events_places;
 use \models\Link_events_placesManager;
 
-
 class Link_events_placesCRUD {
 
   public function add($dataIn) {
@@ -25,6 +24,22 @@ class Link_events_placesCRUD {
     return TRUE;
   }
 
+  public function update($dataIn) {
+    $scanDataIn = new ScanDataIn();
+    $scanDataIn->exists($dataIn, ["id_event", "id_place"]);
+    $data = $scanDataIn->failleXSS($dataIn);
+    $token = new TokenAccess();
+    $linkManager = new Link_events_placesManager();
+    $link = $linkManager->readById_event($data["id_event"]);
+    if ($link) {
+        $linkManager->updatePlace($link, $data["id_place"]);
+    }
+    else {
+        self::add($dataIn);
+    }
+    return TRUE;
+  }
+
   public function delete($dataIn) {
     $scanDataIn = new ScanDataIn();
     $scanDataIn->exists($dataIn, ["id_event", "id_place"]);
@@ -34,4 +49,5 @@ class Link_events_placesCRUD {
     $linkManager->deleteById($data["id_event"], $data["id_place"]);
     return TRUE;
   }
+
 }

@@ -13,7 +13,7 @@ class EventManager extends DBAccess {
 			$q->bindValue(':date_end', $event->getDate_end());
 
 			$q->execute();
-			
+
 			$event->hydrate(['id' => $this->db->lastInsertId()]);
 			return $event;
   }
@@ -23,7 +23,9 @@ class EventManager extends DBAccess {
   }
 
   public function readById($id) {
-      $q = $this->db->query('SELECT * FROM events WHERE id = '.$id);
+      $q = $this->db->prepare("SELECT * FROM events WHERE id = :id");
+	  $q->bindValue(':id', $id);
+	  $q->execute();
       $event = $q->fetch(\PDO::FETCH_ASSOC);
 	  if ($event) {
 		  return new Event($event);
@@ -49,7 +51,7 @@ class EventManager extends DBAccess {
   public function readAll() {
     $allEvents = [];
 
-    $q = $this->db->query('SELECT * FROM events');
+    $q = $this->db->query("SELECT * FROM events ORDER BY date_start ASC LIMIT 10;");
     while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
      $allEvents[$data['id']] = new Event($data);
     }
