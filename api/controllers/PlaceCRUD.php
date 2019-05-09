@@ -16,8 +16,8 @@ class PlaceCRUD {
 		$place = new Place($data);
 
 		$placeManager = new PlaceManager();
-		$placeManager->add($place);
-		return TRUE;
+		$place = $placeManager->add($place);
+		return $place;
 	}
 
 	public function update($dataIn) {
@@ -27,7 +27,8 @@ class PlaceCRUD {
 		$place = $placeManager->readById($data["id"]);
 		if($place) {
 			$place->hydrate($data);
-			$placeManager->update($place);
+			$place = $placeManager->update($place);
+			return $place;
 		} else {
 			throw new Exception("Le lieu n'existe pas.");
 		}
@@ -36,11 +37,25 @@ class PlaceCRUD {
 	public function read($dataIn) {
 		$scanDataIn = new ScanDataIn();
 		$data = $scanDataIn->failleXSS($dataIn);
-        $data = $scanDataIn->exists($data, ["id"]);
+        $scanDataIn->exists($data, ["id"]);
 		$placeManager = new PlaceManager();
 		$place = $placeManager->readById($data["id"]);
 		if($place) {
 			echo json_encode(array("name" => $place->GetName(), "postcode" => $place->GetPostcode(), "street" => $place->GetStreet(), "number" => $place->GetNumber(), "city" => $place->GetCity()));
+		} else {
+			throw new Exception("Le lieu n'existe pas.");
+		}
+
+	}
+
+	public function read_OBJ($dataIn) {
+		$scanDataIn = new ScanDataIn();
+		$data = $scanDataIn->failleXSS($dataIn);
+        $scanDataIn->exists($data, ["id"]);
+		$placeManager = new PlaceManager();
+		$place = $placeManager->readById($data["id"]);
+		if($place) {
+			return $place;
 		} else {
 			throw new Exception("Le lieu n'existe pas.");
 		}

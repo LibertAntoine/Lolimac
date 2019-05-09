@@ -68,7 +68,7 @@ class PlaceManager extends DBAccess {
 
   public function deleteById(int $id) {
     $q = $this->db->prepare("DELETE FROM places WHERE id = :id;");
-    $q->bindValue(':id', $place->getId());
+    $q->bindValue(':id', $id);
     return $q->execute();
   }
 }
