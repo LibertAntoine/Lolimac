@@ -33,9 +33,9 @@ class UserCRUD {
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $token = new TokenAccess();
-    if($token->acompteAccess($data["id"]) OR $token->adminAccess(1)) {
-      $userManager = new UserManager();
-      $user = $userManager->readById($data["id"]);
+    $token->acompteAccess($data["id"]) 
+    $userManager = new UserManager();
+    $user = $userManager->readById($data["id"]);
       if($user) {
         $user->hydrate($data);
         $userManager->update($user);

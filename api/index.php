@@ -10,5 +10,8 @@ try {
 }
 
 catch(Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
+	http_response_code($e->getCode());
+	echo json_encode([
+				"message" => $e->getMessage()
+				] )
 }

@@ -11,7 +11,7 @@ class ScanDataIn {
     public function exists(array $dataIn, array $champs) {
     	foreach ($champs as $champ) {
         if(!isset($dataIn[$champ])) {
-          throw new \Exception('Champ ' . $champ . ' non inexistant.');
+          throw new \Exception('Champ ' . $champ . ' non inexistant.', 400);
         }
       }
     }
@@ -26,7 +26,7 @@ class ScanDataIn {
         $data = [];
         for ($i=0; $i < $numberIn; $i++) {
             if(!isset($dataIn[$i])) {
-                throw new \Exception('Champ ' . $keys[$i] . ' manquant pour satisfaire la requête.');
+                throw new \Exception('Champ ' . $keys[$i] . ' manquant pour satisfaire la requête.', 400);
             }
             $data[$keys[$i]] = $dataIn[$i];
         }
