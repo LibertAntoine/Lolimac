@@ -26,12 +26,8 @@ class CommentCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     $commentManager = new CommentManager();
     $comment = $commentManager->readById($data["id"]);
-    if($comment) {
-      $comment->hydrate($data);
-      $commentManager->update($comment);
-    } else {
-      throw new Exception("Le commentaire n'existe pas.");
-    }
+    $comment->hydrate($data);
+    $commentManager->update($comment);
   }
 
    public function read($dataIn) {
@@ -40,12 +36,7 @@ class CommentCRUD {
     $data = $scanDataIn->orgenize($data, 2 ,["user", "id"]);
     $commentManager = new CommentManager();
     $comment = $commentManager->readById($data["id"]);
-    if($comment) {
-      echo json_encode(array("content" => $comment->GetContent(), "id_post" => $comment->GetId_post(), "id_user" => $comment->GetId_user(), "date_created" => $comment->GetDate_created(), "date_edited" => $comment->GetDate_edited()));
-    } else {
-      throw new Exception("Le commentaire n'existe pas.");
-    }
-
+    echo json_encode(array("content" => $comment->GetContent(), "id_post" => $comment->GetId_post(), "id_user" => $comment->GetId_user(), "date_created" => $comment->GetDate_created(), "date_edited" => $comment->GetDate_edited()));
   }
 
   public function delete($dataIn) {

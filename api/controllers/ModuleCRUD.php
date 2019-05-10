@@ -33,16 +33,11 @@ class ModuleCRUD {
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $token = new TokenAccess();
-    if($token->adminAccess(1)) {
-      $moduleManager = new ModuleManager();
-      $module = $moduleManager->readById($data["id"]);
-      if($module) {
-        $module->hydrate($data);
-        $moduleManager->update($module);
-      } else {
-        throw new Exception("Le module n'existe pas.");
-      }
-    }
+    $token->adminAccess(1);
+    $moduleManager = new ModuleManager();
+    $module = $moduleManager->readById($data["id"]);
+    $module->hydrate($data);
+    $moduleManager->update($module);
   }
 
   public function read($dataIn) {
@@ -51,11 +46,7 @@ class ModuleCRUD {
     $data = $scanDataIn->orgenize($data, 2, ["type", "id"]);
     $moduleManager = new ModuleManager();
     $module = $moduleManager->readById($data["id"]);
-    if($module) {
-      echo json_encode(array("name" => $module->GetName()));
-    } else {
-      throw new Exception("Le module n'existe pas.");
-    }
+    echo json_encode(array("name" => $module->GetName()));
   }
 
   public function delete($dataIn) {
@@ -63,10 +54,8 @@ class ModuleCRUD {
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $token = new TokenAccess();
-    if($token->adminAccess(1)) {
-        $moduleManager = new ModuleManager();
-        $moduleManager->deleteById($data["id"]);
-        return TRUE;
-    }
+    $token->adminAccess(1);
+    $moduleManager = new ModuleManager();
+    $moduleManager->deleteById($data["id"]);
   }
 }

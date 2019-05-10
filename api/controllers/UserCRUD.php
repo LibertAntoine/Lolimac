@@ -22,7 +22,7 @@ class UserCRUD {
     if ($userManager->readByPseudo($user->getPseudo()) === FALSE) {
       $userManager->add($user);
     } else {
-      throw new \Exception('Pseudo déjà existant.');
+      throw new \Exception('Pseudo déjà existant.', 400);
     }
     return TRUE;
   }
@@ -40,7 +40,7 @@ class UserCRUD {
         $user->hydrate($data);
         $userManager->update($user);
       } else {
-        throw new Exception("L'utilisateur n'existe pas.");
+        throw new Exception("L'utilisateur n'existe pas.", 400);
       }
     }
   }
@@ -54,7 +54,7 @@ class UserCRUD {
     if($user) {
       echo json_encode(array("firstname" => $user->GetFirstname(), "lastname" => $user->GetLastname(), "pseudo" => $user->GetPseudo()));
     } else {
-      throw new Exception("L'utilisateur n'existe pas.");
+      throw new Exception("L'utilisateur n'existe pas.", 400);
     }
   }
 
@@ -80,7 +80,7 @@ class UserCRUD {
         $tokenCreater = new TokenCreater();
         $tokenCreater->createToken($user->GetId());
     } else {
-      throw new \Exception("Le pseudo ou mot de passe est incorrect.");
+      throw new \Exception("Le pseudo ou mot de passe est incorrect.", 401);
     }
   }
 }

@@ -26,13 +26,9 @@ class EventTypeCRUD {
         $scanDataIn->exists($data, ["id_event"]);
 		$eventTypeManager = new EventTypeManager();
 		$eventType = $eventTypeManager->readById($data["id_event"]);
-		if($eventType) {
 			$eventType->hydrate($data);
 			$eventType = $eventTypeManager->update($eventType);
 			return $eventType;
-		} else {
-			throw new Exception("Le type n'existe pas.");
-		}
 	}
 
 	public function read($dataIn) {
@@ -41,12 +37,7 @@ class EventTypeCRUD {
         $scanDataIn->exists($data, ["id"]);
 		$eventTypeManager = new EventTypeManager();
 		$eventType = $eventTypeManager->readById($data["id"]);
-		if($eventType) {
-			echo json_encode(array("name" => $eventType->GetName()));
-		} else {
-			throw new Exception("Le lieu n'existe pas.");
-		}
-
+		echo json_encode(array("name" => $eventType->GetName()));
 	}
 
 	public function read_OBJ($dataIn) {
@@ -55,12 +46,7 @@ class EventTypeCRUD {
         $scanDataIn->exists($data, ["id"]);
 		$eventTypeManager = new EventTypeManager();
 		$eventType = $eventTypeManager->readById($data["id"]);
-		if($eventType) {
-			return $eventType;
-		} else {
-			throw new Exception("Le type n'existe pas.");
-		}
-
+		return $eventType;
 	}
 
 	public function delete($dataIn) {

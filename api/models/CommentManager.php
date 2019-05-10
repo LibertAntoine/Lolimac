@@ -26,7 +26,12 @@ class CommentManager extends DBAccess {
   public function readById($id) {
       $q = $this->db->query("SELECT * FROM comments WHERE id = {$id}");
       $comment = $q->fetch(\PDO::FETCH_ASSOC);
-      return new Comment($comment);
+      $commentObject = new Comment($comment);
+      if($commentObject) {
+        return $commentObject;
+      } else {
+        throw new \Exception("Le commentaire n'existe pas.", 400);
+      }
   }
 
   public function readByPost($id_post) {

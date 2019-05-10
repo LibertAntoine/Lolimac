@@ -19,7 +19,7 @@ class PostCRUD {
     if ($postManager->readByTitle($post->getTitle()) === FALSE) {
       $postManager->add($post);
     } else {
-      throw new \Exception('Une publication possède déjà ce titre.');
+      throw new \Exception('Une publication possède déjà ce titre.', 400);
     }
     return TRUE;
   }
@@ -29,12 +29,8 @@ class PostCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     $postManager = new PostManager();
     $post = $postManager->readById($data["id"]);
-    if($post) {
-      $post->hydrate($data);
-      $postManager->update($post);
-    } else {
-      throw new Exception("La publication n'existe pas.");
-    }
+    $post->hydrate($data);
+    $postManager->update($post);
   }
 
   public function read($dataIn) {
@@ -43,12 +39,7 @@ class PostCRUD {
     $data = $scanDataIn->orgenize($data, 2, ["type", "id"]);
     $postManager = new PostManager();
     $post = $postManager->readById($data["id"]);
-    if($post) {
-      echo json_encode(array("title" => $post->GetTitle(), "content" => $post->GetContent(), "id_event" => $post->GetId_event(), "date_created" => $post->GetDate_created(), "date_edited" => $post->GetDate_edited()));
-    } else {
-      throw new Exception("La publication n'existe pas.");
-    }
-
+    echo json_encode(array("title" => $post->GetTitle(), "content" => $post->GetContent(), "id_event" => $post->GetId_event(), "date_created" => $post->GetDate_created(), "date_edited" => $post->GetDate_edited()));
   }
 
   public function delete($dataIn) {

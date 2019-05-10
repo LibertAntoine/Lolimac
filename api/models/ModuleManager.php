@@ -23,7 +23,13 @@ class ModuleManager extends DBAccess {
   public function readById($id) {
       $q = $this->db->query('SELECT * FROM modules WHERE id = '.$id);
       $module = $q->fetch(\PDO::FETCH_ASSOC);
-      return new Module($module);
+
+      $moduleObj = new Module($module);
+      if($moduleObj) {
+        return $moduleObj;
+      } else {
+        throw new \Exception("Le module n'existe pas.", 400);
+      }
   }
 
   public function readByName($name) {

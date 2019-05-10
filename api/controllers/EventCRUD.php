@@ -56,27 +56,17 @@ class EventCRUD {
 
   public function update($dataIn) {
     $scanDataIn = new ScanDataIn();
+    $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     unset($data['date_created']); // NOTE: prevents user from modifying creation date
-    if (empty($data["id"])) {
-      throw new Exception("Merci de spécifier un événement!");
-    }
     $eventManager = new EventManager();
     $event = $eventManager->readById($data["id"]);
-    if($event) {
-        $event->hydrate($data);
-        $eventManager->update($event);
-
-        if (isset($data["place"])) {
-            $placeCRUD = new PlaceCRUD();
-            if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
-                $place = $placeCRUD->add($data["place"]);
-            }
-            else { // On lie à un autre endroit déjà existant
-                $place = $placeCRUD->read_OBJ(['id' => $data['place']]);
-            }
-            $link_events_placesCRUD = new Link_events_placesCRUD();
-            $link_events_placesCRUD->update(["id_event"=>$event->getId(), "id_place" => $place->getId()]);
+    $event->hydrate($data);
+    $eventManager->update($event);
+    if (isset($data["place"])) {
+        $placeCRUD = new PlaceCRUD();
+        if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
+            $place = $placeCRUD->add($data["place"]);
         }
         if (isset($data['type'])) {
             $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
@@ -90,8 +80,6 @@ class EventCRUD {
                 $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
             }
         }
-    } else {
-      throw new Exception("L'événement n'existe pas.");
     }
   }
 
@@ -128,17 +116,11 @@ class EventCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     $eventManager = new EventManager();
     $event = $eventManager->readById($data["id"]);
-    if($event) {
-        $event = $event->toArray();
-
-        $link_events_placesCRUD = new Link_events_placesCRUD();
-        $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $event["id_event"]]);
-        $event['place'] = $place;
-
-        echo json_encode($event);
-    } else {
-      throw new Exception("L'événement n'existe pas.");
-    }
+    $event = $event->toArray();
+    $link_events_placesCRUD = new Link_events_placesCRUD();
+    $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $event["id_event"]]);
+    $event['place'] = $place;
+    echo json_encode($event);
   }
 
   public function delete($dataIn) {
@@ -147,13 +129,9 @@ class EventCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     $eventManager = new EventManager();
     $event = $eventManager->readById($data["id"]);
-    if($event) {
-        $link_events_placesCRUD = new Link_events_placesCRUD();
-        $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
-        $eventManager->deleteById($event->getId());
-    } else {
-      throw new Exception("L'événement n'existe pas.");
-    }
-    return TRUE;
+    $link_events_placesCRUD = new Link_events_placesCRUD();
+    $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
+    $eventManager->deleteById($event->getId());
+    echo json_encode("message" => "Evenement supprimé");
   }
 }

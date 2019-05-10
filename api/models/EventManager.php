@@ -31,7 +31,7 @@ class EventManager extends DBAccess {
 		  return new Event($event);
 	  }
 	  else {
-	  	throw new \Exception("Aucun événement ne correspond à l'id $id");
+	  	throw new \Exception("Aucun événement ne correspond à l'id $id", 400);
 	  }
   }
 

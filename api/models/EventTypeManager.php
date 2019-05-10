@@ -22,7 +22,12 @@ class EventTypeManager extends DBAccess {
 	  $q->execute();
       $eventType = $q->fetch(\PDO::FETCH_ASSOC);
 	  //\var_dump($place);
-      return new EventType($eventType);
+      $eventTypeObj = new EventType($eventType);
+      if($eventTypeObj) {
+        return $eventTypeObj;
+      } else {
+        throw new \Exception("Le type n'existe pas.", 400);
+      }
   }
 
   public function readByName($name) {
