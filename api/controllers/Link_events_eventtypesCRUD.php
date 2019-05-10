@@ -32,10 +32,50 @@ class Link_events_eventtypesCRUD {
       $linkManager = new Link_events_eventtypesManager();
       $link_events_eventTypes = $linkManager->readById_event($data["id_event"]);
       if ($link_events_eventTypes) {
-          $eventTypeCRUD = new PlaceCRUD();
+          $eventTypeCRUD = new EventTypeCRUD();
           $eventType = $eventTypeCRUD->read_OBJ(["id" => $link_events_eventTypes->getId_type()]);
           return $type->toArray();
       }
+  }
+
+  /*
+  public function updateByIdEvent($dataIn) {
+      $scanDataIn = new ScanDataIn();
+      $data = $scanDataIn->failleXSS($dataIn);
+      $scanDataIn->exists($data, ['id_event', 'id_type']);
+      $linkManager = new Link_events_eventtypesManager();
+      $link_events_eventTypes = $linkManager->readById_event($data["id_event"]);
+      $link_events_eventTypes = $linkManager->updateType($data["id_event"]);
+  }
+  */
+
+  public function readByIdEvent_OBJ($dataIn) {
+      $scanDataIn = new ScanDataIn();
+      $data = $scanDataIn->failleXSS($dataIn);
+      $scanDataIn->exists($data, ["id_event"]);
+      $linkManager = new Link_events_eventtypesManager();
+      $link_events_eventTypes = $linkManager->readById_event($data["id_event"]);
+      if($link_events_eventTypes) {
+          return $link_events_eventTypes;
+      } else {
+          throw new Exception("Le type n'existe pas.");
+      }
+
+  }
+
+  public function addIfNotExist($dataIn) {
+    $scanDataIn = new ScanDataIn();
+    $data = $scanDataIn->failleXSS($dataIn);
+    $scanDataIn->exists($data, ['id_event', 'id_type']);
+    $linkManager = new Link_events_eventtypesManager();
+    $link_events_eventTypes = $linkManager->readById_event($data["id_event"]);
+    if ($link_events_eventTypes) {
+        $linkManager->updateType($link_events_eventTypes, $data['id_type']);
+    }
+    else {
+        $link_events_eventTypes = new Link_events_eventtypes(['id_event' => $data['id_event'], 'id_type' => $data['id_type']]);
+        $linkManager->add($link_events_eventTypes);
+    }
   }
 
   public function delete($dataIn) {

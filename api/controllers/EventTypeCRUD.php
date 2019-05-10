@@ -12,6 +12,7 @@ class EventTypeCRUD {
 	public function add($dataIn) {
 		$scanDataIn = new ScanDataIn();
         $data = $scanDataIn->failleXSS($dataIn);
+		$scanDataIn->exists($dataIn, ['name']);
 		$eventType = new EventType($data);
 
 		$eventTypeManager = new EventTypeManager();
@@ -22,8 +23,9 @@ class EventTypeCRUD {
 	public function update($dataIn) {
 		$scanDataIn = new ScanDataIn();
         $data = $scanDataIn->failleXSS($dataIn);
+        $scanDataIn->exists($data, ["id_event"]);
 		$eventTypeManager = new EventTypeManager();
-		$eventType = $eventTypeManager->readById($data["id"]);
+		$eventType = $eventTypeManager->readById($data["id_event"]);
 		if($eventType) {
 			$eventType->hydrate($data);
 			$eventType = $eventTypeManager->update($eventType);

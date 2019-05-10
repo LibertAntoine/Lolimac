@@ -22,7 +22,7 @@ class Link_events_eventtypesManager extends DBAccess {
     return $this->db->query("SELECT COUNT(*) FROM link_events_eventtypes;")->fetchColumn();
   }
 
-  public function updateType(Link_events_eventtypes $link_events_places, int $new_id_place) {
+  public function updateType(Link_events_eventtypes $link_events_eventtypes, int $new_id_type) {
     $q = $this->db->prepare("UPDATE link_events_eventtypes SET id_event = :id_event, id_type = :new_id_type WHERE id_event = :id_event AND id_type = :id_type");
 
     $q->bindValue(':id_event', $link_events_eventtypes->getId_event());

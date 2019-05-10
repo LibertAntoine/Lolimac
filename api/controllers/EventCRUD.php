@@ -8,10 +8,11 @@ use \controllers\scans\TokenCreater;
 use \models\Event;
 use \models\EventManager;
 use \models\Link_events_places;
+use \models\Link_events_eventtypes;
 use \models\Place;
-use \models\PlaceManager;
-use \models\Link_events_placesManager;
+use \controllers\EventTypeCRUD;
 use \controllers\Link_events_placesCRUD;
+use \controllers\Link_events_eventtypesCRUD;
 
 
 class EventCRUD {
@@ -36,6 +37,19 @@ class EventCRUD {
         }
         $link_events_placesCRUD = new Link_events_placesCRUD();
         $link_events_placesCRUD->add(["id_event"=>$event->getId(), "id_place" => $place->getId()]);
+    }
+
+    if (isset($data['type'])) {
+        $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
+        $eventTypeCRUD = new EventTypeCRUD();
+        if (is_numeric($data['type'])) {
+            $eventType = $eventTypeCRUD->read_OBJ(['id' => $data['type']]);
+            $link_events_eventtypesCRUD->add(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
+        }
+        else {
+            $eventType = $eventTypeCRUD->add($data['type']);
+            $link_events_eventtypesCRUD->add(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
+        }
     }
     return TRUE;
   }
@@ -63,6 +77,18 @@ class EventCRUD {
             }
             $link_events_placesCRUD = new Link_events_placesCRUD();
             $link_events_placesCRUD->update(["id_event"=>$event->getId(), "id_place" => $place->getId()]);
+        }
+        if (isset($data['type'])) {
+            $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
+            $eventTypeCRUD = new EventTypeCRUD();
+            if (is_numeric($data['type'])) {
+                $eventType = $eventTypeCRUD->read_OBJ(['id' => $data['type']]);
+                $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
+            }
+            else {
+                $eventType = $eventTypeCRUD->add($data['type']);
+                $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
+            }
         }
     } else {
       throw new Exception("L'événement n'existe pas.");
