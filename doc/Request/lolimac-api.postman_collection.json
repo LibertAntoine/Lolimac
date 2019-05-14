@@ -1,35 +1,10 @@
 {
 	"info": {
-		"_postman_id": "3b7809ab-3ffe-4c3d-a2fd-84b9cb9c7a39",
+		"_postman_id": "086a760e-459c-408b-b097-7b0b62aa6034",
 		"name": "lolimac-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Me",
-			"item": [
-				{
-					"name": "Participations",
-					"item": [],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Comments",
-					"item": [],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Invitations",
-					"item": [],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Settings",
-					"item": [],
-					"_postman_isSubFolder": true
-				}
-			]
-		},
 		{
 			"name": "Users",
 			"item": [
@@ -239,8 +214,240 @@
 					"item": [
 						{
 							"name": "Comments",
-							"item": [],
+							"item": [
+								{
+									"name": "Create a comment for a post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"content\": \"le contenu de mon super commentaire !\"\n}"
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1/comments/",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}events"
+											],
+											"path": [
+												"1",
+												"posts",
+												"1",
+												"comments",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update a comment for a post",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"content\": \"modif du com'\"\n}"
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1/comments/1",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}events"
+											],
+											"path": [
+												"1",
+												"posts",
+												"1",
+												"comments",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete a comment to a post",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1/comments/1",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}events"
+											],
+											"path": [
+												"1",
+												"posts",
+												"1",
+												"comments",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							],
 							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Read all posts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"1",
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a post with its comments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"1",
+										"posts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a post",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"Mon titre d'event\",\n\t\"content\": \"Un peu de blabla descriptif\"\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"1",
+										"posts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"Mon titre d'event\",\n\t\"content\": \"Un peu de blabla descriptif\"\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"1",
+										"posts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a post and all of its comments",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"1",
+										"posts",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"_postman_isSubFolder": true
@@ -292,10 +499,10 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						},
 						{
 							"name": "Create BBQ",
@@ -320,8 +527,8 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
 							"body": ""
 						}
@@ -442,7 +649,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						},
 						{
 							"name": "Update partial info - new place",
@@ -500,7 +707,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -625,10 +832,10 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -689,6 +896,88 @@
 						"description": "Read a bunch of events"
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Me",
+			"item": [
+				{
+					"name": "Notifications",
+					"item": [
+						{
+							"name": "Get all my notifications",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}me/notifications",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}me"
+									],
+									"path": [
+										"notifications"
+									]
+								},
+								"description": "For now, only awnsers to posts that the user created, and new comments an a post that he commented"
+							},
+							"response": []
+						},
+						{
+							"name": "Free my notifications",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}me/notifications",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}me"
+									],
+									"path": [
+										"notifications"
+									]
+								},
+								"description": "For now, only awnsers to posts that the user created, and new comments an a post that he commented"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Events",
+					"item": [
+						{
+							"name": "Get my created and participated events",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}me/events",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}me"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		},
@@ -768,10 +1057,10 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -791,6 +1080,21 @@
 					]
 				},
 				"description": "Check server status and las commit id"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		}
