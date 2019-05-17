@@ -47,8 +47,14 @@ class Root {
     public function users() {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-                $userCRUD = new UserCRUD();
-                $userCRUD->read($this->root);
+                if ($this->root[1] == "notifications"){
+                    echo "notif";
+                }
+                else {
+                    echo "infos user";
+                    $userCRUD = new UserCRUD();
+                    $userCRUD->read($this->root);
+                }
                 break;
 
             case 'POST':

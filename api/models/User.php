@@ -13,7 +13,8 @@ class User {
 	$phone,
   $photo_url,
   $status,
-  $year_promotion;
+  $year_promotion,
+  $date_notification_check;
 
 	public function __construct(array $data) {
 		$this->hydrate($data);
@@ -68,6 +69,10 @@ class User {
 
   public function getYear_promotion() {
     return $this->year_promotion;
+  }
+
+  public function getDate_notification_check() {
+    return $this->date_notification_check;
   }
 
   //Assesseurs
@@ -128,9 +133,19 @@ class User {
  	}
 
   public function setYear_promotion($year_promotion) {
-    $year_promotion = (int) $year_promotion; 
+    $year_promotion = (int) $year_promotion;
     if ($year_promotion > 0) {
      $this->year_promotion = $year_promotion;
     }
+  }
+
+  public function setDate_notification_check($date_notification) {
+		$scanDataIn = new ScanDataIn();
+		if (\is_null($date_notification) || $scanDataIn->validateDate($date_notification)) {
+			$this->date_notification_check = $date_notification;
+		}
+		else {
+			throw new \Exception("Veuilliez entrer une date de vérification de notifications valide.");
+		}
   }
 }
