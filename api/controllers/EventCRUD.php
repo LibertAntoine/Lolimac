@@ -99,11 +99,11 @@ class EventCRUD {
       }
       if($events) {
           $participantManager = new Link_events_users_modulesCRUD();
+          $link_events_placesCRUD = new Link_events_placesCRUD();
           foreach ($events as $key => $event) {
               $events[$key] = $event->toArray();
               $participation = $participantManager->readParticipation($event->getId());
               $events[$key]['participation'] = $participation;
-              $link_events_placesCRUD = new Link_events_placesCRUD();
               $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $events[$key]["id_event"]]);
               $events[$key]['place'] = $place;
           }
@@ -120,6 +120,9 @@ class EventCRUD {
     $eventManager = new EventManager();
     $event = $eventManager->readById($data["id"]);
     $event = $event->toArray();
+    $participantManager = new Link_events_users_modulesCRUD();
+    $participation = $participantManager->readParticipation($event["id_event"]);
+    $event['participation'] = $participation;
     $link_events_placesCRUD = new Link_events_placesCRUD();
     $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $event["id_event"]]);
     $event['place'] = $place;

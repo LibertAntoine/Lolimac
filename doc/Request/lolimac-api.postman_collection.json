@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "086a760e-459c-408b-b097-7b0b62aa6034",
+		"_postman_id": "697e90e4-f0dd-4c8d-b4b9-a7642a01bc2b",
 		"name": "lolimac-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -122,10 +122,6 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
 							"host": [
@@ -319,10 +315,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts",
 									"host": [
@@ -341,10 +333,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
 									"host": [
@@ -539,10 +527,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/7",
 							"host": [
@@ -594,7 +578,7 @@
 					},
 					"response": [
 						{
-							"name": "Update partial info - Existing Place",
+							"name": "Update partial info - new place",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [
@@ -607,7 +591,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"date_start\":\"2022-05-22 20:22:59\",\r\n\t\"place\":\"{{placeId}}\"\r\n}"
+									"raw": "{\r\n\t\"date_start\":\"2022-05-22 20:22:59\",\r\n\t\"place\":{\r\n\t\t\"name\":\"name\",\r\n\t\t\"number\":\"num\",\r\n\t\t\"city\":\"city\"\r\n\t}\r\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
@@ -652,7 +636,7 @@
 							"body": ""
 						},
 						{
-							"name": "Update partial info - new place",
+							"name": "Update partial info - Existing Place",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [
@@ -665,7 +649,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"date_start\":\"2022-05-22 20:22:59\",\r\n\t\"place\":{\r\n\t\t\"name\":\"name\",\r\n\t\t\"number\":\"num\",\r\n\t\t\"city\":\"city\"\r\n\t}\r\n}"
+									"raw": "{\r\n\t\"date_start\":\"2022-05-22 20:22:59\",\r\n\t\"place\":\"{{placeId}}\"\r\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
@@ -781,10 +765,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events?from=0&limit=20",
 							"host": [
@@ -808,10 +788,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/?from=0&limit=20",
 									"host": [
@@ -851,10 +827,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/search/?q=ma+recherche&opt=date+participe",
 							"host": [
@@ -883,10 +855,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events",
 							"host": [
@@ -910,10 +878,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}me/notifications",
 									"host": [
@@ -960,10 +924,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}me/events",
 									"host": [
@@ -986,10 +946,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{serverUrl}}{{apiVersion}}",
 					"host": [
@@ -1088,10 +1044,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": ""
 				}
