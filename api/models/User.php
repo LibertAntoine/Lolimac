@@ -1,6 +1,7 @@
 <?php
 
 namespace models;
+use \controllers\scans\ScanDataIn;
 
 class User {
 

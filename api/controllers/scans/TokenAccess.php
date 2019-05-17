@@ -1,7 +1,7 @@
 <?php
 
 	namespace controllers\scans;
-    
+
     use \Config;
     use \vendor\jwt\src\JWT;
     use \models\UserManager;
@@ -22,7 +22,7 @@ class TokenAccess {
             } else {
                 throw new \Exception('Absense d\'autorization', 401);
             }
-        }   
+        }
     }
 
     public function getId() {

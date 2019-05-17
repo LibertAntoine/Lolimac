@@ -9,6 +9,7 @@ use \models\User;
 use \models\UserManager;
 use \models\Event;
 use \models\EventManager;
+use \controllers\scans\TokenAccess;
 
 
 class NotificationCRUD {
@@ -20,6 +21,7 @@ class NotificationCRUD {
   public function read() {
       $token = new TokenAccess();
       $id_user = $token->getId();
+      var_dump($id_user);
       $userManager = new UserManager();
       $user = $userManager->readById($id_user);
       $notificationManager = new NotificationManager();
@@ -27,12 +29,16 @@ class NotificationCRUD {
       if ($notifications) {
           $eventManager = new EventManager();
           foreach ($notifications as $key => $notification) {
+              //var_dump($notification);
               $notifications[$key] = $notification->toArray();
               $event = $eventManager->readById($notification->getId_event());
               $notifications[$key]["title"] = $event->getTitle();
               $notifications[$key]["photo_url"] = $event->getPhoto_url();
           }
-          echo json_encode(\array_values($events));
+          $notifications = \array_values($notifications);
+          echo json_encode([
+              "events" => $notifications
+          ]);
       }
       else {
           throw new \Exception("Il n'y a pas de notifications");

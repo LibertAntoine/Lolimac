@@ -7,6 +7,7 @@
     use \controllers\CommentCRUD;
     use \controllers\ModuleCRUD;
     use \controllers\Link_events_users_modulesCRUD;
+    use \controllers\NotificationCRUD;
     use \controllers\Link_events_placesCRUD;
     use \controllers\scans\ScanDataIn;
     use \controllers\scans\CutURL;
@@ -70,6 +71,19 @@ class Root {
                 break;
 
             default:
+                break;
+        }
+    }
+
+    public function me() {
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                if (isset($this->root[1])) {
+                    if ($this->root[1] == "notifications") {
+                        $notificationsCRUD = new NotificationCRUD();
+                        $notificationsCRUD->read();
+                    }
+                }
                 break;
         }
     }

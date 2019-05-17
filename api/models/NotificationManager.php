@@ -20,7 +20,7 @@ class NotificationManager extends DBAccess {
   }
 
   public function readAll($id_user) {
-	 $q = $this->db->prepare("SELECT id_event, type_edit, date_edit FROM notification_events INNER JOIN link_events_users_modules ON link_events_users_modules.id_event = notification_events.id_event  INNER JOIN users ON users.id = link_events_users_modules.id_user  WHERE link_events_users_modules.id_user = :id_user  AND notification_events.date_edit >= users.date_notification_check;");
+	 $q = $this->db->prepare("SELECT notification_events.id, notification_events.id_event, notification_events.type_edit, notification_events.date_edit FROM notification_events INNER JOIN link_events_users_modules ON link_events_users_modules.id_event = notification_events.id_event  INNER JOIN users ON users.id = link_events_users_modules.id_user  WHERE link_events_users_modules.id_user = :id_user  AND notification_events.date_edit >= users.date_notification_check;");
 	 $q->bindValue(':id_user', $id_user);
 
 	 $q->execute();

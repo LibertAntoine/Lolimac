@@ -1,6 +1,7 @@
 <?php
 
 namespace models;
+use \controllers\scans\ScanDataIn;
 
 class Notification {
 
@@ -58,9 +59,16 @@ class Notification {
  	  }
   }
 
+  public function setId_event($id) {
+	  $id = (int) $id;
+	  if ($id > 0) {
+		  $this->id_event = $id;
+	  }
+  }
+
   public function setType_edit($type) {
-    if (is_string($type_edit) && strlen($type_edit) <= 255) {
-    $this->type_edit = $type_edit;
+    if (is_string($type) && strlen($type) <= 255) {
+    $this->type_edit = $type;
     }
   }
 
