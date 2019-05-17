@@ -33,7 +33,6 @@ class Root {
         }
         else {
             $this->$key();
-            // TODO: CutURL Error with get args
         }
     }
 
