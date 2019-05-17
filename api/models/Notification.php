@@ -7,7 +7,6 @@ class Notification {
 	protected $id,
   $id_event,
   $date_edit,
-  $info_edit,
   $type_edit;
 
 	public function __construct(array $data) {
@@ -22,6 +21,15 @@ class Notification {
         $this->$method($value);
       }
     }
+  }
+
+  public function toArray() {
+	  $array = [
+				  "id_event" => $this->getId_event(),
+				  "date_edit" => $this->getDate_edit(),
+				  "type_edit" => $this->getType_edit()
+			  ];
+			  return $array;
   }
 
   // Getters
@@ -41,10 +49,6 @@ class Notification {
     return $this->type_edit;
   }
 
-  public function getInfo_edit() {
-  	return $this->info_edit;
-  }
-
   //Assesseurs
   //Attention le nom de méthode doit obligatoirement être composé de "set" suivi du nom de l'attribut correspondant, avec une majuscule, pour que la méthode hydrate soit fonctionnelle.
 	public function setId($id) {
@@ -52,12 +56,6 @@ class Notification {
  	  if ($id > 0) {
  		 $this->id = $id;
  	  }
-  }
-
-  public function setInfo_edit($content) {
-    if (is_string($content)) {
-    $this->info_edit = $content;
-    }
   }
 
   public function setType_edit($type) {
