@@ -34,7 +34,7 @@ class Link_events_eventtypesCRUD {
       if ($link_events_eventTypes) {
           $eventTypeCRUD = new EventTypeCRUD();
           $eventType = $eventTypeCRUD->read_OBJ(["id" => $link_events_eventTypes->getId_type()]);
-          return $type->toArray();
+          return $eventType->toArray();
       }
   }
 

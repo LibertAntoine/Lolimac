@@ -105,12 +105,15 @@ class EventCRUD {
       if($events) {
           $participantManager = new Link_events_users_modulesCRUD();
           $link_events_placesCRUD = new Link_events_placesCRUD();
+          $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
           foreach ($events as $key => $event) {
               $events[$key] = $event->toArray();
               $participation = $participantManager->readParticipation($event->getId());
               $events[$key]['participation'] = $participation;
               $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $events[$key]["id_event"]]);
               $events[$key]['place'] = $place;
+              $type = $link_events_eventtypesCRUD->readType_ARRAY(['id_event' => $events[$key]["id_event"]]);
+              $events[$key]['type'] = $type;
           }
           echo json_encode($events);
       } else {
@@ -129,8 +132,11 @@ class EventCRUD {
     $participation = $participantManager->readParticipation($event["id_event"]);
     $event['participation'] = $participation;
     $link_events_placesCRUD = new Link_events_placesCRUD();
+    $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
     $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $event["id_event"]]);
     $event['place'] = $place;
+    $type = $link_events_eventtypesCRUD->readType_ARRAY(['id_event' => $event["id_event"]]);
+    $event['type'] = $type;
     echo json_encode($event);
   }
 
@@ -141,6 +147,8 @@ class EventCRUD {
     $eventManager = new EventManager();
     $event = $eventManager->readById($data["id"]);
     $link_events_placesCRUD = new Link_events_placesCRUD();
+    $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
+    $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
     $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
     $eventManager->deleteById($event->getId());
     echo json_encode(["message" => "Evenement supprimé"]);
