@@ -4,8 +4,8 @@ namespace models;
 
 class UserManager extends DBAccess {
 	public function add(User $user) {
-		$q = $this->db->prepare("INSERT INTO users 
-      (`firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`) 
+		$q = $this->db->prepare("INSERT INTO users
+      (`firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`)
       VALUES (:firstname, :lastname, :pseudo, :mail, :phone, :pwd_hash, :photo_url, 3, :year_promotion);");
 
 		$q->bindValue(':firstname', $user->getFirstname());
@@ -37,13 +37,13 @@ class UserManager extends DBAccess {
   public function readByPseudo($pseudo) {
       $q = $this->db->prepare('SELECT * FROM users WHERE pseudo = :pseudo');
       $q->execute([':pseudo' => $pseudo]);
-      $user = $q->fetch(\PDO::FETCH_ASSOC); 
+      $user = $q->fetch(\PDO::FETCH_ASSOC);
       return ($user) ? new User($user) : false;
   }
 
   public function readAll() {
     $allUsers = [];
-    
+
     $q = $this->db->query('SELECT * FROM users');
     while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
      $allUsers[$data['id']] = new User($data);
@@ -70,8 +70,14 @@ class UserManager extends DBAccess {
     return $user;
   }
 
+  public function updateNotificationDate($id_user) {
+	  $q = $this->db->prepare('UPDATE users SET date_notification_check = NOW() WHERE id = :id_user;');
+	  $q->bindValue(':id_user', $id_user);
+	  $q->execute();
+  }
+
   public function deleteById($id) {
-    $this->db->exec('DELETE FROM users WHERE id = '.$id.';');
+    $this->db->exec("DELETE FROM users WHERE id = $id;");
     return TRUE;
   }
 }

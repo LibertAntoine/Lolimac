@@ -35,6 +35,7 @@ class NotificationCRUD {
               $notifications[$key]["title"] = $event->getTitle();
               $notifications[$key]["photo_url"] = $event->getPhoto_url();
           }
+          $userManager->updateNotificationDate($id_user);
           $notifications = \array_values($notifications);
           echo json_encode([
               "events" => $notifications
@@ -43,5 +44,16 @@ class NotificationCRUD {
       else {
           throw new \Exception("Il n'y a pas de notifications");
       }
+  }
+
+  public function count() {
+      $token = new TokenAccess();
+      $id_user = $token->getId();
+      var_dump($id_user);
+      $userManager = new UserManager();
+      $user = $userManager->readById($id_user);
+      $notificationManager = new NotificationManager();
+      $notifications = $notificationManager->countNotifications($id_user);
+      echo json_encode(["notifications" => $notifications]);
   }
 }

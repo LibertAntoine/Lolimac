@@ -78,9 +78,12 @@ class Root {
     public function me() {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-                if (isset($this->root[1])) {
-                    if ($this->root[1] == "notifications") {
-                        $notificationsCRUD = new NotificationCRUD();
+                if (isset($this->root[1]) && $this->root[1] == "notifications") {
+                    $notificationsCRUD = new NotificationCRUD();
+                    if (isset($this->root[2]) && $this->root[2] == "count") {
+                        $notificationsCRUD->count();
+                    }
+                    else {
                         $notificationsCRUD->read();
                     }
                 }
