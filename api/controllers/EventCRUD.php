@@ -13,7 +13,7 @@ use \models\Place;
 use \controllers\EventTypeCRUD;
 use \controllers\Link_events_placesCRUD;
 use \controllers\Link_events_eventtypesCRUD;
-
+use \controllers\Link_events_users_modulesCRUD;
 
 class EventCRUD {
 
@@ -25,6 +25,8 @@ class EventCRUD {
     $event = new Event($data);
     $eventManager = new EventManager();
     $event = $eventManager->add($event);
+    $participantManager = new Link_events_users_modulesCRUD();
+    $participantManager->add($event->getId(), 0);
     if (isset($data["place"])) {
         $placeCRUD = new PlaceCRUD();
         if(\is_array($data["place"])) {

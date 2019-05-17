@@ -95,9 +95,18 @@ class Root {
                 break;
 
             case 'POST':
-                $_POST = json_decode(file_get_contents("php://input"), TRUE);
-                $eventCRUD = new EventCRUD();
-                $eventCRUD->add($_POST);
+                if(isset($this->root[2])) {
+                    $linkCRUD = new Link_events_users_modulesCRUD();
+                    if($this->root[2] == "join") {
+                        $linkCRUD->add($this->root[1], "1");
+                    }
+                } else {
+                    $_POST = json_decode(file_get_contents("php://input"), TRUE);
+                    $eventCRUD = new EventCRUD();
+                    $eventCRUD->add($_POST);
+                }
+        
+
                 break;
 
             case 'PATCH':
@@ -109,10 +118,17 @@ class Root {
                 break;
 
             case 'DELETE':
-                $idEvent = $this->root[1];
-                $_DELETE["id"] = $idEvent;
-                $eventCRUD = new EventCRUD();
-                $eventCRUD->delete($_DELETE);
+                if(isset($this->root[2])) {
+                    $linkCRUD = new Link_events_users_modulesCRUD();
+                    if ($this->root[2] == "leave") {
+                        $linkCRUD->delete($this->root[1]);
+                    }
+                } else {
+                    $idEvent = $this->root[1];
+                    $_DELETE["id"] = $idEvent;
+                    $eventCRUD = new EventCRUD();
+                    $eventCRUD->delete($_DELETE);
+                }
                 break;
 
             default:

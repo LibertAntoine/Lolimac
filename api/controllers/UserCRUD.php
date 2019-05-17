@@ -15,7 +15,6 @@ class UserCRUD {
     $scanDataIn = new ScanDataIn();
     $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd", "mail", "phone", "photo_url", "year_promotion"]);
     $data = $scanDataIn->failleXSS($dataIn);
-    // restriction à voir
     $data["pwd_hash"] = password_hash($data["pwd"], PASSWORD_DEFAULT);
     $user = new User($data);
     $userManager = new UserManager();

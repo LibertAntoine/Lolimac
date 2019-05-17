@@ -50,7 +50,7 @@ class Link_events_users_modules {
 
   public function setId_module($id_module) {
     $id_module = (int) $id_module;
-    if ($id_module > 0) {
+    if ($id_module >= 0) {
      $this->id_module = $id_module;
     }
   }

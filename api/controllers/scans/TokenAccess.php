@@ -25,6 +25,10 @@ class TokenAccess {
         }   
     }
 
+    public function getId() {
+        return $this->token->data->userId;
+    }
+
     public function adminAccess($level) {
         $userManager = new UserManager();
         $user = $userManager->readById($this->token->data->userId);
