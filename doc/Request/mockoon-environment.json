@@ -1,18 +1,18 @@
 {
     "id": "mockoon_export",
     "appVersion": "1.4.0",
-    "checksum": "e130d8703dc92f447359089210dd0971",
+    "checksum": "d8da08674089697433494c776434b7a7",
     "subject": "full",
     "data": [
         {
-            "uuid": "4f542c20-766d-11e9-b681-25dc9f389819",
+            "uuid": "55d85e80-789e-11e9-bb8a-7bdc218dedea",
             "name": "lolimac",
             "endpointPrefix": "api/v1",
             "latency": 0,
             "port": 3000,
             "routes": [
                 {
-                    "uuid": "4f542c25-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e81-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Root",
                     "method": "get",
                     "endpoint": "",
@@ -30,7 +30,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545330-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e82-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "",
                     "method": "post",
                     "endpoint": "login",
@@ -48,7 +48,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545332-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e83-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Create",
                     "method": "post",
                     "endpoint": "users",
@@ -66,7 +66,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545334-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e84-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get public data",
                     "method": "get",
                     "endpoint": "users/[0-9]+/",
@@ -84,7 +84,25 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545336-766d-11e9-b681-25dc9f389819",
+                    "uuid": "1795c5b0-78a1-11e9-bb8a-7bdc218dedea",
+                    "documentation": "Get unread notifications",
+                    "method": "get",
+                    "endpoint": "users/notifications",
+                    "body": "{\n    {\n        \"id_event\":1,\n        \"date_edit\": \"2008-11-11 13:23:44\",\n        \"title\":\"Blahblahblah\",\n        \"old_title\":\"Old title\",\n        \"date_start\":\"2008-11-11 13:23:44\"\n    },\n    {\n        \"id_event\":2,\n        \"date_edit\": \"2008-11-11 13:23:44\",\n        \"date_end\":\"2018-11-11 13:23:44\"\n    },\n}",
+                    "latency": 0,
+                    "statusCode": "204",
+                    "headers": [
+                        {
+                            "uuid": "4f545337-766d-11e9-b681-25dc9f389819",
+                            "key": "",
+                            "value": ""
+                        }
+                    ],
+                    "filePath": "",
+                    "sendFileAsBody": false
+                },
+                {
+                    "uuid": "55d85e85-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Update partial info",
                     "method": "patch",
                     "endpoint": "users",
@@ -102,7 +120,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545338-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e86-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "",
                     "method": "delete",
                     "endpoint": "users/[0-9]+/",
@@ -120,7 +138,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f54533a-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e87-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Create",
                     "method": "post",
                     "endpoint": "events/",
@@ -138,7 +156,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f54533c-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e88-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get an array of the last events, with non-detailled data",
                     "method": "get",
                     "endpoint": "events/",
@@ -156,7 +174,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f54533e-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e89-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get detailled data about an event",
                     "method": "get",
                     "endpoint": "events/[0-9]+/",
@@ -174,7 +192,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545340-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e8a-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Update partial info",
                     "method": "patch",
                     "endpoint": "events/[0-9]+/",
@@ -192,7 +210,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545342-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e8b-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "",
                     "method": "delete",
                     "endpoint": "events/[0-9]+/",
@@ -210,7 +228,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545344-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e8c-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Join an event",
                     "method": "post",
                     "endpoint": "events/[0-9]+/join",
@@ -228,7 +246,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545346-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e8d-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Leave an event",
                     "method": "post",
                     "endpoint": "events/[0-9]+/leave",
@@ -246,7 +264,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "4f545348-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e8e-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get an array corresponding to the search terms",
                     "method": "get",
                     "endpoint": "events/search",
@@ -264,7 +282,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "647bd260-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e8f-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get an array of posts and their 3 first comments corresponding to an event",
                     "method": "get",
                     "endpoint": "events/[0-9]+/posts",
@@ -282,7 +300,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "73e103b0-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e90-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get all of the comments for a specific post",
                     "method": "get",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/",
@@ -300,7 +318,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "b9b65d40-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e91-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Update a post af an event",
                     "method": "patch",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/",
@@ -318,7 +336,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "c606d480-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e92-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Delete a post af an event",
                     "method": "delete",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/",
@@ -336,7 +354,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "ca1ecdc0-766d-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e93-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Create a new post for an event",
                     "method": "post",
                     "endpoint": "events/[0-9]+/posts/",
@@ -354,7 +372,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "0f476c90-766e-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e94-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Update a specific comment of a specific post",
                     "method": "patch",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/comments/[0-9]+",
@@ -372,7 +390,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "2de7d900-766e-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e95-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Delete a specific comment of a specific post",
                     "method": "delete",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/comments/[0-9]+",
@@ -390,7 +408,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "3b51d690-766e-11e9-b681-25dc9f389819",
+                    "uuid": "55d85e96-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Create a new comment on a specific post",
                     "method": "post",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/comments/",
@@ -408,7 +426,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5fba2aa0-7678-11e9-bea6-c10593c3d331",
+                    "uuid": "55d85e97-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get all of the notifications of the user",
                     "method": "get",
                     "endpoint": "me/notifications",
@@ -426,7 +444,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "9aeedfd0-7678-11e9-b64f-45b4566840ae",
+                    "uuid": "55d85e98-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Delete a notification",
                     "method": "delete",
                     "endpoint": "me/notifications",
@@ -443,7 +461,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "be7bac80-7678-11e9-b64f-45b4566840ae",
+                    "uuid": "55d85e99-789e-11e9-bb8a-7bdc218dedea",
                     "documentation": "Get the active events that the user joined and created",
                     "method": "get",
                     "endpoint": "me/events",
