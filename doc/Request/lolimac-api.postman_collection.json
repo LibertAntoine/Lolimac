@@ -32,7 +32,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\": \"nico\",\n    \"lastname\": \"lien\",\n    \"pseudo\": \"nicolnt\",\n    \"phone\": \"06 06 06 06 06\",\n    \"mail\": \"mail@gmail.com\",\n    \"pwd\": \"mot_de_passe\",\n    \"photo_url\": \"nom_photo.jpg\",\n    \"year_promotion\": 2021\n}"
+							"raw": "{\n    \"firstname\": \"antoine\",\n    \"lastname\": \"libert\",\n    \"pseudo\": \"antoine\",\n    \"phone\": \"06 06 06 06 06\",\n    \"mail\": \"mail@gmail.com\",\n    \"pwd\": \"antoine\",\n    \"photo_url\": \"nom_photo.jpg\",\n    \"year_promotion\": 2021\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users",
@@ -109,6 +109,9 @@
 				},
 				{
 					"name": "Read",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -121,7 +124,18 @@
 							]
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
 							"host": [
@@ -214,6 +228,16 @@
 								{
 									"name": "Create a comment for a post",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenKey}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "POST",
 										"header": [
 											{
@@ -225,17 +249,17 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\t\"content\": \"le contenu de mon super commentaire !\"\n}"
+											"raw": "{\n\t\"content\": \"huiyga ?!!!\"\n}"
 										},
 										"url": {
-											"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1/comments/",
+											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}/comments/",
 											"host": [
 												"{{serverUrl}}{{apiVersion}}events"
 											],
 											"path": [
-												"1",
+												"{{eventId}}",
 												"posts",
-												"1",
+												"{{postId}}",
 												"comments",
 												""
 											]
@@ -246,6 +270,16 @@
 								{
 									"name": "Update a comment for a post",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenKey}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "PATCH",
 										"header": [
 											{
@@ -257,7 +291,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\t\"content\": \"modif du com'\"\n}"
+											"raw": "{\n\t\"content\": \"Tu veux qu'on baise ?\"\n}"
 										},
 										"url": {
 											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}/comments/{{commentId}}",
@@ -278,6 +312,16 @@
 								{
 									"name": "Delete a comment to a post",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenKey}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "DELETE",
 										"header": [
 											{
@@ -292,16 +336,16 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1/comments/1",
+											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}/comments/{{commentId}}",
 											"host": [
 												"{{serverUrl}}{{apiVersion}}events"
 											],
 											"path": [
-												"1",
+												"{{eventId}}",
 												"posts",
-												"1",
+												"{{postId}}",
 												"comments",
-												"1"
+												"{{commentId}}"
 											]
 										}
 									},
@@ -334,17 +378,17 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"title\": \"Mon titre d'event\",\n\t\"content\": \"Un peu de blabla descriptif\"\n}"
+									"raw": "{\n\t\"title\": \"J'adore la nourriture\",\n\t\"content\": \"Servez moi comme il faut\"\n}"
 								},
 								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/1",
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}",
 									"host": [
 										"{{serverUrl}}{{apiVersion}}events"
 									],
 									"path": [
 										"{{eventId}}",
 										"posts",
-										"1"
+										"{{postId}}"
 									]
 								}
 							},
@@ -353,6 +397,16 @@
 						{
 							"name": "Create a post",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenKey}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
@@ -364,17 +418,16 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"title\": \"Mon titre d'event\",\n\t\"content\": \"Un peu de blabla descriptif\"\n}"
+									"raw": "{\n\t\"title\": \"J'adore ta grosse saucisse\",\n\t\"content\": \"Enforne moi la stp.\"\n}"
 								},
 								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts",
 									"host": [
 										"{{serverUrl}}{{apiVersion}}events"
 									],
 									"path": [
-										"1",
-										"posts",
-										"1"
+										"{{eventId}}",
+										"posts"
 									]
 								}
 							},
@@ -383,6 +436,16 @@
 						{
 							"name": "Delete a post and all of its comments",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenKey}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [
 									{
@@ -416,6 +479,16 @@
 				{
 					"name": "Create",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -427,7 +500,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"There we gioo\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"place\":2\n\n}"
+							"raw": "{\n    \"title\": \"Les poilus en slip\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"place\":{\n    \t\"name\" : \"La coloc infernale\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events",
@@ -498,15 +571,25 @@
 				{
 					"name": "Read one",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/7",
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"7"
+								"{{eventId}}"
 							]
 						},
 						"description": "Réponse beaucoup plus détaillée que sur les autres"
@@ -537,7 +620,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"title\":\"Titre de 1\",\r\n\t\"place\":{\r\n\t\t\"name\":\"lol\",\r\n\t\t\"city\":\"ta mère\"\r\n\t}\r\n\t\"type\":{\r\n\t\t\"name\":\"n'importe quoi\"\r\n\t}\r\n}"
+							"raw": "{\r\n\t\"title\":\"Les slips en folie\",\r\n\t\"place\":{\r\n\t\t\"name\":\"lol\",\r\n\t\t\"city\":\"ta mère\"\r\n\t},\r\n\t\"type\":{\r\n\t\t\"name\":\"n'importe iugyt fr quoi\"\r\n\t}\r\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
@@ -671,6 +754,16 @@
 				{
 					"name": "Delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -678,12 +771,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/7",
+							"raw": "{{serverUrl}}{{apiVersion}}events/10",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"7"
+								"10"
 							]
 						}
 					},
@@ -692,6 +785,16 @@
 				{
 					"name": "Join",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -714,7 +817,17 @@
 				{
 					"name": "Leave",
 					"request": {
-						"method": "POST",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -836,6 +949,16 @@
 				{
 					"name": "Read Multiple (last events)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -859,15 +982,26 @@
 						{
 							"name": "Get all my notifications",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenKey}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}me/notifications",
+									"raw": "{{serverUrl}}{{apiVersion}}me/notifications/",
 									"host": [
 										"{{serverUrl}}{{apiVersion}}me"
 									],
 									"path": [
-										"notifications"
+										"notifications",
+										""
 									]
 								},
 								"description": "For now, only awnsers to posts that the user created, and new comments an a post that he commented"
@@ -877,10 +1011,27 @@
 						{
 							"name": "Get notifications count",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenKey}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": ""
+									"raw": "{{serverUrl}}{{apiVersion}}me/notifications/count",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}me"
+									],
+									"path": [
+										"notifications",
+										"count"
+									]
 								}
 							},
 							"response": []
@@ -929,7 +1080,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pseudo\" : \"nicolnt\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
+					"raw": "{\r\n    \"pseudo\" : \"antoine\",\r\n    \"pwd\" : \"antoine\"\r\n}"
 				},
 				"url": {
 					"raw": "{{serverUrl}}{{apiVersion}}login",
