@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "549088b5-c088-4ab9-9c6f-0937501d944a",
+		"_postman_id": "697e90e4-f0dd-4c8d-b4b9-a7642a01bc2b",
 		"name": "lolimac-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -122,10 +122,6 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
 							"host": [
@@ -264,16 +260,16 @@
 											"raw": "{\n\t\"content\": \"modif du com'\"\n}"
 										},
 										"url": {
-											"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1/comments/1",
+											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}/comments/{{commentId}}",
 											"host": [
 												"{{serverUrl}}{{apiVersion}}events"
 											],
 											"path": [
-												"1",
+												"{{eventId}}",
 												"posts",
-												"1",
+												"{{postId}}",
 												"comments",
-												"1"
+												"{{commentId}}"
 											]
 										}
 									},
@@ -315,53 +311,18 @@
 							"_postman_isSubFolder": true
 						},
 						{
-							"name": "Read all posts",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts",
-									"host": [
-										"{{serverUrl}}{{apiVersion}}events"
-									],
-									"path": [
-										"1",
-										"posts"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get a post with its comments",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
-									"host": [
-										"{{serverUrl}}{{apiVersion}}events"
-									],
-									"path": [
-										"1",
-										"posts",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Update a post",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenKey}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PATCH",
 								"header": [
 									{
@@ -376,12 +337,12 @@
 									"raw": "{\n\t\"title\": \"Mon titre d'event\",\n\t\"content\": \"Un peu de blabla descriptif\"\n}"
 								},
 								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/1",
 									"host": [
 										"{{serverUrl}}{{apiVersion}}events"
 									],
 									"path": [
-										"1",
+										"{{eventId}}",
 										"posts",
 										"1"
 									]
@@ -436,14 +397,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}events/1/posts/1",
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}",
 									"host": [
 										"{{serverUrl}}{{apiVersion}}events"
 									],
 									"path": [
-										"1",
+										"{{eventId}}",
 										"posts",
-										"1"
+										"{{postId}}"
 									]
 								}
 							},
@@ -477,34 +438,6 @@
 					},
 					"response": [
 						{
-							"name": "Create BBQ",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
-								},
-								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}events",
-									"host": [
-										"{{serverUrl}}{{apiVersion}}events"
-									]
-								}
-							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": [],
-							"body": ""
-						},
-						{
 							"name": "Create",
 							"originalRequest": {
 								"method": "POST",
@@ -531,6 +464,34 @@
 							"header": [],
 							"cookie": [],
 							"body": ""
+						},
+						{
+							"name": "Create BBQ",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
 						}
 					]
 				},
@@ -539,10 +500,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/7",
 							"host": [
@@ -580,15 +537,15 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"date_start\":null,\r\n\t\"title\":\"Titre de l'événement 1 <3\"\r\n}"
+							"raw": "{\r\n\t\"title\":\"Titre de 1\",\r\n\t\"place\":{\r\n\t\t\"name\":\"lol\",\r\n\t\t\"city\":\"ta mère\"\r\n\t}\r\n\t\"type\":{\r\n\t\t\"name\":\"n'importe quoi\"\r\n\t}\r\n}"
 						},
 						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/1",
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"1"
+								"{{eventId}}"
 							]
 						}
 					},
@@ -779,12 +736,18 @@
 				{
 					"name": "Read Multple (OFFSET et LIMIT)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events?from=0&limit=20",
 							"host": [
@@ -808,10 +771,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/?from=0&limit=20",
 									"host": [
@@ -851,10 +810,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/search/?q=ma+recherche&opt=date+participe",
 							"host": [
@@ -883,10 +838,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events",
 							"host": [
@@ -910,10 +861,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}me/notifications",
 									"host": [
@@ -928,65 +875,12 @@
 							"response": []
 						},
 						{
-							"name": "Free my notifications",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}me/notifications",
-									"host": [
-										"{{serverUrl}}{{apiVersion}}me"
-									],
-									"path": [
-										"notifications"
-									]
-								},
-								"description": "For now, only awnsers to posts that the user created, and new comments an a post that he commented"
-							},
-							"response": []
-						},
-						{
-							"name": "GET my notification count",
+							"name": "Get notifications count",
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": ""
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Events",
-					"item": [
-						{
-							"name": "Get my created and participated events",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{serverUrl}}{{apiVersion}}me/events",
-									"host": [
-										"{{serverUrl}}{{apiVersion}}me"
-									],
-									"path": [
-										"events"
-									]
 								}
 							},
 							"response": []
@@ -1001,10 +895,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{serverUrl}}{{apiVersion}}",
 					"host": [
@@ -1095,21 +985,6 @@
 					]
 				},
 				"description": "Check server status and las commit id"
-			},
-			"response": []
-		},
-		{
-			"name": "Update a post",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": ""
-				}
 			},
 			"response": []
 		}

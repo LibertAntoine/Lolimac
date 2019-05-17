@@ -65,8 +65,8 @@ class Root {
                 break;
 
             case 'DELETE':
-                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
                 $userCRUD = new UserCRUD();
+                $_DELETE['id'] = $this->root[1];
                 $userCRUD->delete($_DELETE);
                 break;
 
