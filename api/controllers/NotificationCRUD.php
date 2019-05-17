@@ -49,7 +49,7 @@ class NotificationCRUD {
           ]);
       }
       else {
-          throw new \Exception("Il n'y a pas de notifications");
+          json_encode(['message'=>"Il n'y a pas de notifications"]);
       }
   }
 
