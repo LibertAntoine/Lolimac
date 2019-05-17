@@ -18,9 +18,6 @@ class Link_events_users_modulesCRUD {
     $data["id_module"] = $id_module;
     $data["id_user"] = $id_user;
     $link = new Link_events_users_modules($data);
-    echo $link->getId_event();
-    echo $link->getId_user();
-    echo $link->getId_module();
     $linkManager = new Link_events_users_modulesManager();
     if ($linkManager->readById_event_user_module($link->getId_event(), $link->getId_user(), $link->getId_module()) === FALSE) {
       $linkManager->add($link);
@@ -28,6 +25,18 @@ class Link_events_users_modulesCRUD {
       throw new \Exception('Lien déjà existant.');
     }
     return TRUE;
+  }
+
+  public function readParticipation($id_event) {
+    $token = new TokenAccess();
+    $id_user = $token->getId();
+    $linkManager = new Link_events_users_modulesManager();
+    $link = $linkManager->readById_user_event($id_user, $id_event);
+    if ($link != NULL) {
+      return $link->getId_module();
+    } else {
+      return 0;
+    }
   }
 
   public function delete($id_event) {

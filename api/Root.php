@@ -103,7 +103,7 @@ class Root {
                 if(isset($this->root[2])) {
                     $linkCRUD = new Link_events_users_modulesCRUD();
                     if($this->root[2] == "join") {
-                        $linkCRUD->add($this->root[1], "1");
+                        $linkCRUD->add($this->root[1], 2);
                     }
                 } else {
                     $_POST = json_decode(file_get_contents("php://input"), TRUE);
