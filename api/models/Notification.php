@@ -1,8 +1,8 @@
 <?php
 
-namespace notifications;
+namespace models;
 
-class Notifications {
+class Notification {
 
 	protected $id,
   $id_event,
