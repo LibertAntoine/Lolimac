@@ -14,7 +14,16 @@ use \controllers\scans\TokenAccess;
 
 class NotificationCRUD {
 
-  public function add($dataIn) {
+  public function add($data) {
+      $notificationManager = new NotificationManager();
+      foreach ($data as $key => $value) {
+          if ($key == 'id') continue;
+          $notification = new Notification([
+              "id_event" => $data['id'],
+              'type_edit' => $key
+          ]);
+          $notificationManager->add($notification);
+      }
     // TODO: A faire.
   }
 
@@ -29,7 +38,6 @@ class NotificationCRUD {
       if ($notifications) {
           $eventManager = new EventManager();
           foreach ($notifications as $key => $notification) {
-              //var_dump($notification);
               $notifications[$key] = $notification->toArray();
               $event = $eventManager->readById($notification->getId_event());
               $notifications[$key]["title"] = $event->getTitle();

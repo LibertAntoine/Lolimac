@@ -11,6 +11,7 @@ use \models\Link_events_places;
 use \models\Link_events_eventtypes;
 use \models\Place;
 use \controllers\EventTypeCRUD;
+use \controllers\NotificationCRUD;
 use \controllers\Link_events_placesCRUD;
 use \controllers\Link_events_eventtypesCRUD;
 use \controllers\Link_events_users_modulesCRUD;
@@ -64,6 +65,10 @@ class EventCRUD {
     $event = $eventManager->readById($data["id"]);
     $event->hydrate($data);
     $eventManager->update($event);
+
+    $NotificationCRUD = new NotificationCRUD();
+    $NotificationCRUD->add($dataIn);
+
     if (isset($data["place"])) {
         $placeCRUD = new PlaceCRUD();
         if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
