@@ -11,11 +11,16 @@ use \models\Link_events_users_modulesManager;
 
 class Link_events_users_modulesCRUD {
 
-  public function add($dataIn) {
-    $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["id_event", "id_user", "id_module"]);
-    $data = $scanDataIn->failleXSS($dataIn);
+  public function add($id_event, $id_module) {
+    $token = new TokenAccess();
+    $id_user = $token->getId();
+    $data["id_event"] = $id_event;
+    $data["id_module"] = $id_module;
+    $data["id_user"] = $id_user;
     $link = new Link_events_users_modules($data);
+    echo $link->getId_event();
+    echo $link->getId_user();
+    echo $link->getId_module();
     $linkManager = new Link_events_users_modulesManager();
     if ($linkManager->readById_event_user_module($link->getId_event(), $link->getId_user(), $link->getId_module()) === FALSE) {
       $linkManager->add($link);
@@ -25,13 +30,11 @@ class Link_events_users_modulesCRUD {
     return TRUE;
   }
 
-  public function delete($dataIn) {
-    $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["id_event", "id_user", "id_module"]);
-    $data = $scanDataIn->failleXSS($dataIn);
+  public function delete($id_event) {
     $token = new TokenAccess();
+    $id_user = $token->getId();
     $linkManager = new Link_events_users_modulesManager();
-    $linkManager->deleteById($data["id_event"], $data["id_user"], $data["id_module"]);
+    $linkManager->deleteById($id_event, $id_user);
     return TRUE;
   }
 }

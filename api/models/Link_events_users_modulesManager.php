@@ -65,12 +65,11 @@ class Link_events_users_modulesManager extends DBAccess {
     return $allLink;
   }
 
-  public function deleteById($id_event, $id_user, $id_module) {
-     $q = $this->db->prepare('DELETE FROM link_events_users_modules WHERE id_event = :id_event AND id_user = :id_user AND id_module = :id_module;');
+  public function deleteById($id_event, $id_user) {
+     $q = $this->db->prepare('DELETE FROM link_events_users_modules WHERE id_event = :id_event AND id_user = :id_user');
 
       $q->bindValue(':id_event', $id_event);
       $q->bindValue(':id_user', $id_user);
-      $q->bindValue(':id_module', $id_module);
       $q->execute();
       return TRUE;
   }
