@@ -18,6 +18,7 @@ class Link_events_placesCRUD {
     $link = new Link_events_places($data);
     $linkManager = new Link_events_placesManager();
     if ($linkManager->readById_event_place($link->getId_event(), $link->getId_place()) === FALSE) {
+     
       $linkManager->add($link);
     } else {
       throw new \Exception('Lien déjà existant.');

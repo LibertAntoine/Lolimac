@@ -33,17 +33,18 @@ class UserCRUD {
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $token = new TokenAccess();
-    $token->acompteAccess($data["id"]) 
+    $token->acompteAccess($data["id"]);
     $userManager = new UserManager();
+
+
     $user = $userManager->readById($data["id"]);
       if($user) {
-        $user->hydrate($data);
+                $user->hydrate($data);
         $userManager->update($user);
       } else {
         throw new Exception("L'utilisateur n'existe pas.", 400);
       }
     }
-  }
 
   public function read($dataIn) {
     $scanDataIn = new ScanDataIn();

@@ -13,8 +13,7 @@ class Link_events_placesManager extends DBAccess {
           $q->bindValue(':id_place', $link->getId_place());
 
 	  $q->execute();
-
-    $link->hydrate(['id' => $this->db->lastInsertId()]);
+    
     return $link;
   }
 

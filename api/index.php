@@ -13,5 +13,5 @@ catch(Exception $e) {
 	http_response_code($e->getCode());
 	echo json_encode([
 				"message" => $e->getMessage()
-				] )
+				] );
 }

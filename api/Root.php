@@ -27,7 +27,7 @@ class Root {
             echo json_encode(
                 [
                     "status" => "running",
-                    "commit" => trim(shell_exec("git rev-parse HEAD"), "..\n")
+                    "commit" => trim(shell_exec("git rev-parse HEAD"), "\n")
                 ]
         );
         }
@@ -58,10 +58,10 @@ class Root {
                 $userCRUD->add($_POST);
                 break;
 
-            case 'PUT':
-                $_PUT = json_decode(file_get_contents("php://input"), TRUE);
+            case 'PATCH':
+                $_PATCH = json_decode(file_get_contents("php://input"), TRUE);
                 $userCRUD = new UserCRUD();
-                $userCRUD->update($_PUT);
+                $userCRUD->update($_PATCH);
                 break;
 
             case 'DELETE':

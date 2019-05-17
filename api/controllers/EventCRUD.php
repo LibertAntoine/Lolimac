@@ -23,10 +23,8 @@ class EventCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     unset($data['date_created']);
     $event = new Event($data);
-
     $eventManager = new EventManager();
     $event = $eventManager->add($event);
-
     if (isset($data["place"])) {
         $placeCRUD = new PlaceCRUD();
         if(\is_array($data["place"])) {
@@ -132,6 +130,6 @@ class EventCRUD {
     $link_events_placesCRUD = new Link_events_placesCRUD();
     $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
     $eventManager->deleteById($event->getId());
-    echo json_encode("message" => "Evenement supprimé");
+    echo json_encode(["message" => "Evenement supprimé"]);
   }
 }

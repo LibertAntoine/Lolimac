@@ -29,8 +29,7 @@ class PlaceManager extends DBAccess {
 	  $q->bindValue(':id', $id);
 	  $q->execute();
       $place = $q->fetch(\PDO::FETCH_ASSOC);
-      $placeObject = new Place($place);
-      if($placeObject) {
+      if($place) {
         return new Place($place);
       } else {
         throw new \Exception("Le lieu de l'évenement n'existe pas.", 400);
