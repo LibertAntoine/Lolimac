@@ -74,20 +74,21 @@ class EventCRUD {
         if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
             $place = $placeCRUD->add($data["place"]);
         }
-        if (isset($data['type'])) {
-            $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
-            $eventTypeCRUD = new EventTypeCRUD();
-            if (is_numeric($data['type'])) {
-                $eventType = $eventTypeCRUD->read_OBJ(['id' => $data['type']]);
-                $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
-            }
-            else {
-                $eventType = $eventTypeCRUD->add($data['type']);
-                $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
-            }
+        
+    }
+    if (isset($data['type'])) {
+        $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
+        $eventTypeCRUD = new EventTypeCRUD();
+        if (is_numeric($data['type'])) {
+            $eventType = $eventTypeCRUD->read_OBJ(['id' => $data['type']]);
+            $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
+        }
+        else {
+            $eventType = $eventTypeCRUD->add($data['type']);
+            $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
         }
     }
-  }
+}
 
   public function readMultiple($dataIn) {
       $scanDataIn = new ScanDataIn();
