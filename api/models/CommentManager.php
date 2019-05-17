@@ -39,14 +39,17 @@ class CommentManager extends DBAccess {
 
     $q = $this->db->query("SELECT * FROM comments
       WHERE id_post = {$id_post};");
-    while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
-     $allComments[$data['id']] = new Comment($data);
+    for($i = 0;$data = $q->fetch(\PDO::FETCH_ASSOC); $i++) {
+     $allComments[$i] = new Comment($data);
     }
-    return $allComments;
+    if(isset($allComments)) {
+      return $allComments;
+    }
+
   }
 
   public function update(Comment $comment) {
-    $q = $this->db->prepare('UPDATE comments SET content = :content, date_edited = NOW(), id_user = :id_post ,id_post = :id_post WHERE id = :id');
+    $q = $this->db->prepare('UPDATE comments SET content = :content, date_edited = NOW(), id_user = :id_user , id_post = :id_post WHERE id = :id');
 
     $q->bindValue(':id', $comment->getId());
     $q->bindValue(':content', $comment->getContent());
@@ -60,6 +63,11 @@ class CommentManager extends DBAccess {
 
   public function deleteById($id) {
     $this->db->exec('DELETE FROM comments WHERE id = '.$id.';');
+    return TRUE;
+  }
+
+  public function deleteByIdPost($id_post) {
+    $this->db->exec('DELETE FROM comments WHERE id_post = '.$id_post.';');
     return TRUE;
   }
 }

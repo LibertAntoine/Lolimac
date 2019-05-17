@@ -24,6 +24,20 @@ public function __construct(array $data) {
     }
   }
 
+  public function toArray() {
+    $array = [
+      "id" => $this->getId(),
+      "content" => $this->getContent(),
+      "date_created" => $this->getDate_created(),
+      "date_edited" => $this->getDate_edited(),
+      "id_user" => $this->getId_user(),
+      "id_post" => $this->getId_post()
+    ];
+    return $array;
+  }
+
+
+
   public function getId() {
     return $this->id;
   }

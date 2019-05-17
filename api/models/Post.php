@@ -26,6 +26,20 @@ class Post {
     }
   }
 
+  public function toArray() {
+    $array = [
+      "id" => $this->getId(),
+      "title" => $this->getTitle(),
+      "content" => $this->getContent(),
+      "date_created" => $this->getDate_created(),
+      "date_edited" => $this->getDate_edited(),
+      "id_user" => $this->getId_user(),
+      "id_event" => $this->getId_event()
+    ];
+    return $array;
+  }
+
+
   // Getters 
   public function getId() {
     return $this->id;

@@ -115,7 +115,7 @@ class EventCRUD {
               $type = $link_events_eventtypesCRUD->readType_ARRAY(['id_event' => $events[$key]["id_event"]]);
               $events[$key]['type'] = $type;
           }
-          echo json_encode($events);
+          echo json_encode(array_values($events));
       } else {
           throw new Exception("L'événement n'existe pas.");
       }
@@ -135,8 +135,16 @@ class EventCRUD {
     $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
     $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $event["id_event"]]);
     $event['place'] = $place;
+<<<<<<< Updated upstream
     $type = $link_events_eventtypesCRUD->readType_ARRAY(['id_event' => $event["id_event"]]);
     $event['type'] = $type;
+=======
+    $postCRUD = new PostCRUD();
+    $posts = $postCRUD->read($data["id"]);
+    if($posts) {
+      $event['posts'] = $posts;
+    }
+>>>>>>> Stashed changes
     echo json_encode($event);
   }
 
