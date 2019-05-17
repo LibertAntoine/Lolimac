@@ -17,7 +17,6 @@ class CommentCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     $token = new TokenAccess();
     $data['id_user'] = $token->getId();
-    echo $data['id_user'];
     $postManager = new PostManager();
     $postManager->readById($data["id_post"]);
     $participantManager = new Link_events_users_modulesCRUD();
@@ -39,7 +38,6 @@ class CommentCRUD {
     $commentManager = new CommentManager();
     $comment = $commentManager->readById($data["id"]);
     $comment->hydrate($data);
-    echo $comment->getContent();
     $token = new TokenAccess();
     $token->acompteAccess($comment->getId_user());
     $commentManager->update($comment);
