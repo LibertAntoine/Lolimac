@@ -25,8 +25,9 @@ class EventCRUD {
     $event = new Event($data);
     $eventManager = new EventManager();
     $event = $eventManager->add($event);
+
     $participantManager = new Link_events_users_modulesCRUD();
-    $participantManager->add($event->getId(), 0);
+    $participantManager->add($event->getId(), 1);
     if (isset($data["place"])) {
         $placeCRUD = new PlaceCRUD();
         if(\is_array($data["place"])) {
@@ -97,9 +98,11 @@ class EventCRUD {
           $events = $eventManager->readAll();
       }
       if($events) {
+          $participantManager = new Link_events_users_modulesCRUD();
           foreach ($events as $key => $event) {
               $events[$key] = $event->toArray();
-
+              $participation = $participantManager->readParticipation($event->getId());
+              $events[$key]['participation'] = $participation;
               $link_events_placesCRUD = new Link_events_placesCRUD();
               $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $events[$key]["id_event"]]);
               $events[$key]['place'] = $place;
