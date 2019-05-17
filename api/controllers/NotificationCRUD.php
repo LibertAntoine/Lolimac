@@ -24,7 +24,6 @@ class NotificationCRUD {
           ]);
           $notificationManager->add($notification);
       }
-    // TODO: A faire.
   }
 
   public function read() {

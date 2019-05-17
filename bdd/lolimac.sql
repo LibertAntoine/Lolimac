@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 17, 2019 at 02:38 PM
+-- Generation Time: May 17, 2019 at 06:54 PM
 -- Server version: 5.7.25-0ubuntu0.18.04.2
 -- PHP Version: 7.2.15-0ubuntu0.18.04.2
 
@@ -67,7 +67,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `photo_url`, `description`, `date_start`, `date_end`, `date_created`) VALUES
-(1, 'MAIS LOL', 'https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80', 'c\'est le lol', '2018-12-12 22:22:00', '2018-12-12 00:00:00', '2019-04-27 00:00:00'),
+(1, 'Titre AAAAAeeAAA 1 <3', 'https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80', 'c\'est le lol', NULL, '2018-12-12 00:00:00', '2019-04-27 00:00:00'),
 (2, 'euh coucou', 'https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80', 'c\'est le lol', '2018-12-11 10:10:10', '2018-12-12 10:10:10', '2019-04-27 23:42:06'),
 (3, 'tÃ©ste dÃ ccÃªnts', 'https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80', 'c\'est le lol', '2018-12-11 10:10:10', '2018-12-12 10:10:10', '2019-04-27 23:44:54'),
 (4, 'There we glkji', 'https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80', NULL, NULL, NULL, '2019-05-16 15:19:07'),
@@ -122,6 +122,14 @@ CREATE TABLE `link_events_users_modules` (
   `id_module` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `link_events_users_modules`
+--
+
+INSERT INTO `link_events_users_modules` (`id_event`, `id_user`, `id_module`) VALUES
+(1, 21, 2),
+(1, 22, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -140,11 +148,23 @@ CREATE TABLE `modules` (
 --
 
 CREATE TABLE `notification_events` (
+  `id` int(11) NOT NULL,
   `id_event` int(11) NOT NULL,
-  `edit_time` datetime NOT NULL,
-  `edit_type` varchar(255) NOT NULL,
-  `edit_info` text
+  `date_edit` datetime NOT NULL,
+  `type_edit` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `notification_events`
+--
+
+INSERT INTO `notification_events` (`id`, `id_event`, `date_edit`, `type_edit`) VALUES
+(8, 1, '2019-05-17 18:34:12', 'title'),
+(9, 1, '2019-05-17 18:34:12', 'id'),
+(10, 1, '2019-05-17 18:34:50', 'date_start'),
+(11, 1, '2019-05-17 18:34:50', 'title'),
+(12, 1, '2019-05-17 18:34:57', 'date_start'),
+(13, 1, '2019-05-17 18:34:57', 'title');
 
 -- --------------------------------------------------------
 
@@ -219,16 +239,16 @@ CREATE TABLE `users` (
   `photo_url` varchar(255) NOT NULL,
   `status` int(1) NOT NULL,
   `year_promotion` int(11) NOT NULL,
-  `last_notification_check` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_notification_check` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`, `last_notification_check`) VALUES
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `pseudo`, `mail`, `phone`, `pwd_hash`, `photo_url`, `status`, `year_promotion`, `date_notification_check`) VALUES
 (21, 'liuiyiuyl', 'lien', 'nicolnt', 'mail@gmail.com', '06 06 06 06 06', '$2y$10$iQs9LjUg./unNub/8xPQv.6zq2UXEdUukvigN3FH..AWCKbBAQQre', 'nom_photo.jpg', 1, 2021, '2019-05-17 14:33:49'),
-(22, 'nico', 'lien', 'nicol', 'mail@gmail.com', '06 06 06 06 06', '$2y$10$YYYVYKgDq9iE6.zbzOp6zeAaoTmOYBcDfWAUUZgtdtiGUp7fH.S4W', 'nom_photo.jpg', 3, 2021, '2019-05-17 14:33:49');
+(22, 'nico', 'lien', 'nicol', 'mail@gmail.com', '06 06 06 06 06', '$2y$10$YYYVYKgDq9iE6.zbzOp6zeAaoTmOYBcDfWAUUZgtdtiGUp7fH.S4W', 'nom_photo.jpg', 3, 2021, '2019-05-17 18:48:59');
 
 --
 -- Indexes for dumped tables
@@ -275,6 +295,12 @@ ALTER TABLE `link_events_users_modules`
 -- Indexes for table `modules`
 --
 ALTER TABLE `modules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notification_events`
+--
+ALTER TABLE `notification_events`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -329,6 +355,12 @@ ALTER TABLE `eventtypes`
 --
 ALTER TABLE `modules`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notification_events`
+--
+ALTER TABLE `notification_events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `places`
