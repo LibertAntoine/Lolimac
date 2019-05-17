@@ -42,7 +42,7 @@ class TokenAccess {
     public function acompteAccess($id) {
         $userManager = new UserManager();
         $user = $userManager->readById($this->token->data->userId);
-        if($user->getId() == $id OR $token->adminAccess(1)) {
+        if($user->getId() == $id OR $this->adminAccess(1)) {
             return TRUE;
         } else {
             throw new \Exception('Droits d\'accès au compte restrint', 400);

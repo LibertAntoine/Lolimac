@@ -111,33 +111,73 @@ class Root {
                 break;
 
             case 'POST':
+                $_POST = json_decode(file_get_contents("php://input"), TRUE);
                 if(isset($this->root[2])) {
-                    $linkCRUD = new Link_events_users_modulesCRUD();
-                    if($this->root[2] == "join") {
+                    if($this->root[2] == "posts") { 
+                        if(isset($this->root[4])) {
+                            if($this->root[4] == "comments") {
+                                $commentCRUD = new CommentCRUD();
+                                $_POST["id_post"] = $this->root[3];
+                                $commentCRUD->add($_POST, $this->root[1]);
+                            }
+                        } else {
+                            $postCRUD = new PostCRUD();
+                            $_POST["id_event"] = $this->root[1];
+                            $postCRUD->add($_POST);
+                        }
+                    } else if ($this->root[2] == "join") {
+                        $linkCRUD = new Link_events_users_modulesCRUD();
                         $linkCRUD->add($this->root[1], 2);
                     }
                 } else {
-                    $_POST = json_decode(file_get_contents("php://input"), TRUE);
                     $eventCRUD = new EventCRUD();
                     $eventCRUD->add($_POST);
                 }
-
+        
 
                 break;
 
             case 'PATCH':
-                $idEvent = $this->root[1];
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
-                $_PUT["id"] = $idEvent;
-                $eventCRUD = new EventCRUD();
-                $eventCRUD->update($_PUT);
+                if(isset($this->root[2])) {
+                    if($this->root[2] == "posts" && isset($this->root[3])) {
+                        if($this->root[4] == "comments" && isset($this->root[5])) {
+                            $commentCRUD = new CommentCRUD();
+                            $_PUT["id"] = $this->root[5];
+                            $commentCRUD->update($_PUT);
+                        } else {
+                            $postCRUD = new PostCRUD();
+                            $_PUT['id'] = $this->root[3];
+                            $postCRUD->update($_PUT);
+                        }
+                    }
+                } else {
+                    $idEvent = $this->root[1];
+                    $_PUT["id"] = $idEvent;
+                    $eventCRUD = new EventCRUD();
+                    $eventCRUD->update($_PUT);
+                }   
                 break;
 
             case 'DELETE':
                 if(isset($this->root[2])) {
-                    $linkCRUD = new Link_events_users_modulesCRUD();
-                    if ($this->root[2] == "leave") {
-                        $linkCRUD->delete($this->root[1]);
+                    if(isset($this->root[2])) {
+                        if ($this->root[2] == "leave") {
+                            $linkCRUD = new Link_events_users_modulesCRUD();
+                            $linkCRUD->delete($this->root[1]);
+                        } else if ($this->root[2] == "posts" && isset($this->root[3])) {
+                            if(isset($this->root[4])) {
+                                if ($this->root[4] == "comments" && isset($this->root[5])) {
+                                    $commentCRUD = new CommentCRUD();
+                                    $_DELETE['id'] = $this->root[5];
+                                    $commentCRUD->delete($_DELETE);
+                                }
+                            } else {
+                                $postCRUD = new PostCRUD();
+                                $_DELETE['id'] = $this->root[3];
+                                $postCRUD->delete($_DELETE);
+                            }
+                        }
                     }
                 } else {
                     $idEvent = $this->root[1];

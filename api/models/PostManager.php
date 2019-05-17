@@ -26,12 +26,19 @@ class PostManager extends DBAccess {
   public function readById($id) {
       $q = $this->db->query('SELECT * FROM posts WHERE id = '.$id);
       $post = $q->fetch(\PDO::FETCH_ASSOC);
-      $postObject = new Post($post);
-      if($postObject) {
+      if($post != NULL) {
         return new Post($post);
       } else {
-        throw new Exception("La publication n'existe pas.", 400);
+        throw new \Exception("La publication n'existe pas.", 400);
       }
+  }
+
+  public function readByIdEvent($id_event) {
+      $q = $this->db->query('SELECT * FROM posts WHERE id_event = '.$id_event);
+    for($i = 0; $data = $q->fetch(\PDO::FETCH_ASSOC); $i++) {
+     $allPosts[$i] = new Post($data);
+    }
+    return $allPosts;
   }
 
   public function readByTitle($title) {

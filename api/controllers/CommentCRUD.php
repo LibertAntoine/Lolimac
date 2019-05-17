@@ -5,28 +5,43 @@ namespace controllers;
 use \controllers\scans\ScanDataIn;
 use \models\Comment;
 use \models\CommentManager;
-
+use \models\PostManager;
+use \controllers\scans\TokenAccess;
+use \controllers\Link_events_users_modulesCRUD;
 
 class CommentCRUD {
 
-  public function add($dataIn) {
+  public function add($dataIn, $id_event) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["content", "id_post", "id_user"]);
+    $scanDataIn->exists($dataIn, ["content", "id_post"]);
     $data = $scanDataIn->failleXSS($dataIn);
-    $comment = new Comment($data);
-
-    $commentManager = new CommentManager();
-    $commentManager->add($comment);
-
+    $token = new TokenAccess();
+    $data['id_user'] = $token->getId();
+    echo $data['id_user'];
+    $postManager = new PostManager();
+    $postManager->readById($data["id_post"]);
+    $participantManager = new Link_events_users_modulesCRUD();
+    $participation = $participantManager->readParticipation($id_event);
+    if($participation != 0) {
+      $comment = new Comment($data);
+      $commentManager = new CommentManager();
+      $commentManager->add($comment);
+    } else {
+      throw new \Exception('Vous n\'etes pas autorisé à publier sur cette event.', 400);
+    }
     return TRUE;
   }
 
   public function update($dataIn) {
     $scanDataIn = new ScanDataIn();
+    $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $commentManager = new CommentManager();
     $comment = $commentManager->readById($data["id"]);
     $comment->hydrate($data);
+    echo $comment->getContent();
+    $token = new TokenAccess();
+    $token->acompteAccess($comment->getId_user());
     $commentManager->update($comment);
   }
 
@@ -44,6 +59,10 @@ class CommentCRUD {
     $scanDataIn->exists($dataIn, ["id"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $commentManager = new CommentManager();
+    $comment = $commentManager->readById($data["id"]);
+    $comment->hydrate($data);
+    $token = new TokenAccess();
+    $token->acompteAccess($comment->getId_user());
     $commentManager->deleteById($data["id"]);
     return TRUE;
   }
