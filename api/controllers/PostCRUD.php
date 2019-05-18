@@ -8,6 +8,7 @@ use \models\PostManager;
 use \models\CommentManager;
 use \controllers\scans\TokenAccess;
 use \controllers\Link_events_users_modulesCRUD;
+use \controllers\NotificationCRUD;
 
 
 class PostCRUD {
@@ -31,7 +32,12 @@ class PostCRUD {
     } else {
       throw new \Exception('Vous n\'etes pas autorisé à publier sur cette event.', 400);
     }
-    
+
+    $NotificationCRUD = new NotificationCRUD();
+    $NotificationCRUD->add([
+        'id_event' => $data['id_event'],
+        'type_edit' => 'post'
+    ]);
     return TRUE;
   }
 
