@@ -120,7 +120,7 @@ class EventCRUD {
           }
           echo json_encode(array_values($events));
       } else {
-          throw new Exception("L'événement n'existe pas.");
+          echo \json_encode([]);
       }
   }
 
