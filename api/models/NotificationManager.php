@@ -12,7 +12,11 @@ class NotificationManager extends DBAccess {
 	 while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
 		 $allNotifications[$data['id']] = new Notification($data);
 	 }
-	 return $allNotifications;
+	if(isset($allNotifications)) {
+	 		 return $allNotifications;
+	} else {
+		return NULL;
+	}
  }
  public function add(Notification $notification){
 	 $q = $this->db->prepare('INSERT INTO notification_events (id_event, type_edit, date_edit) VALUES (:id_event, :type_edit, NOW());');

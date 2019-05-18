@@ -65,8 +65,8 @@ class Root {
                 break;
 
             case 'DELETE':
-                $_DELETE = json_decode(file_get_contents("php://input"), TRUE);
                 $userCRUD = new UserCRUD();
+                $_DELETE['id'] = $this->root[1];
                 $userCRUD->delete($_DELETE);
                 break;
 
@@ -141,10 +141,12 @@ class Root {
                 $_PUT = json_decode(file_get_contents("php://input"), TRUE);
                 if(isset($this->root[2])) {
                     if($this->root[2] == "posts" && isset($this->root[3])) {
-                        if($this->root[4] == "comments" && isset($this->root[5])) {
-                            $commentCRUD = new CommentCRUD();
-                            $_PUT["id"] = $this->root[5];
-                            $commentCRUD->update($_PUT);
+                        if(isset($this->root[4])) {
+                            if($this->root[4] == "comments" && isset($this->root[5])) {
+                                $commentCRUD = new CommentCRUD();
+                                $_PUT["id"] = $this->root[5];
+                                $commentCRUD->update($_PUT);
+                            }
                         } else {
                             $postCRUD = new PostCRUD();
                             $_PUT['id'] = $this->root[3];

@@ -67,8 +67,7 @@ class EventCRUD {
     $eventManager->update($event);
 
     $NotificationCRUD = new NotificationCRUD();
-    $NotificationCRUD->add($dataIn);
-
+    $NotificationCRUD->add($data);
     if (isset($data["place"])) {
         $placeCRUD = new PlaceCRUD();
         if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
@@ -136,16 +135,13 @@ class EventCRUD {
     $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
     $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $event["id_event"]]);
     $event['place'] = $place;
-<<<<<<< Updated upstream
     $type = $link_events_eventtypesCRUD->readType_ARRAY(['id_event' => $event["id_event"]]);
     $event['type'] = $type;
-=======
     $postCRUD = new PostCRUD();
     $posts = $postCRUD->read($data["id"]);
     if($posts) {
       $event['posts'] = $posts;
     }
->>>>>>> Stashed changes
     echo json_encode($event);
   }
 
