@@ -76,11 +76,15 @@ class UserCRUD {
     $data = $scanDataIn->failleXSS($dataIn);
     $userManager = new UserManager();
     $user = $userManager->readByPseudo($data["pseudo"]);
-    if(password_verify($data["pwd"], $user->getPwd_hash())) {
-        $tokenCreater = new TokenCreater();
-        $tokenCreater->createToken($user->GetId());
+    if ($user == FALSE) {
+        throw new \Exception("Le nom d'utilisateur est incorrect.", 404);
     } else {
-      throw new \Exception("Le pseudo ou mot de passe est incorrect.", 401);
+        if(password_verify($data["pwd"], $user->getPwd_hash())) {
+            $tokenCreater = new TokenCreater();
+            $tokenCreater->createToken($user->GetId());
+        } else {
+          throw new \Exception("Le mot de passe est incorrect.", 401);
+        }
     }
   }
 }
