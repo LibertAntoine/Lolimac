@@ -35,7 +35,7 @@ class PostCRUD {
 
     $NotificationCRUD = new NotificationCRUD();
     $NotificationCRUD->add([
-        'id_event' => $data['id_event'],
+        'id' => $data['id_event'],
         'type_edit' => 'post'
     ]);
     return TRUE;
