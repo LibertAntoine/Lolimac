@@ -13,7 +13,7 @@ class UserCRUD {
 
   public function add($dataIn) {
     $scanDataIn = new ScanDataIn();
-    $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd", "mail", "phone", "photo_url", "year_promotion"]);
+    $scanDataIn->exists($dataIn, ["firstname", "lastname", "pseudo", "pwd", "mail", "photo_url", "year_promotion"]);
     $data = $scanDataIn->failleXSS($dataIn);
     $data["pwd_hash"] = password_hash($data["pwd"], PASSWORD_DEFAULT);
     $user = new User($data);

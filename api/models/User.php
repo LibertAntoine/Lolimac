@@ -114,6 +114,9 @@ class User {
     if ($mail == TRUE) {
      $this->mail = $mail;
     }
+	else {
+		throw new \Exception("L'adresse email est invalide.");
+	}
   }
 
   public function setPhone($phone) {
