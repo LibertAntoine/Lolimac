@@ -38,7 +38,7 @@ class PostManager extends DBAccess {
     for($i = 0; $data = $q->fetch(\PDO::FETCH_ASSOC); $i++) {
      $allPosts[$i] = new Post($data);
     }
-	if ($allPosts) {
+	if (isset($allPosts)) {
 		return $allPosts;
 	}
 	else return NULL;
