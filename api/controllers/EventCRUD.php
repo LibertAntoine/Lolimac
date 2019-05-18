@@ -53,6 +53,9 @@ class EventCRUD {
             $link_events_eventtypesCRUD->add(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
         }
     }
+    echo \json_encode([
+        'id_event' => $event->getId()
+    ]);
     return TRUE;
   }
 
@@ -73,7 +76,7 @@ class EventCRUD {
         if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
             $place = $placeCRUD->add($data["place"]);
         }
-        
+
     }
     if (isset($data['type'])) {
         $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
