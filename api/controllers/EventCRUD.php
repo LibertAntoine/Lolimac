@@ -142,9 +142,7 @@ class EventCRUD {
     $event['type'] = $type;
     $postCRUD = new PostCRUD();
     $posts = $postCRUD->read($data["id"]);
-    if($posts) {
-      $event['posts'] = $posts;
-    }
+    $event['posts'] = $posts;
     echo json_encode($event);
   }
 
