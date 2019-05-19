@@ -86,7 +86,7 @@ class UserCRUD {
     $userManager = new UserManager();
     $user = $userManager->readByPseudo($data["pseudo"]);
     if ($user == FALSE) {
-        throw new \Exception("Le nom d'utilisateur est incorrect.", 404);
+        throw new \Exception("Le nom d'utilisateur est incorrect.", 401);
     } else {
         if(password_verify($data["pwd"], $user->getPwd_hash())) {
             $tokenCreater = new TokenCreater();
