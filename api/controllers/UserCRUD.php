@@ -55,7 +55,12 @@ class UserCRUD {
         echo json_encode([
             "firstname" => $user->GetFirstname(),
             "lastname" => $user->GetLastname(),
-            "pseudo" => $user->GetPseudo()
+            "pseudo" => $user->GetPseudo(),
+            "photo_url" => $user->GetPhoto_url(),
+            "status" => $user->GetStatus(),
+            "phone" => $user->GetPhone(), 
+            "mail" => $user->GetMail(),
+            "year_promotion" => $user->getYear_promotion()
         ]);
     } else {
       throw new Exception("L'utilisateur n'existe pas.", 400);
