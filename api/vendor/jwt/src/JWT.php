@@ -5,6 +5,7 @@ use \DomainException;
 use \InvalidArgumentException;
 use \UnexpectedValueException;
 use \DateTime;
+use \vendor\jwt\src\ExpiredException;
 
 /**
  * JSON Web Token implementation, based on this spec:
@@ -131,7 +132,7 @@ class JWT
 
         // Check if this token has expired.
         if (isset($payload->exp) && ($timestamp - static::$leeway) >= $payload->exp) {
-            throw new ExpiredException('Expired token');
+            throw new \Exception("Votre connexion a expiré", 401);
         }
 
         return $payload;

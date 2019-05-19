@@ -134,14 +134,22 @@ class EventCRUD {
       $data = $scanDataIn->failleXSS(['id_event'=>$id_event]);
       $eventManager = new EventManager();
       $event = $eventManager->readById($data['id_event']);
-      if ($event && $event->getDate_start() && $event->getDate_end()) {
-          $encryptionMethod = "AES-256-CBC";
-          $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
-          $token = "{$token->getId()}/{$data['id_event']}";
-          $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash);
-          echo \json_encode([
-             'url'=>"{$_SERVER['HTTP_REFERER']}lolimac-back/api/ics/{$encrypted}"
-          ]);
+      if ($event) {
+          if ($event->getDate_start() && $event->getDate_end()) {
+              $encryptionMethod = "AES-256-CBC";
+              $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
+              $token = "{$token->getId()}/{$data['id_event']}";
+              $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash);
+              echo \json_encode([
+                 'url'=>"{$_SERVER['HTTP_REFERER']}lolimac-back/api/ics/{$encrypted}"
+              ]);
+          }
+          else {
+              throw new \Exception("Impossible de générer le lien iCalendar, l'événement n'est pas totalement prêt", 401);
+          }
+      }
+      else {
+          throw new \Exception("Evenement non existant", 401);
       }
   }
 

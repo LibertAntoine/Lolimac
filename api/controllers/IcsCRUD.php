@@ -40,9 +40,10 @@ class IcsCRUD {
             $IcsParser->closeEvent();
             $IcsParser->closeCalendar();
 
+            $filename = urlencode($event->getTitle());
 
             header('Content-type: text/calendar; charset=utf-8');
-            header('Content-Disposition: inline; filename=calendar.ics');
+            header("Content-Disposition: inline; filename=lolimac-{$filename}.ics");
             echo $IcsParser->ics;
             exit;
         }
@@ -87,7 +88,7 @@ class IcsCRUD {
             $IcsParser->closeCalendar();
 
             header('Content-type: text/calendar; charset=utf-8');
-            header('Content-Disposition: inline; filename=calendar.ics');
+            header('Content-Disposition: inline; filename=lolimac-calendar.ics');
             echo $IcsParser->ics;
             exit;
 
