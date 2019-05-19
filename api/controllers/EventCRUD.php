@@ -28,6 +28,7 @@ class EventCRUD {
     $event = new Event($data);
     $eventManager = new EventManager();
     $event = $eventManager->add($event);
+    $token = new TokenAccess();
 
     $participantManager = new Link_events_users_modulesCRUD();
     $participantManager->add($event->getId(), 1);
@@ -55,7 +56,10 @@ class EventCRUD {
             $link_events_eventtypesCRUD->add(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
         }
     }
+
     echo \json_encode([
+        'message' => 'New event added.',
+        'id_user' => $token->getId(),
         'id_event' => $event->getId()
     ]);
     return TRUE;
