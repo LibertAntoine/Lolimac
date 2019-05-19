@@ -43,7 +43,6 @@ class ScanDataIn {
 		$splits = \preg_split('/"([^"]+)"/', $query);
 		foreach ($splits as $key => $split) {
 			$sp = preg_split('/[\s,]+/', $split);
-			echo "string";
 			foreach ($sp as $key => $value) {
 				if ($value) {
 					\array_push($keywords['words'], $value);
