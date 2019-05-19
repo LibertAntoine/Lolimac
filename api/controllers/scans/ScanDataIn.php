@@ -15,7 +15,7 @@ class ScanDataIn {
         }
       }
     }
-	
+
 	function validateDate($date, $format = 'Y-m-d H:i:s')
 	{
 		$d = \DateTime::createFromFormat($format, $date);
@@ -32,6 +32,26 @@ class ScanDataIn {
         }
             return $data;
     }
+
+	public function explodeSearchQuery($query) {
+		$keywords = [
+			'full'=>[],
+			'words'=>[]
+		];
+		\preg_match_all('/"([^"]+)"/', $query, $matches);
+		$keywords['full'] = $matches[1];
+		$splits = \preg_split('/"([^"]+)"/', $query);
+		foreach ($splits as $key => $split) {
+			$sp = preg_split('/[\s,]+/', $split);
+			echo "string";
+			foreach ($sp as $key => $value) {
+				if ($value) {
+					\array_push($keywords['words'], $value);
+				}
+			}
+		}
+		return $keywords;
+	}
 
 
 	public function failleXSS(array $dataIn) {

@@ -58,6 +58,25 @@ class EventManager extends DBAccess {
     return $allEvents;
   }
 
+  public function search($keywords) {
+	  $allEvents = [];
+
+	  $query = "SELECT * FROM events";
+	  $i = 0;
+	  foreach ($keywords as $key => $keyword) {
+		  if ($i != 0) $query .= " AND";
+		  else $query .= " WHERE";
+		  $query .= " title LIKE '%$keyword%'";
+		  $i++;
+	  }
+	  $query .= ";";
+	  $q = $this->db->query($query);
+	  while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
+	   $allEvents[$data['id']] = new Event($data);
+	  }
+	  return $allEvents;
+  }
+
   public function readAllValid() {
     $allEvents = [];
 

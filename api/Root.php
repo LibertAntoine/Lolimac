@@ -121,7 +121,12 @@ class Root {
                         } else {
                             $eventCRUD->generateAllEventICS();
                         }
-                    } else if (empty($this->root[2])) {
+                    }
+                    elseif ($this->root[1] == "search") {
+                        $_GET['query'] = $_GET['q'];
+                        $eventCRUD->search($_GET);
+                    }
+                     else if (empty($this->root[2])) {
                         $_GET["id"] = $this->root[1];
                         // We read one specific event
                         $eventCRUD->read($_GET);

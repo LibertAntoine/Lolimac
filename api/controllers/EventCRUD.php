@@ -136,6 +136,19 @@ class EventCRUD {
       }
   }
 
+  public function search($dataIn) {
+      $scanDataIn = new ScanDataIn();
+      $data = $scanDataIn->failleXSS($dataIn);
+      $scanDataIn->exists($dataIn, ["query"]);
+      $full = [];
+      $parts = [];
+      $eventManager = new EventManager();
+      $keywords = $scanDataIn->explodeSearchQuery($data['query']);
+      $events = $eventManager->search(array_merge($keywords['full'], $keywords['words']));
+      var_dump($events);
+
+  }
+
   public function generateSingleEventICS($id_event) {
       $token = new TokenAccess();
       $scanDataIn = new ScanDataIn();
