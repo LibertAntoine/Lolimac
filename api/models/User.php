@@ -33,6 +33,7 @@ class User {
 
   public function toArray() {
     $array = [
+      "id" => $this->getId(),
       "firstmane" => $this->getFirstname(),
       "lastname" => $this->getLastname(),
       "pseudo" => $this->getPseudo(),

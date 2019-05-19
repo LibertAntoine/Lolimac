@@ -53,7 +53,7 @@ class Link_events_users_modulesCRUD {
         $listParticipants[$key] = $participant;
         $listParticipants[$key]['participation'] = $value;
       }
-      return $listParticipants;
+      return array_values($listParticipants);
     }
   }
 
