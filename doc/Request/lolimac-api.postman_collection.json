@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "697e90e4-f0dd-4c8d-b4b9-a7642a01bc2b",
+		"_postman_id": "3e14a384-437f-4e41-849e-785c4bdf84f9",
 		"name": "lolimac-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -132,10 +132,7 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
+						"body": {},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
 							"host": [
@@ -583,6 +580,10 @@
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
 							"host": [
@@ -861,6 +862,10 @@
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events?from=0&limit=20",
 							"host": [
@@ -884,6 +889,10 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/?from=0&limit=20",
 									"host": [
@@ -923,6 +932,10 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/search/?q=ma+recherche&opt=date+participe",
 							"host": [
@@ -961,6 +974,10 @@
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events",
 							"host": [
@@ -968,6 +985,43 @@
 							]
 						},
 						"description": "Read a bunch of events"
+					},
+					"response": []
+				},
+				{
+					"name": "Get ICS link for 1 event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}events/export/{{eventId}}",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}events"
+							],
+							"path": [
+								"export",
+								"{{eventId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ICS link for all events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
@@ -994,6 +1048,10 @@
 								},
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}me/notifications/",
 									"host": [
@@ -1023,6 +1081,10 @@
 								},
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}me/notifications/count",
 									"host": [
@@ -1042,10 +1104,49 @@
 			]
 		},
 		{
+			"name": "Ics calendar",
+			"item": [
+				{
+					"name": "Get Ics file for 1 event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ics file for all events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Root",
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{serverUrl}}{{apiVersion}}",
 					"host": [
@@ -1174,33 +1275,47 @@
 	],
 	"variable": [
 		{
-			"id": "6b5f8ea8-754f-4ed1-bc27-ef5aae3ec77e",
+			"id": "4a15f4fe-30e7-463b-a759-2c2a6612ec9a",
 			"key": "serverUrl",
 			"value": "http://localhost/lolimac-back/",
 			"type": "string"
 		},
 		{
-			"id": "a05b912f-caaa-49ed-b1ac-1553e530eb38",
+			"id": "93c56013-fbd4-4b8d-830b-d6e0a63a835a",
 			"key": "apiVersion",
 			"value": "api/",
 			"type": "string"
 		},
 		{
-			"id": "8a5d5d72-85dd-4fab-ba0a-281015d724aa",
+			"id": "89dc6c99-b1ac-4c25-b46b-0b55da72c939",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "398198b6-6826-4820-b118-df1b0b046253",
+			"id": "b3db1fcd-c3e0-4aae-80a8-0e43d881ccbd",
 			"key": "eventId",
 			"value": "1",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "55b43916-2572-4232-8cb4-4c446192a198",
+			"key": "placeId",
+			"value": "1",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "0568f76a-47ae-4438-bd57-829683149ba0",
+			"key": "idAllICS",
+			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "b453e66c-4c3a-40c8-9399-93e0f5c3e554",
-			"key": "placeId",
-			"value": "1",
+			"id": "8f435c34-817e-46e0-b9dd-0b071ddfa135",
+			"key": "idICS",
+			"value": "",
 			"type": "string"
 		}
 	]

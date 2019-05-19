@@ -1,18 +1,18 @@
 {
     "id": "mockoon_export",
     "appVersion": "1.4.0",
-    "checksum": "2e43aba78141c9306f2dde595bc55758",
+    "checksum": "9052cfc79482c8d2beb88d0eaf34d46e",
     "subject": "full",
     "data": [
         {
-            "uuid": "5a8730d0-78af-11e9-9682-d76fb1e8e04f",
+            "uuid": "10cd6440-7a27-11e9-a5d0-fb5ca36d489b",
             "name": "lolimac",
             "endpointPrefix": "api/v1",
             "latency": 0,
             "port": 3000,
             "routes": [
                 {
-                    "uuid": "5a8730d5-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd6441-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Root",
                     "method": "get",
                     "endpoint": "",
@@ -30,7 +30,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8730d7-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd6442-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "",
                     "method": "post",
                     "endpoint": "login",
@@ -48,7 +48,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8730d9-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b50-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Create",
                     "method": "post",
                     "endpoint": "users",
@@ -66,7 +66,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8730db-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b51-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get public data",
                     "method": "get",
                     "endpoint": "users/[0-9]+/",
@@ -84,7 +84,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757e2-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b52-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Update partial info",
                     "method": "patch",
                     "endpoint": "users",
@@ -102,7 +102,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757e4-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b53-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "",
                     "method": "delete",
                     "endpoint": "users/[0-9]+/",
@@ -120,7 +120,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757e6-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b54-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Create",
                     "method": "post",
                     "endpoint": "events/",
@@ -138,7 +138,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757e8-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b55-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get an array of the last events, with non-detailled data",
                     "method": "get",
                     "endpoint": "events/",
@@ -156,7 +156,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757ea-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b56-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get detailled data about an event",
                     "method": "get",
                     "endpoint": "events/[0-9]+/",
@@ -174,7 +174,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757ec-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b57-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Update partial info",
                     "method": "patch",
                     "endpoint": "events/[0-9]+/",
@@ -192,7 +192,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757ee-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b58-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "",
                     "method": "delete",
                     "endpoint": "events/[0-9]+/",
@@ -210,7 +210,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757f0-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b59-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Join an event",
                     "method": "post",
                     "endpoint": "events/[0-9]+/join",
@@ -228,7 +228,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757f2-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b5a-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Leave an event",
                     "method": "post",
                     "endpoint": "events/[0-9]+/leave",
@@ -246,7 +246,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757f4-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b5b-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get an array corresponding to the search terms",
                     "method": "get",
                     "endpoint": "events/search",
@@ -264,7 +264,41 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757f6-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "588adec0-7a27-11e9-a5d0-fb5ca36d489b",
+                    "documentation": "Get ICS link for 1 event",
+                    "method": "get",
+                    "endpoint": "events/export",
+                    "body": "{\n    \"url\": \"lolimac-back/api/ics/all/DCDGHX4nacBWVuhzVCO2wg==\"\n}",
+                    "latency": 0,
+                    "statusCode": "200",
+                    "headers": [
+                        {
+                            "key": "",
+                            "value": ""
+                        }
+                    ],
+                    "filePath": "",
+                    "sendFileAsBody": false
+                },
+                {
+                    "uuid": "3148d240-7a27-11e9-a5d0-fb5ca36d489b",
+                    "documentation": "Get ICS link for 1 event",
+                    "method": "get",
+                    "endpoint": "events/export/[0-9]+",
+                    "body": "{\n    \"url\": \"lolimac-back/api/ics/G0u+vUoComaRoXg4YAKTMw==\"\n}",
+                    "latency": 0,
+                    "statusCode": "200",
+                    "headers": [
+                        {
+                            "key": "",
+                            "value": ""
+                        }
+                    ],
+                    "filePath": "",
+                    "sendFileAsBody": false
+                },
+                {
+                    "uuid": "10cd8b5c-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get an array of posts and their 3 first comments corresponding to an event",
                     "method": "get",
                     "endpoint": "events/[0-9]+/posts",
@@ -282,7 +316,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757f8-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b5d-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get all of the comments for a specific post",
                     "method": "get",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/",
@@ -300,7 +334,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757fa-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b5e-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Update a post af an event",
                     "method": "patch",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/",
@@ -318,7 +352,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757fc-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b5f-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Delete a post af an event",
                     "method": "delete",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/",
@@ -336,7 +370,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a8757fe-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b60-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Create a new post for an event",
                     "method": "post",
                     "endpoint": "events/[0-9]+/posts/",
@@ -354,7 +388,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a875800-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b61-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Update a specific comment of a specific post",
                     "method": "patch",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/comments/[0-9]+",
@@ -372,7 +406,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a875802-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b62-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Delete a specific comment of a specific post",
                     "method": "delete",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/comments/[0-9]+",
@@ -390,7 +424,7 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a875804-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b63-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Create a new comment on a specific post",
                     "method": "post",
                     "endpoint": "events/[0-9]+/posts/[0-9]+/comments/",
@@ -408,11 +442,11 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a875806-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "10cd8b64-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get all of the notifications of the user",
                     "method": "get",
                     "endpoint": "me/notifications",
-                    "body": "{\n    \"comments\": [\n        {\n            \"id_comment\":1,\n            \"content\":\"Ouai t'as carrément raison !\",\n            \"user\":\n                {\n                    \"id_user\":1,\n                    \"firstname\":\"Dubois\",\n                    \"lastname\":\"Martin\",\n                    \"pseudo\":\"Victus\",\n                    \"photo_url\":\"https://i.ytimg.com/vi/sOr-6k8XJMU/hqdefault.jpg\",\n                    \"status\":3\n                }\n        },\n        {\n            \"id_comment\":2,\n            \"content\":\"Moi je peux ramener de la bierre\",\n            \"user\":\n                {\n                    \"id_user\":2,\n                    \"firstname\":\"Gratin\",\n                    \"lastname\":\"Noemie\",\n                    \"pseudo\":\"Ratatouille\",\n                    \"photo_url\":\"https://i.ytimg.com/vi/sOr-6k8XJMU/hqdefault.jpg\",\n                    \"status\":1\n                }\n        }\n    ]\n}\n",
+                    "body": "{\n    \"events\": [\n        {\n            \"id_event\": 12,\n            \"date_edit\": \"2019-05-19 13:11:59\",\n            \"type_edit\": \"date_end\",\n            \"title\": \"Les slips en folie\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 12,\n            \"date_edit\": \"2019-05-19 13:11:59\",\n            \"type_edit\": \"date_start\",\n            \"title\": \"Les slips en folie\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 12,\n            \"date_edit\": \"2019-05-19 13:11:59\",\n            \"type_edit\": \"place\",\n            \"title\": \"Les slips en folie\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 12,\n            \"date_edit\": \"2019-05-19 13:11:54\",\n            \"type_edit\": \"post\",\n            \"title\": \"Les slips en folie\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 12,\n            \"date_edit\": \"2019-05-19 13:11:59\",\n            \"type_edit\": \"title\",\n            \"title\": \"Les slips en folie\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 12,\n            \"date_edit\": \"2019-05-19 13:11:59\",\n            \"type_edit\": \"type\",\n            \"title\": \"Les slips en folie\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        }\n    ]\n}\n",
                     "latency": 0,
                     "statusCode": "200",
                     "headers": [
@@ -426,7 +460,25 @@
                     "sendFileAsBody": false
                 },
                 {
-                    "uuid": "5a87580a-78af-11e9-9682-d76fb1e8e04f",
+                    "uuid": "16001c50-7a27-11e9-a5d0-fb5ca36d489b",
+                    "documentation": "Get notification count",
+                    "method": "get",
+                    "endpoint": "me/notifications/count",
+                    "body": "{\n    \"notifications\": \"6\"\n}",
+                    "latency": 0,
+                    "statusCode": "200",
+                    "headers": [
+                        {
+                            "uuid": "5a875807-78af-11e9-9682-d76fb1e8e04f",
+                            "key": "",
+                            "value": ""
+                        }
+                    ],
+                    "filePath": "",
+                    "sendFileAsBody": false
+                },
+                {
+                    "uuid": "10cd8b65-7a27-11e9-a5d0-fb5ca36d489b",
                     "documentation": "Get the active events that the user joined and created",
                     "method": "get",
                     "endpoint": "me/events",
@@ -438,6 +490,40 @@
                             "key": "",
                             "value": "",
                             "uuid": "5a87580b-78af-11e9-9682-d76fb1e8e04f"
+                        }
+                    ],
+                    "filePath": "",
+                    "sendFileAsBody": false
+                },
+                {
+                    "uuid": "689a32c0-7a27-11e9-a5d0-fb5ca36d489b",
+                    "documentation": "Get Ics file for 1 event",
+                    "method": "get",
+                    "endpoint": "ics/{{hash}}",
+                    "body": "BEGIN:VCALENDAR\r\nMETHOD:PUBLISH\r\nVERSION:2.0\r\nPRODID:-//Lolimac Events//Lolimac//FR\r\nBEGIN:VEVENT\r\nSUMMARY:Les slips en folie\r\nUID:c20ad4d76fe97759aa27a0c99bff6710\r\nSTATUS:CONFIRMED\r\nDTSTART:20190524T182212Z\r\nDTEND:20190524T232512Z\r\nDTSTAMP:20190519T130830Z\r\nLOCATION:lol ta mère 84848 n°4 Lalalol\r\nEND:VEVENT\r\nEND:VCALENDAR",
+                    "latency": 0,
+                    "statusCode": "200",
+                    "headers": [
+                        {
+                            "key": "",
+                            "value": ""
+                        }
+                    ],
+                    "filePath": "",
+                    "sendFileAsBody": false
+                },
+                {
+                    "uuid": "871d0510-7a27-11e9-a5d0-fb5ca36d489b",
+                    "documentation": "Get Ics file for all events",
+                    "method": "get",
+                    "endpoint": "ics/all/{{hash}}",
+                    "body": "BEGIN:VCALENDAR\r\nMETHOD:PUBLISH\r\nVERSION:2.0\r\nPRODID:-//Lolimac Events//Lolimac//FR\r\nBEGIN:VEVENT\r\nSUMMARY:euh coucou\r\nUID:c81e728d9d4c2f636f067f89cc14862c\r\nSTATUS:CONFIRMED\r\nDTSTART:20190523T101010Z\r\nDTEND:20191212T101010Z\r\nDTSTAMP:20190519T131637Z\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nSUMMARY:Titre AAAAAeeAAA 1 <3\r\nUID:eccbc87e4b5ce2fe28308fd9f2a7baf3\r\nSTATUS:CONFIRMED\r\nDTSTART:20190520T100000Z\r\nDTEND:20190521T000000Z\r\nDTSTAMP:20190519T131637Z\r\nLOCATION:C'est là San Andreas 98247 n°2 Groove St\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nSUMMARY:Les slips en folie\r\nUID:c20ad4d76fe97759aa27a0c99bff6710\r\nSTATUS:CONFIRMED\r\nDTSTART:20190524T182212Z\r\nDTEND:20190524T232512Z\r\nDTSTAMP:20190519T131637Z\r\nLOCATION:lol ta mère 84848 n°4 Lalalol\r\nEND:VEVENT\r\nEND:VCALENDAR",
+                    "latency": 0,
+                    "statusCode": "200",
+                    "headers": [
+                        {
+                            "key": "",
+                            "value": ""
                         }
                     ],
                     "filePath": "",
