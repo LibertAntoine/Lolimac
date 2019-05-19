@@ -20,6 +20,7 @@ class Root {
 
     function __construct() {
         header("Content-Type: application/json; charset=UTF-8");
+        header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH');
 
         $CutURL = new CutURL($_SERVER["REQUEST_URI"]);
         $this->root = $CutURL->getURL_cut();
