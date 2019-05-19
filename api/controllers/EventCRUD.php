@@ -15,6 +15,8 @@ use \controllers\NotificationCRUD;
 use \controllers\Link_events_placesCRUD;
 use \controllers\Link_events_eventtypesCRUD;
 use \controllers\Link_events_users_modulesCRUD;
+use \models\Link_events_users_modules;
+use \models\Link_events_users_modulesManager;
 use \models\User;
 use \models\UserManager;
 
@@ -30,8 +32,14 @@ class EventCRUD {
     $event = $eventManager->add($event);
     $token = new TokenAccess();
 
-    $participantManager = new Link_events_users_modulesCRUD();
-    $participantManager->add($event->getId(), 1);
+    $link = new Link_events_users_modules([
+        'id_event'=>$event->getId(),
+        'id_module'=>1,
+        'id_user'=>$token->getId()
+    ]);
+    $linkManager = new Link_events_users_modulesManager();
+    $linkManager->add($link);
+
     if (isset($data["place"])) {
         $placeCRUD = new PlaceCRUD();
         if(\is_array($data["place"])) {
