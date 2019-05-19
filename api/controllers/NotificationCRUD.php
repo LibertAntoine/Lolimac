@@ -55,7 +55,6 @@ class NotificationCRUD {
   public function count() {
       $token = new TokenAccess();
       $id_user = $token->getId();
-      var_dump($id_user);
       $userManager = new UserManager();
       $user = $userManager->readById($id_user);
       $notificationManager = new NotificationManager();
