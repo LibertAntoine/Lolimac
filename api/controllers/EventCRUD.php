@@ -104,7 +104,7 @@ class EventCRUD {
     }
        echo \json_encode([
         'message' => 'Event updated.',
-    ]); 
+    ]);
 }
 
   public function readMultiple($dataIn) {
@@ -148,7 +148,23 @@ class EventCRUD {
       $eventManager = new EventManager();
       $keywords = $scanDataIn->explodeSearchQuery($data['query']);
       $events = $eventManager->search(array_merge($keywords['full'], $keywords['words']));
-      var_dump($events);
+      if($events) {
+          $participantManager = new Link_events_users_modulesCRUD();
+          $link_events_placesCRUD = new Link_events_placesCRUD();
+          $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
+          foreach ($events as $key => $event) {
+              $events[$key] = $event->toArray();
+              $participation = $participantManager->readParticipation($event->getId());
+              $events[$key]['participation'] = $participation;
+              $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $events[$key]["id_event"]]);
+              $events[$key]['place'] = $place;
+              $type = $link_events_eventtypesCRUD->readType_ARRAY(['id_event' => $events[$key]["id_event"]]);
+              $events[$key]['type'] = $type;
+          }
+          echo json_encode(array_values($events));
+      } else {
+          echo \json_encode([]);
+      }
 
   }
 
