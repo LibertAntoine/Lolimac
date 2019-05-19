@@ -25,6 +25,9 @@ class Link_events_users_modulesCRUD {
     } else {
       throw new \Exception('Lien déjà existant.');
     }
+    echo \json_encode([
+        'message' => 'Event joined.'
+    ]);
     return TRUE;
   }
 
@@ -60,6 +63,9 @@ class Link_events_users_modulesCRUD {
     $id_user = $token->getId();
     $linkManager = new Link_events_users_modulesManager();
     $linkManager->deleteById($id_event, $id_user);
+    echo \json_encode([
+        'message' => 'Event leaved.'
+    ]);
     return TRUE;
   }
 }

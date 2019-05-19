@@ -23,7 +23,9 @@ class UserCRUD {
     } else {
       throw new \Exception('Pseudo déjà existant.', 400);
     }
-    return TRUE;
+    echo json_encode([
+            "message" => "User added.",
+    ]);;
   }
 
   public function update($dataIn) {
@@ -43,6 +45,9 @@ class UserCRUD {
       } else {
         throw new Exception("L'utilisateur n'existe pas.", 400);
       }
+    echo json_encode([
+            "message" => "User updated.",
+    ]);;  
     }
 
   public function read($dataIn) {
@@ -75,7 +80,9 @@ class UserCRUD {
     if($token->acompteAccess($data["id"]) OR $token->adminAccess(1)) {
         $userManager = new UserManager();
         $userManager->deleteById($data["id"]);
-        return TRUE;
+        echo json_encode([
+            "message" => "User deleted.",
+        ]);;
     }
   }
 
