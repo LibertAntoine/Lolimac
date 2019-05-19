@@ -58,6 +58,16 @@ class EventManager extends DBAccess {
     return $allEvents;
   }
 
+  public function readAllValid() {
+    $allEvents = [];
+
+    $q = $this->db->query("SELECT * FROM events WHERE date_start < date_end;");
+    while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
+     $allEvents[$data['id']] = new Event($data);
+    }
+    return $allEvents;
+  }
+
   public function update(Event $event) {
     $q = $this->db->prepare('UPDATE events SET title = :title, photo_url = :photo_url, description = :description, date_start = :date_start, date_end = :date_end, date_created = :date_created WHERE id = :id');
 

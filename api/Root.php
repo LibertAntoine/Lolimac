@@ -4,6 +4,7 @@
     use \controllers\PlaceCRUD;
     use \controllers\EventCRUD;
     use \controllers\PostCRUD;
+    use \controllers\IcsCRUD;
     use \controllers\CommentCRUD;
     use \controllers\ModuleCRUD;
     use \controllers\Link_events_users_modulesCRUD;
@@ -91,6 +92,22 @@ class Root {
         }
     }
 
+    public function ics() {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            if (isset($this->root[1])) {
+                $icsCRUD = new IcsCRUD();
+                if ($this->root[1] == "all") {
+                    if (isset($this->root[2])) {
+                        $icsCRUD->readAll($this->root[2]);
+                    }
+                }
+                else {
+                    $icsCRUD->readOne($this->root[1]);
+                }
+            }
+        }
+    }
+
     public function events() {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
@@ -98,13 +115,19 @@ class Root {
                 $_GET;
                 //print_r($this->root);
                 if (isset($this->root[1])) {
-                    $_GET["id"] = $this->root[1];
-                    // We read one specific event
-                    $eventCRUD->read($_GET);
+                    if ($this->root[1] == "export") {
+                        if (isset($this->root[2])) {
+                            $eventCRUD->generateSingleEventICS($this->root[2]);
+                        } else {
+                            $eventCRUD->generateAllEventICS();
+                        }
+                    } else if (empty($this->root[2])) {
+                        $_GET["id"] = $this->root[1];
+                        // We read one specific event
+                        $eventCRUD->read($_GET);
+                    }
                 }
                 else {
-                    // TODO: afficher les 10 prochains ?
-                    // TODO gérer le FROM et LIMIT GET?from=&limit
                     $eventCRUD->readMultiple($_GET);
                     //$eventCRUD->readOffsetLimit($_GET);
                 }
@@ -113,7 +136,7 @@ class Root {
             case 'POST':
                 $_POST = json_decode(file_get_contents("php://input"), TRUE);
                 if(isset($this->root[2])) {
-                    if($this->root[2] == "posts") { 
+                    if($this->root[2] == "posts") {
                         if(isset($this->root[4])) {
                             if($this->root[4] == "comments") {
                                 $commentCRUD = new CommentCRUD();
@@ -133,7 +156,7 @@ class Root {
                     $eventCRUD = new EventCRUD();
                     $eventCRUD->add($_POST);
                 }
-        
+
 
                 break;
 
@@ -158,7 +181,7 @@ class Root {
                     $_PUT["id"] = $idEvent;
                     $eventCRUD = new EventCRUD();
                     $eventCRUD->update($_PUT);
-                }   
+                }
                 break;
 
             case 'DELETE':

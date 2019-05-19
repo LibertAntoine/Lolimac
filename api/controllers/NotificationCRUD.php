@@ -29,7 +29,6 @@ class NotificationCRUD {
   public function read() {
       $token = new TokenAccess();
       $id_user = $token->getId();
-      var_dump($id_user);
       $userManager = new UserManager();
       $user = $userManager->readById($id_user);
       $notificationManager = new NotificationManager();

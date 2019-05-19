@@ -52,7 +52,11 @@ class UserCRUD {
     $userManager = new UserManager();
     $user = $userManager->readById($data["id"]);
     if($user) {
-      echo json_encode(array("firstname" => $user->GetFirstname(), "lastname" => $user->GetLastname(), "pseudo" => $user->GetPseudo()));
+        echo json_encode([
+            "firstname" => $user->GetFirstname(),
+            "lastname" => $user->GetLastname(),
+            "pseudo" => $user->GetPseudo()
+        ]);
     } else {
       throw new Exception("L'utilisateur n'existe pas.", 400);
     }

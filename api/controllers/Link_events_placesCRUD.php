@@ -18,7 +18,7 @@ class Link_events_placesCRUD {
     $link = new Link_events_places($data);
     $linkManager = new Link_events_placesManager();
     if ($linkManager->readById_event_place($link->getId_event(), $link->getId_place()) === FALSE) {
-     
+
       $linkManager->add($link);
     } else {
       throw new \Exception('Lien déjà existant.');
@@ -38,6 +38,19 @@ class Link_events_placesCRUD {
           return $place->toArray();
       }
   }
+
+  public function readPlace_OBJ($dataIn) {
+        $scanDataIn = new ScanDataIn();
+        $scanDataIn->exists($dataIn, ["id_event"]);
+        $data = $scanDataIn->failleXSS($dataIn);
+        $linkManager = new Link_events_placesManager();
+        $link_events_places = $linkManager->readById_event($data["id_event"]);
+        if ($link_events_places) {
+            $placeCRUD = new PlaceCRUD();
+            $place = $placeCRUD->read_OBJ(["id" => $link_events_places->getId_place()]);
+            return $place;
+        }
+    }
 
   public function update($dataIn) {
     $scanDataIn = new ScanDataIn();
@@ -74,5 +87,5 @@ class Link_events_placesCRUD {
       $linkManager->deleteByIdEvent($data["id_event"]);
       return TRUE;
   }
-  
+
 }
