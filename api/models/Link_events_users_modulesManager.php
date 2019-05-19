@@ -25,8 +25,15 @@ class Link_events_users_modulesManager extends DBAccess {
 
   public function readById_event($id_event) {
       $q = $this->db->query('SELECT * FROM link_events_users_modules WHERE id_event = '.$id_event);
-      $link = $q->fetch(\PDO::FETCH_ASSOC);
-      return new Link_events_users_modules($link);
+      for($i = 0; $data = $q->fetch(\PDO::FETCH_ASSOC); $i++) {
+          $allParticipants[$data["id_user"]] = $data["id_module"];
+      }
+      if(isset($allParticipants)) {
+        return $allParticipants;
+      } else {
+        return NULL;
+      }
+    
   }
 
   public function readById_user_event($id_user, $id_event) {

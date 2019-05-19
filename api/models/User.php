@@ -31,6 +31,17 @@ class User {
     }
   }
 
+  public function toArray() {
+    $array = [
+      "firstmane" => $this->getFirstname(),
+      "lastname" => $this->getLastname(),
+      "pseudo" => $this->getPseudo(),
+      "photo_url" => $this->getPhoto_url(),
+      "status" => $this->getStatus()
+    ];
+    return $array;
+  }
+
   // Getters
   public function getId() {
     return $this->id;

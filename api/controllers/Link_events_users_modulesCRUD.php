@@ -7,6 +7,7 @@ use \controllers\scans\TokenAccess;
 use \controllers\scans\TokenCreater;
 use \models\Link_events_users_modules;
 use \models\Link_events_users_modulesManager;
+use \models\UserManager;
 
 
 class Link_events_users_modulesCRUD {
@@ -36,6 +37,23 @@ class Link_events_users_modulesCRUD {
       return $link->getId_module();
     } else {
       return 0;
+    }
+  }
+
+  public function readParticipants($id_event) {
+    $linkManager = new Link_events_users_modulesManager();
+    $listParticipants = $linkManager->readById_event($id_event);
+    var_dump($listParticipants);
+    if ($listParticipants != NULL) {
+      foreach ($listParticipants as $key => $value) {
+        $userManager = new UserManager();
+        $user = $userManager->readById($key);
+        $participant = $user->toArray();
+        var_dump($participant);
+        $listParticipants[$key] = $participant;
+        $listParticipants[$key]['participation'] = $value;
+      }
+      return $listParticipants;
     }
   }
 

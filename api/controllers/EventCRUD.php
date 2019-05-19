@@ -183,6 +183,8 @@ class EventCRUD {
     $participantManager = new Link_events_users_modulesCRUD();
     $participation = $participantManager->readParticipation($event["id_event"]);
     $event['participation'] = $participation;
+    $listParticipants = $participantManager->readParticipants($event["id_event"]);
+    $event['participant'] = $listParticipants;
     $link_events_placesCRUD = new Link_events_placesCRUD();
     $link_events_eventtypesCRUD = new Link_events_eventtypesCRUD();
     $place = $link_events_placesCRUD->readPlace_ARRAY(['id_event' => $event["id_event"]]);
