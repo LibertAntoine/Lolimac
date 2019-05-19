@@ -42,7 +42,7 @@ class CommentManager extends DBAccess {
     for($i = 0;$data = $q->fetch(\PDO::FETCH_ASSOC); $i++) {
      $allComments[$i] = new Comment($data);
     }
-    if(isset($allComments)) {
+    if(!empty($allComments)) {
       return $allComments;
     }
 
