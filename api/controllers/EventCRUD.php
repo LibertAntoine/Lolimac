@@ -77,9 +77,13 @@ class EventCRUD {
         $placeCRUD = new PlaceCRUD();
         if(\is_array($data["place"])) { // NOTE: On ajoute un nouvel endroit
             $place = $placeCRUD->add($data["place"]);
-            $link_events_placesCRUD = new Link_events_placesCRUD();
-            $link_events_placesCRUD->add(["id_event"=>$event->getId(), "id_place" => $place->getId()]);
         }
+        else { // On lie à un autre endroit déjà existant
+            $place = $placeCRUD->read_OBJ(['id' => $data['place']]);
+        }
+        $link_events_placesCRUD = new Link_events_placesCRUD();
+        $link_events_places = $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
+        $link_events_placesCRUD->add(["id_event"=>$event->getId(), "id_place" => $place->getId()]);
 
     }
     if (isset($data['type'])) {

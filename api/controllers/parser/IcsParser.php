@@ -43,7 +43,22 @@ PRODID:-//{$this->proid}\r\n";
 
 	public function setLocation(Place $place) {
 		if ($place->getName()) {
-			$this->ics .= "LOCATION:{$place->getName()} {$place->getCity()} {$place->getPostcode()} {$place->getStreet()} {$place->getNumber()}\r\n";
+			$this->ics .= "LOCATION:{$place->getName()}";
+
+			if ($place->getCity()) {
+				$this->ics .= " {$place->getCity()}";
+			}
+			if ($place->getPostcode()) {
+				$this->ics .= " {$place->getPostcode()}";
+			}
+			if ($place->getNumber()) {
+				$this->ics .= " n°{$place->getNumber()}";
+			}
+			if ($place->getStreet()) {
+				$this->ics .= " {$place->getStreet()}";
+			}
+
+			$this->ics .= "\r\n";
 		}
 	}
 
