@@ -44,8 +44,12 @@ class IcsCRUD {
             header('Content-type: text/calendar; charset=utf-8');
             header('Content-Disposition: inline; filename=calendar.ics');
             echo $IcsParser->ics;
+            exit;
         }
-        exit;
+        else {
+            throw new \Exception("Impossible d'accéder à l'événement", 401);
+
+        }
     }
 
     public function readAll($dataIn) {
@@ -60,7 +64,7 @@ class IcsCRUD {
         if (!$user) {
             throw new \Exception("Accès refusé", 401);
         }
-        
+
         $eventManager = new EventManager();
         $events = $eventManager->readAllValid();
         $IcsParser = new IcsParser();
