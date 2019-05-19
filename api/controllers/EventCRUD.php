@@ -147,7 +147,11 @@ class EventCRUD {
       $parts = [];
       $eventManager = new EventManager();
       $keywords = $scanDataIn->explodeSearchQuery($data['query']);
-      $events = $eventManager->search(array_merge($keywords['full'], $keywords['words']));
+      $keywords = array_merge($keywords['full'], $keywords['words']);
+      if (!empty($keywords)) {
+          $events = $eventManager->search($keywords);
+      }
+      else $events = [];
       if($events) {
           $participantManager = new Link_events_users_modulesCRUD();
           $link_events_placesCRUD = new Link_events_placesCRUD();
