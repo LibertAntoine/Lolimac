@@ -102,6 +102,9 @@ class EventCRUD {
             $link_events_eventtypesCRUD->addIfNotExist(["id_event"=>$event->getId(), "id_type" => $eventType->getId()]);
         }
     }
+       echo \json_encode([
+        'message' => 'Event updated.',
+    ]); 
 }
 
   public function readMultiple($dataIn) {
@@ -234,6 +237,6 @@ class EventCRUD {
     $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
     $link_events_placesCRUD->deleteByIdEvent(['id_event'=>$event->getId()]);
     $eventManager->deleteById($event->getId());
-    echo json_encode(["message" => "Evenement supprimé"]);
+    echo json_encode(["message" => "Event deleted"]);
   }
 }

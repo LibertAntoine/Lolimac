@@ -25,6 +25,9 @@ class Link_events_users_modulesCRUD {
     } else {
       throw new \Exception('Lien déjà existant.');
     }
+    echo \json_encode([
+        'message' => 'Event joined.'
+    ]);
     return TRUE;
   }
 
@@ -43,13 +46,11 @@ class Link_events_users_modulesCRUD {
   public function readParticipants($id_event) {
     $linkManager = new Link_events_users_modulesManager();
     $listParticipants = $linkManager->readById_event($id_event);
-    var_dump($listParticipants);
     if ($listParticipants != NULL) {
       foreach ($listParticipants as $key => $value) {
         $userManager = new UserManager();
         $user = $userManager->readById($key);
         $participant = $user->toArray();
-        var_dump($participant);
         $listParticipants[$key] = $participant;
         $listParticipants[$key]['participation'] = $value;
       }
@@ -62,6 +63,9 @@ class Link_events_users_modulesCRUD {
     $id_user = $token->getId();
     $linkManager = new Link_events_users_modulesManager();
     $linkManager->deleteById($id_event, $id_user);
+    echo \json_encode([
+        'message' => 'Event leaved.'
+    ]);
     return TRUE;
   }
 }

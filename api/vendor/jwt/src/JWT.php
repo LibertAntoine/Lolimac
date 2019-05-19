@@ -72,45 +72,45 @@ class JWT
         $timestamp = is_null(static::$timestamp) ? time() : static::$timestamp;
 
         if (empty($key)) {
-            throw new InvalidArgumentException('Key may not be empty');
+            throw new InvalidArgumentException('Key may not be empty', 401);
         }
         $tks = explode('.', $jwt);
         if (count($tks) != 3) {
-            throw new UnexpectedValueException('Wrong number of segments');
+            throw new UnexpectedValueException('Wrong number of segments', 401);
         }
         list($headb64, $bodyb64, $cryptob64) = $tks;
         if (null === ($header = static::jsonDecode(static::urlsafeB64Decode($headb64)))) {
-            throw new UnexpectedValueException('Invalid header encoding');
+            throw new UnexpectedValueException('Invalid header encoding', 401);
         }
         if (null === $payload = static::jsonDecode(static::urlsafeB64Decode($bodyb64))) {
-            throw new UnexpectedValueException('Invalid claims encoding');
+            throw new UnexpectedValueException('Invalid claims encoding', 401);
         }
         if (false === ($sig = static::urlsafeB64Decode($cryptob64))) {
-            throw new UnexpectedValueException('Invalid signature encoding');
+            throw new UnexpectedValueException('Invalid signature encoding', 401);
         }
         if (empty($header->alg)) {
-            throw new UnexpectedValueException('Empty algorithm');
+            throw new UnexpectedValueException('Empty algorithm', 401);
         }
         if (empty(static::$supported_algs[$header->alg])) {
-            throw new UnexpectedValueException('Algorithm not supported');
+            throw new UnexpectedValueException('Algorithm not supported', 401);
         }
         if (!in_array($header->alg, $allowed_algs)) {
-            throw new UnexpectedValueException('Algorithm not allowed');
+            throw new UnexpectedValueException('Algorithm not allowed', 401);
         }
         if (is_array($key) || $key instanceof \ArrayAccess) {
             if (isset($header->kid)) {
                 if (!isset($key[$header->kid])) {
-                    throw new UnexpectedValueException('"kid" invalid, unable to lookup correct key');
+                    throw new UnexpectedValueException('"kid" invalid, unable to lookup correct key', 401);
                 }
                 $key = $key[$header->kid];
             } else {
-                throw new UnexpectedValueException('"kid" empty, unable to lookup correct key');
+                throw new UnexpectedValueException('"kid" empty, unable to lookup correct key', 401);
             }
         }
 
         // Check the signature
         if (!static::verify("$headb64.$bodyb64", $sig, $key, $header->alg)) {
-            throw new SignatureInvalidException('Signature verification failed');
+            throw new SignatureInvalidException('Signature verification failed', 401);
         }
 
         // Check if the nbf if it is defined. This is the time that the
@@ -189,7 +189,7 @@ class JWT
     public static function sign($msg, $key, $alg = 'HS256')
     {
         if (empty(static::$supported_algs[$alg])) {
-            throw new DomainException('Algorithm not supported');
+            throw new DomainException('Algorithm not supported', 401);
         }
         list($function, $algorithm) = static::$supported_algs[$alg];
         switch($function) {
@@ -199,7 +199,7 @@ class JWT
                 $signature = '';
                 $success = openssl_sign($msg, $signature, $key, $algorithm);
                 if (!$success) {
-                    throw new DomainException("OpenSSL unable to sign data");
+                    throw new DomainException("OpenSSL unable to sign data", 401);
                 } else {
                     return $signature;
                 }
@@ -286,7 +286,7 @@ class JWT
         if (function_exists('json_last_error') && $errno = json_last_error()) {
             static::handleJsonError($errno);
         } elseif ($obj === null && $input !== 'null') {
-            throw new DomainException('Null result with non-null input');
+            throw new DomainException('Null result with non-null input', 401);
         }
         return $obj;
     }
@@ -306,7 +306,7 @@ class JWT
         if (function_exists('json_last_error') && $errno = json_last_error()) {
             static::handleJsonError($errno);
         } elseif ($json === 'null' && $input !== null) {
-            throw new DomainException('Null result with non-null input');
+            throw new DomainException('Null result with non-null input', 401);
         }
         return $json;
     }
@@ -360,7 +360,7 @@ class JWT
             isset($messages[$errno])
             ? $messages[$errno]
             : 'Unknown JSON error: ' . $errno
-        );
+        , 401);
     }
 
     /**
