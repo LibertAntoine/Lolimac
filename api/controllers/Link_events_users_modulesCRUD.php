@@ -43,13 +43,11 @@ class Link_events_users_modulesCRUD {
   public function readParticipants($id_event) {
     $linkManager = new Link_events_users_modulesManager();
     $listParticipants = $linkManager->readById_event($id_event);
-    var_dump($listParticipants);
     if ($listParticipants != NULL) {
       foreach ($listParticipants as $key => $value) {
         $userManager = new UserManager();
         $user = $userManager->readById($key);
         $participant = $user->toArray();
-        var_dump($participant);
         $listParticipants[$key] = $participant;
         $listParticipants[$key]['participation'] = $value;
       }
