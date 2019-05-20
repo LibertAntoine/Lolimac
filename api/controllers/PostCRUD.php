@@ -35,6 +35,7 @@ class PostCRUD {
 
     $NotificationCRUD = new NotificationCRUD();
     $NotificationCRUD->add([
+    	'message' => 'Post added.',
         'id' => $data['id_event'],
         'post' => 'post'
     ]);
@@ -51,6 +52,9 @@ class PostCRUD {
     $token = new TokenAccess();
     $token->acompteAccess($post->getId_user());
     $postManager->update($post);
+    echo \json_encode([
+        'message' => 'Post updated.'
+    ]);
   }
 
   public function read($id_event) {
