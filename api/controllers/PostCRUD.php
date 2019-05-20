@@ -59,14 +59,15 @@ class PostCRUD {
     if($posts) {
         $commentManager = new CommentManager();
         foreach ($posts as $key => $post) {
-            $posts[$key] = $post->toArray();
+            $postArray = $post->toArray();
             $comments = $commentManager->readByPost($post->getId());
             if ($comments) {
-                foreach ($comments as $key => $comment) {
-                    $comments[$key] = $comment->toArray();
+                foreach ($comments as $key2 => $comment) {
+                    $comments[$key2] = $comment->toArray();
                 }
-                $posts[$key]["comments"] = $comments;
+                $postArray["comments"] = $comments;
             }
+            $posts[$key] = $postArray;
         }
         return $posts;
     }
