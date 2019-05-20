@@ -28,6 +28,9 @@ class CommentCRUD {
     } else {
       throw new \Exception('Vous n\'etes pas autorisé à publier sur cette event.', 400);
     }
+    echo \json_encode([
+        'message' => 'Comment added.'
+    ]);
     return TRUE;
   }
 
@@ -41,6 +44,9 @@ class CommentCRUD {
     $token = new TokenAccess();
     $token->acompteAccess($comment->getId_user());
     $commentManager->update($comment);
+    echo \json_encode([
+        'message' => 'Comment updated.'
+    ]);
   }
 
    public function read($dataIn) {

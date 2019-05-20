@@ -38,6 +38,9 @@ class PostCRUD {
         'id' => $data['id_event'],
         'post' => 'post'
     ]);
+    echo \json_encode([
+        'message' => 'Post updated.'
+    ]);
     return TRUE;
   }
 
@@ -51,6 +54,9 @@ class PostCRUD {
     $token = new TokenAccess();
     $token->acompteAccess($post->getId_user());
     $postManager->update($post);
+    echo \json_encode([
+        'message' => 'Post updated.'
+    ]);
   }
 
   public function read($id_event) {
@@ -59,14 +65,15 @@ class PostCRUD {
     if($posts) {
         $commentManager = new CommentManager();
         foreach ($posts as $key => $post) {
-            $posts[$key] = $post->toArray();
+            $postArray = $post->toArray();
             $comments = $commentManager->readByPost($post->getId());
             if ($comments) {
-                foreach ($comments as $key => $comment) {
-                    $comments[$key] = $comment->toArray();
+                foreach ($comments as $key2 => $comment) {
+                    $comments[$key2] = $comment->toArray();
                 }
-                $posts[$key]["comments"] = $comments;
+                $postArray["comments"] = $comments;
             }
+            $posts[$key] = $postArray;
         }
         return $posts;
     }
