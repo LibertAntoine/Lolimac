@@ -35,9 +35,11 @@ class PostCRUD {
 
     $NotificationCRUD = new NotificationCRUD();
     $NotificationCRUD->add([
-    	'message' => 'Post added.',
         'id' => $data['id_event'],
         'post' => 'post'
+    ]);
+    echo \json_encode([
+        'message' => 'Post updated.'
     ]);
     return TRUE;
   }
