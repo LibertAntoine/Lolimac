@@ -113,6 +113,8 @@ class JWT
             throw new SignatureInvalidException('Signature verification failed', 401);
         }
 
+        // Temp fix for error sent on first connection with angular
+        /*
         // Check if the nbf if it is defined. This is the time that the
         // token can actually be used. If it's not yet that time, abort.
         if (isset($payload->nbf) && $payload->nbf > ($timestamp + static::$leeway)) {
@@ -129,6 +131,7 @@ class JWT
                 'Cannot handle token prior to ' . date(DateTime::ISO8601, $payload->iat)
             );
         }
+        */
 
         // Check if this token has expired.
         if (isset($payload->exp) && ($timestamp - static::$leeway) >= $payload->exp) {
