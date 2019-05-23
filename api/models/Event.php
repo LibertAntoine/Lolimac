@@ -112,7 +112,7 @@ class Event {
 		  $this->date_start = $date_start;
 	  }
 	  else {
-		  throw new \Exception("Veuilliez entrer une date de début valide.");
+		  throw new \Exception("Veuilliez entrer une date de début valide.", 400);
 	  }
   }
 
@@ -122,7 +122,7 @@ class Event {
 			$this->date_end = $date_end;
 		}
 		else {
-			throw new \Exception("Veuilliez entrer une date de fin valide.");
+			throw new \Exception("Veuilliez entrer une date de fin valide.", 400);
 		}
   }
 
@@ -132,7 +132,7 @@ class Event {
 			$this->date_created = $date_created;
 		}
 		else {
-			throw new \Exception("Veuilliez entrer une date de création valide.");
+			throw new \Exception("Veuilliez entrer une date de création valide.", 400);
 		}
   }
 }

@@ -78,7 +78,7 @@ class Notification {
 			$this->date_edit = $date_edit;
 		}
 		else {
-			throw new \Exception("Date de modification invalide.");
+			throw new \Exception("Date de modification invalide.", 400);
 		}
   }
 }
