@@ -192,8 +192,9 @@ class EventCRUD {
               $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
               $token = "{$token->getId()}/{$data['id_event']}";
               $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash);
+              $url = "https://lolimac.fr/";
               echo \json_encode([
-                 'url'=>"{$_SERVER['HTTP_REFERER']}lolimac-back/api/ics/{$encrypted}"
+                 'url'=>"{$url}api/ics/{$encrypted}"
               ]);
           }
           else {
@@ -216,8 +217,9 @@ class EventCRUD {
 
       $token = "{$user->getPseudo()}";
       $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash);
+      $url = "https://lolimac.fr/";
       echo \json_encode([
-          'url'=>"{$_SERVER['HTTP_REFERER']}lolimac-back/api/ics/all/{$encrypted}"
+          'url'=>"{$url}lolimac-back/api/ics/all/{$encrypted}"
       ]);
   }
 
