@@ -11,7 +11,7 @@ class IcsParser {
 
     public function __construct() {
 		$this->ics = "BEGIN:VCALENDAR\r
-METHOD:PUBLISH\r
+METHOD:REQUEST\r
 VERSION:2.0\r
 PRODID:-//{$this->proid}\r\n";
     }
