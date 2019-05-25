@@ -50,7 +50,10 @@ class Link_events_users_modulesCRUD {
       foreach ($listParticipants as $key => $value) {
         $userManager = new UserManager();
         $user = $userManager->readById($key);
-        $participant = $user->toArray();
+        if ($user) {
+            $participant = $user->toArray();
+        }
+        $participant = NULL;
         $listParticipants[$key] = $participant;
         $listParticipants[$key]['participation'] = $value;
       }
