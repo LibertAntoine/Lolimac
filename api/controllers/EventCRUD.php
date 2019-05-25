@@ -190,13 +190,13 @@ class EventCRUD {
           if ($event->getDate_start() && $event->getDate_end()) {
               $encryptionMethod = "AES-256-CBC";
               $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
-              $iv = "654644573421940512";
+              $iv = "6546445734219402";
               $token = "{$token->getId()}/{$data['id_event']}";
               $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash, $options=0, $iv);
               $url = "https://www.lolimac.fr/";
               echo \json_encode([
-                 'url'=>"{$url}api/ics/{$encrypted}"
-              ]);
+                 'url'=> "{$url}api/ics/{$encrypted}"
+             ], $options = JSON_UNESCAPED_SLASHES);
           }
           else {
               throw new \Exception("Impossible de générer le lien iCalendar, l'événement n'est pas totalement prêt", 401);
@@ -215,13 +215,13 @@ class EventCRUD {
       $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
       $userManager = new UserManager();
       $user = $userManager->readById($token->getId());
-      $iv = "654644573421940512";
+      $iv = "6546445734219402";
       $token = "{$user->getPseudo()}";
       $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash, $options=0, $iv);
       $url = "https://www.lolimac.fr/";
       echo \json_encode([
           'url'=>"{$url}lolimac-back/api/ics/all/{$encrypted}"
-      ]);
+      ], $options = JSON_UNESCAPED_SLASHES);
   }
 
   public function read($dataIn) {

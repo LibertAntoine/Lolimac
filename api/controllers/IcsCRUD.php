@@ -17,7 +17,7 @@ class IcsCRUD {
     public function readOne($dataIn) {
         $encryptionMethod = "AES-256-CBC";
         $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
-        $iv = "654644573421940512";
+        $iv = "6546445734219402";
         $token = openssl_decrypt($dataIn, $encryptionMethod, $secretHash, $options=0, $iv);
         $data = \explode('/', $token);
         $data['id_user'] = $data[0];
@@ -58,7 +58,7 @@ class IcsCRUD {
         $scanDataIn = new ScanDataIn();
         $encryptionMethod = "AES-256-CBC";
         $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
-        $iv = "654644573421940512";
+        $iv = "6546445734219402";
         $token = openssl_decrypt($dataIn, $encryptionMethod, $secretHash, $options=0, $iv);
         $data['pseudo'] = $token;
         $data = $scanDataIn->failleXSS($data);
