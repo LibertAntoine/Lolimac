@@ -190,9 +190,10 @@ class EventCRUD {
           if ($event->getDate_start() && $event->getDate_end()) {
               $encryptionMethod = "AES-256-CBC";
               $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
+              $iv = "654644573421940512";
               $token = "{$token->getId()}/{$data['id_event']}";
-              $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash);
-              $url = "https://lolimac.fr/";
+              $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash, $options=0, $iv);
+              $url = "https://www.lolimac.fr/";
               echo \json_encode([
                  'url'=>"{$url}api/ics/{$encrypted}"
               ]);
@@ -214,10 +215,10 @@ class EventCRUD {
       $secretHash = "25c6c7ff35b9979b151f2136cd13b0ff";
       $userManager = new UserManager();
       $user = $userManager->readById($token->getId());
-
+      $iv = "654644573421940512";
       $token = "{$user->getPseudo()}";
-      $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash);
-      $url = "https://lolimac.fr/";
+      $encrypted = openssl_encrypt($token, $encryptionMethod, $secretHash, $options=0, $iv);
+      $url = "https://www.lolimac.fr/";
       echo \json_encode([
           'url'=>"{$url}lolimac-back/api/ics/all/{$encrypted}"
       ]);
