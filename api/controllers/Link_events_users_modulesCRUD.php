@@ -52,10 +52,12 @@ class Link_events_users_modulesCRUD {
         $user = $userManager->readById($key);
         if ($user) {
             $participant = $user->toArray();
+            $listParticipants[$key] = $participant;
+            $listParticipants[$key]['participation'] = $value;
         }
-        $participant = NULL;
-        $listParticipants[$key] = $participant;
-        $listParticipants[$key]['participation'] = $value;
+        else {
+            unset($listParticipants[$key]);
+        }
       }
       return array_values($listParticipants);
     }
