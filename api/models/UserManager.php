@@ -30,8 +30,10 @@ class UserManager extends DBAccess {
   public function readById($id) {
       $q = $this->db->query('SELECT * FROM users WHERE id = '.$id);
       $user = $q->fetch(\PDO::FETCH_ASSOC);
-      $userObject = new User($user);
-      return new User($user);
+	  if ($user) {
+		  return new User($user);
+	  }
+	  return NULL;
   }
 
   public function readByPseudo($pseudo) {
