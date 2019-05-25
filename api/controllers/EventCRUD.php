@@ -199,11 +199,11 @@ class EventCRUD {
              ], $options = JSON_UNESCAPED_SLASHES);
           }
           else {
-              throw new \Exception("Impossible de générer le lien iCalendar, l'événement n'est pas totalement prêt", 401);
+              throw new \Exception("Impossible de générer le lien iCalendar, l'événement n'est pas totalement prêt", 400);
           }
       }
       else {
-          throw new \Exception("Evenement non existant", 401);
+          throw new \Exception("Evenement non existant", 400);
       }
   }
 
