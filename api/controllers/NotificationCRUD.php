@@ -37,9 +37,16 @@ class NotificationCRUD {
           $eventManager = new EventManager();
           foreach ($notifications as $key => $notification) {
               $notifications[$key] = $notification->toArray();
-              $event = $eventManager->readById($notification->getId_event());
-              $notifications[$key]["title"] = $event->getTitle();
-              $notifications[$key]["photo_url"] = $event->getPhoto_url();
+              $event = $eventManager->readById_noException($notification->getId_event());
+              //var_dump($event);
+              if ($event) {
+                  $event = new Event($event);
+                  $notifications[$key]["title"] = $event->getTitle();
+                  $notifications[$key]["photo_url"] = $event->getPhoto_url();
+              }
+              else {
+                  unset($notifications[$key]);
+              }
           }
           $userManager->updateNotificationDate($id_user);
           $notifications = \array_values($notifications);

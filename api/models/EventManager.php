@@ -22,6 +22,14 @@ class EventManager extends DBAccess {
     return $this->db->query('SELECT COUNT(*) FROM events;')->fetchColumn();
   }
 
+  public function readById_noException($id) {
+      $q = $this->db->prepare("SELECT * FROM events WHERE id = :id");
+	  $q->bindValue(':id', $id);
+	  $q->execute();
+      $event = $q->fetch(\PDO::FETCH_ASSOC);
+	  return $event;
+  }
+
   public function readById($id) {
       $q = $this->db->prepare("SELECT * FROM events WHERE id = :id");
 	  $q->bindValue(':id', $id);
