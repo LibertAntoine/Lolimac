@@ -59,7 +59,7 @@ class EventManager extends DBAccess {
   public function readAll() {
     $allEvents = [];
 
-    $q = $this->db->query("SELECT * FROM events ORDER BY date_start ASC LIMIT 10;");
+    $q = $this->db->query("SELECT * FROM events WHERE date_start IS NOT NULL ORDER BY date_start ASC LIMIT 10;");
     while ($data = $q->fetch(\PDO::FETCH_ASSOC)) {
      $allEvents[$data['id']] = new Event($data);
     }
