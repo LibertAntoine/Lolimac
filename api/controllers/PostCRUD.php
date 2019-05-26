@@ -6,9 +6,11 @@ use \controllers\scans\ScanDataIn;
 use \models\Post;
 use \models\PostManager;
 use \models\CommentManager;
+use \models\UserManager;
 use \controllers\scans\TokenAccess;
 use \controllers\Link_events_users_modulesCRUD;
 use \controllers\NotificationCRUD;
+
 
 
 class PostCRUD {
@@ -64,14 +66,26 @@ class PostCRUD {
     $posts = $postManager->readByIdEvent($id_event);
     if($posts) {
         $commentManager = new CommentManager();
+        $userManager = new UserManager();
         foreach ($posts as $key => $post) {
             $postArray = $post->toArray();
             $comments = $commentManager->readByPost($post->getId());
             if ($comments) {
                 foreach ($comments as $key2 => $comment) {
-                    $comments[$key2] = $comment->toArray();
+                    $commentInfos = $comment->toArray();
+                    $userComment = $userManager->readById($comment->getId_user());
+                    $userCommentInfos["firstname"] = $userComment->getFirstname();
+                    $userCommentInfos["lastname"] = $userComment->getLastname();
+                    $userCommentInfos["photo_url"] = $userComment->getPhoto_url();
+                    $commentInfos["user"] = array_values($userCommentInfos);
+                    $comments[$key2] = $commentInfos;
                 }
+                $user = $userManager->readById($post->getId_user());
+                $userInfos["firstname"] = $user->getFirstname();
+                $userInfos["lastname"] = $user->getLastname();
+                $userInfos["photo_url"] = $user->getPhoto_url();
                 $postArray["comments"] = $comments;
+                $postArray["user"] = array_values($userInfos);
             }
             $posts[$key] = $postArray;
         }
