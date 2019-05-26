@@ -77,7 +77,7 @@ class PostCRUD {
                     $userCommentInfos["firstname"] = $userComment->getFirstname();
                     $userCommentInfos["lastname"] = $userComment->getLastname();
                     $userCommentInfos["photo_url"] = $userComment->getPhoto_url();
-                    $commentInfos["user"] = array_values($userCommentInfos);
+                    $commentInfos["user"] = $userCommentInfos;
                     $comments[$key2] = $commentInfos;
                 }
                 $user = $userManager->readById($post->getId_user());
@@ -85,7 +85,7 @@ class PostCRUD {
                 $userInfos["lastname"] = $user->getLastname();
                 $userInfos["photo_url"] = $user->getPhoto_url();
                 $postArray["comments"] = $comments;
-                $postArray["user"] = array_values($userInfos);
+                $postArray["user"] = $userInfos;
             }
             $posts[$key] = $postArray;
         }
