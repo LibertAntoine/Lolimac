@@ -26,11 +26,7 @@ class PostCRUD {
     $participation = $participantManager->readParticipation($post->getId_event());
     if($participation != 0) {
         $postManager = new PostManager();
-        if ($postManager->readByTitle($post->getTitle()) === FALSE) {
         $postManager->add($post);
-        } else {
-           throw new \Exception('Une publication possède déjà ce titre.', 400);
-        }
     } else {
       throw new \Exception('Vous n\'etes pas autorisé à publier sur cette event.', 400);
     }
