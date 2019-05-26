@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "3e14a384-437f-4e41-849e-785c4bdf84f9",
-		"name": "lolimac-api",
+		"_postman_id": "01298ead-6646-40df-8115-0ba9edf9a76a",
+		"name": "Lolimac",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -9,7 +9,7 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "Create",
+					"name": "Create a new user",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -32,7 +32,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\": \"antoine\",\n    \"lastname\": \"libert\",\n    \"pseudo\": \"antoine\",\n    \"phone\": \"06 06 06 06 06\",\n    \"mail\": \"mail@gmail.com\",\n    \"pwd\": \"antoine\",\n    \"photo_url\": \"nom_photo.jpg\",\n    \"year_promotion\": 2021\n}"
+							"raw": "{\n    \"firstname\": \"Antoine\",\n    \"lastname\": \"Libert\",\n    \"pseudo\": \"antonio\",\n    \"mail\": \"a.lib@mail.com\",\n    \"pwd\": \"mot_de_p4ss3\",\n    \"photo_url\": \"https://www.nikonians.org/website/var/assets/res/images/2016_04/20160422_151856_bird-d500-dhmiller-iso1600-329740.jpg\",\n    \"year_promotion\": 2020\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users",
@@ -43,7 +43,7 @@
 					},
 					"response": [
 						{
-							"name": "Create User Nicolnt",
+							"name": "USER - CREATE : antonio, sans téléphone",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -56,7 +56,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"firstname\": \"nico\",\n    \"lastname\": \"lien\",\n    \"pseudo\": \"nicolnt\",\n    \"phone\": \"06 06 06 06 06\",\n    \"mail\": \"mail@gmail.com\",\n    \"pwd\": \"mot_de_passe\",\n    \"photo_url\": \"nom_photo.jpg\",\n    \"year_promotion\": 2021\n}"
+									"raw": "{\n    \"firstname\": \"Antoine\",\n    \"lastname\": \"Libert\",\n    \"pseudo\": \"antonio\",\n    \"mail\": \"a.lib@mail.com\",\n    \"pwd\": \"mot_de_p4ss3\",\n    \"photo_url\": \"https://www.nikonians.org/website/var/assets/res/images/2016_04/20160422_151856_bird-d500-dhmiller-iso1600-329740.jpg\",\n    \"year_promotion\": 2020\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}users",
@@ -67,27 +67,31 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "html",
+							"_postman_previewlanguage": "json",
 							"header": [
 								{
 									"key": "Date",
-									"value": "Sat, 27 Apr 2019 16:45:58 GMT"
+									"value": "Sun, 26 May 2019 13:21:57 GMT"
 								},
 								{
 									"key": "Server",
 									"value": "Apache/2.4.29 (Ubuntu)"
 								},
 								{
-									"key": "Vary",
-									"value": "Accept-Encoding"
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
 								},
 								{
-									"key": "Content-Encoding",
-									"value": "gzip"
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
 								},
 								{
 									"key": "Content-Length",
-									"value": "208"
+									"value": "25"
 								},
 								{
 									"key": "Keep-Alive",
@@ -99,19 +103,83 @@
 								},
 								{
 									"key": "Content-Type",
-									"value": "text/html; charset=UTF-8"
+									"value": "application/json; charset=UTF-8"
 								}
 							],
 							"cookie": [],
-							"body": "<br />\n<b>Fatal error</b>:  Uncaught Error: Call to undefined method Root::v1() in /var/www/lolimac-back/api/Root.php:21\nStack trace:\n#0 /var/www/lolimac-back/api/index.php(9): Root-&gt;__construct()\n#1 {main}\n  thrown in\n<b>/var/www/lolimac-back/api/Root.php</b> on line\n<b>21</b>\n<br />"
+							"body": "{\n    \"message\": \"User added.\"\n}"
+						},
+						{
+							"name": "USER - CREATE : nicolnt",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Nicolas\",\n    \"lastname\": \"Liénart\",\n    \"pseudo\": \"nicolnt\",\n    \"phone\": \"06 06 06 06 06\",\n    \"mail\": \"nicolas.lienart@mail.com\",\n    \"pwd\": \"mot_de_p4ss3\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1558779869-f94c29794e47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80\",\n    \"year_promotion\": 2021\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}users",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:19:43 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User added.\"\n}"
 						}
 					]
 				},
 				{
-					"name": "Read",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "Read user's details",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -132,7 +200,10 @@
 								"type": "text"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
 							"host": [
@@ -143,10 +214,81 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "USER - READ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}users"
+									],
+									"path": [
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:23:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "227"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstname\": \"matin\",\n    \"lastname\": \"Martin\",\n    \"pseudo\": \"test\",\n    \"photo_url\": \"https://i2.wp.com/rouelibrenmaine.fr/wp-content/uploads/2018/10/empty-avatar.png\",\n    \"status\": 3,\n    \"phone\": null,\n    \"mail\": \"test@out.fr\",\n    \"year_promotion\": 2020\n}"
+						}
+					]
 				},
 				{
-					"name": "Update partial info",
+					"name": "Update user's partial info",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -169,7 +311,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"firstname\" : \"liuiyiuyl\"\r\n}"
+							"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"email\": \"nlienart@upem.fr\",\r\n\t\"phone\": \"07 06 06 06 06\",\r\n\t\"pwd\": \"MotDePASSE__F0rt%%\"\r\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}users",
@@ -178,10 +320,212 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "USER - PATCH : autres informations",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"email\": \"nlienart@upem.fr\",\r\n\t\"phone\": \"07 06 06 06 06\"\r\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}users",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:26:57 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User updated.\"\n}"
+						},
+						{
+							"name": "USER - PATCH : Prénom",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"firstname\" : \"MonNomUtilisateur\"\r\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}users",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:24:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User updated.\"\n}"
+						},
+						{
+							"name": "USER - PATCH : mot de passe",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"id\" : {{userId}},\r\n\t\"email\": \"nlienart@upem.fr\",\r\n\t\"phone\": \"07 06 06 06 06\",\r\n\t\"pwd\": \"MotDePASSE__F0rt%%\"\r\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}users",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:37:16 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User updated.\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Delete",
+					"name": "Delete user",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -209,7 +553,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "USER - DELETE",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}users/{{userId}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}users"
+									],
+									"path": [
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:38:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=99"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User deleted.\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -223,7 +631,7 @@
 							"name": "Comments",
 							"item": [
 								{
-									"name": "Create a comment for a post",
+									"name": "Create a new comment under a post",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -246,7 +654,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\t\"content\": \"huiyga ?!!!\"\n}"
+											"raw": "{\n\t\"content\": \"Je suis carrément d'accord !\"\n}"
 										},
 										"url": {
 											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}/comments/",
@@ -262,10 +670,85 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"name": "COMMENT - CREATE : Ajout d'un commentaire sous un post",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n\t\"content\": \"Je suis carrément d'accord !\"\n}"
+												},
+												"url": {
+													"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}/comments/",
+													"host": [
+														"{{serverUrl}}{{apiVersion}}events"
+													],
+													"path": [
+														"{{eventId}}",
+														"posts",
+														"{{postId}}",
+														"comments",
+														""
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2019 14:03:08 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Apache/2.4.29 (Ubuntu)"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Methods",
+													"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+												},
+												{
+													"key": "Content-Length",
+													"value": "28"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5, max=100"
+												},
+												{
+													"key": "Connection",
+													"value": "Keep-Alive"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=UTF-8"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Comment added.\"\n}"
+										}
+									]
 								},
 								{
-									"name": "Update a comment for a post",
+									"name": "Update a comment under a post",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -288,7 +771,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\t\"content\": \"Tu veux qu'on baise ?\"\n}"
+											"raw": "{\n\t\"content\": \"Finalement c'est une mauvaise idée\"\n}"
 										},
 										"url": {
 											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}/comments/{{commentId}}",
@@ -307,7 +790,7 @@
 									"response": []
 								},
 								{
-									"name": "Delete a comment to a post",
+									"name": "Delete a comment",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -375,7 +858,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"title\": \"J'adore la nourriture\",\n\t\"content\": \"Servez moi comme il faut\"\n}"
+									"raw": "{\n\t\"title\": \"J'adore la nourriture\",\n\t\"content\": \"Comme vous le savez, manger c'est la vie, c'est ce qu'il y a de plus beau. Donc servez moi comme il faut\"\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}",
@@ -389,10 +872,83 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "POST - PATCH : Mise à jour du titre et du contenu",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"J'adore la nourriture\",\n\t\"content\": \"Comme vous le savez, manger c'est la vie, c'est ce qu'il y a de plus beau. Donc servez moi comme il faut\"\n}"
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}events"
+											],
+											"path": [
+												"{{eventId}}",
+												"posts",
+												"{{postId}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2019 14:00:39 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Apache/2.4.29 (Ubuntu)"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+										},
+										{
+											"key": "Content-Length",
+											"value": "27"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5, max=100"
+										},
+										{
+											"key": "Connection",
+											"value": "Keep-Alive"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Post updated.\"\n}"
+								}
+							]
 						},
 						{
-							"name": "Create a post",
+							"name": "Create a new post on an event page",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -415,7 +971,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"title\": \"Coucou toeeea\",\n\t\"content\": \"a stp.\"\n}"
+									"raw": "{\n\t\"title\": \"Qui ramène les bierres aa?\",\n\t\"content\": \"Je sais que tout le monde vas prendre quelque chose, mais je tiens à m'assurer de la quantité de binouz disponibles. C'est le jeudimac quoi\"\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts",
@@ -428,7 +984,79 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "POST - CREATE : L'utilisateur doit participer à l'événement",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"Qui ramène les bierres ?\",\n\t\"content\": \"Je sais que tout le monde vas prendre quelque chose, mais je tiens à m'assurer de la quantité de binouz disponibles. C'est le jeudimac quoi\"\n}"
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}events"
+											],
+											"path": [
+												"{{eventId}}",
+												"posts"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2019 13:59:48 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Apache/2.4.29 (Ubuntu)"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+										},
+										{
+											"key": "Content-Length",
+											"value": "25"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5, max=99"
+										},
+										{
+											"key": "Connection",
+											"value": "Keep-Alive"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Post added.\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Delete a post and all of its comments",
@@ -468,13 +1096,86 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "POST - DELETE : supprime également les commentaires associés",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/posts/{{postId}}",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}events"
+											],
+											"path": [
+												"{{eventId}}",
+												"posts",
+												"{{postId}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2019 14:02:18 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Apache/2.4.29 (Ubuntu)"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+										},
+										{
+											"key": "Content-Length",
+											"value": "27"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5, max=100"
+										},
+										{
+											"key": "Connection",
+											"value": "Keep-Alive"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Post deleted.\"\n}"
+								}
+							]
 						}
 					],
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Create",
+					"name": "Create a new event",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -497,7 +1198,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Les poilus en sliiip\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"place\":{\n    \t\"name\" : \"La coloc infernale\"\n    }\n}"
+							"raw": "{\n    \"title\": \"JeudiMac\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events",
@@ -508,7 +1209,7 @@
 					},
 					"response": [
 						{
-							"name": "Create",
+							"name": "EVENT - CREATE : informations exhaustives",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -521,7 +1222,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"description\": \"c'est le lol\",\n    \"date_start\":\"2018-12-11\",\n    \"date_end\":\"2018-12-12\"\n}"
+									"raw": "{\n    \"title\": \"Révision maths\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"place\":{\n    \t\"name\" : \"La coloc infernale !\",\n    \t\"street\": \"Rue de L'IMAC\",\n    \t\"city\":\"Marne-la-Vallée\",\n    \t\"number\":12,\n    \t\"postcode\":444333\n    },\n    \"type\":{\n    \t\"name\": \"cours\"\n    },\n    \"description\": \"Venez réviser c'est trop bien !\",\n    \"date_start\": \"2019-05-31 10:00:00\",\n    \"date_end\": \"2019-05-31 15:30:00\"\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events",
@@ -530,13 +1231,52 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:48:17 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
 							"cookie": [],
-							"body": ""
+							"body": "{\n    \"message\": \"New event added.\",\n    \"id_user\": 21,\n    \"id_event\": 37\n}"
 						},
 						{
-							"name": "Create BBQ",
+							"name": "EVENT - CREATE : réutilisation de lieu et type",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -549,7 +1289,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"Barbecue à la belle étoile\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
+									"raw": "{\n    \"title\": \"Soirée crêpes\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"place\": 34,\n    \"type\": 11\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events",
@@ -558,15 +1298,121 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:50:13 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
 							"cookie": [],
-							"body": ""
+							"body": "{\n    \"message\": \"New event added.\",\n    \"id_user\": 21,\n    \"id_event\": 38\n}"
+						},
+						{
+							"name": "EVENT - CREATE : inromations minimales",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"JeudiMac\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:51:25 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"New event added.\",\n    \"id_user\": 21,\n    \"id_event\": 39\n}"
 						}
 					]
 				},
 				{
-					"name": "Read one",
+					"name": "Read a specific event details",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -595,10 +1441,74 @@
 						},
 						"description": "Réponse beaucoup plus détaillée que sur les autres"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "EVENT - READ ONE : Récupère toutes les informations d'un événement spécifique",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"{{eventId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 14:03:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1030"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id_event\": 38,\n    \"title\": \"Soirée crêpes\",\n    \"description\": null,\n    \"date_start\": null,\n    \"date_end\": null,\n    \"date_created\": \"2019-05-26 15:50:13\",\n    \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n    \"participation\": 2,\n    \"participants\": [\n        {\n            \"id\": 21,\n            \"firstmane\": \"liuiyiuyl\",\n            \"lastname\": \"lien\",\n            \"pseudo\": \"nicolnt\",\n            \"photo_url\": \"nom_photo.jpg\",\n            \"status\": 1,\n            \"participation\": \"2\"\n        }\n    ],\n    \"place\": {\n        \"id_place\": 34,\n        \"postcode\": 444333,\n        \"street\": \"Rue de L'IMAC\",\n        \"number\": 12,\n        \"city\": \"Marne-la-Vallée\",\n        \"name\": \"La coloc infernale !\"\n    },\n    \"type\": {\n        \"id_type\": 11,\n        \"name\": \"cours\"\n    },\n    \"posts\": [\n        {\n            \"id\": 7,\n            \"title\": \"J'adore la nourriture\",\n            \"content\": \"Comme vous le savez, manger c'est la vie, c'est ce qu'il y a de plus beau. Donc servez moi comme il faut\",\n            \"date_created\": \"2019-05-26\",\n            \"date_edited\": \"2019-05-26\",\n            \"id_user\": 21,\n            \"id_event\": 38,\n            \"comments\": [\n                {\n                    \"id\": 5,\n                    \"content\": \"Je suis carrément d'accord !\",\n                    \"date_created\": \"2019-05-26\",\n                    \"date_edited\": \"2019-05-26\",\n                    \"id_user\": 21,\n                    \"id_post\": 7\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
-					"name": "Update partial info",
+					"name": "Update event's partial info",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -621,7 +1531,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"title\":\"Les slips en folie\",\r\n\t\"place\":{\r\n\t\t\"name\":\"lol\",\r\n\t\t\"city\":\"ta mère\",\r\n\t\t\"postcode\":84848,\r\n\t\t\"number\":4,\r\n\t\t\"street\":\"Lalalol\"\r\n\t},\r\n\t\"type\":{\r\n\t\t\"name\":\"n'importe iugyt fr quoi\"\r\n\t},\r\n\t\"date_start\": \"2019-05-22T22:00:00.000Z\",\r\n\t\"date_end\": \"2019-05-22T22:00:00.000Z\"\r\n}"
+							"raw": "{\r\n\t\"title\":\"Révisions maths : Le retour du roi\"\r\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
@@ -634,6 +1544,134 @@
 						}
 					},
 					"response": [
+						{
+							"name": "Update partial info - Existing Place",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"date_start\":\"2022-05-22 20:22:59\",\r\n\t\"place\":\"{{placeId}}\"\r\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"{{eventId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2019 12:01:39 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "EVENT - PATCH : informations variées",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\":\"Révisions maths : Le retour du roi\",\r\n\t\"place\":{\r\n\t\t\"name\":\"Chez Antoine\",\r\n\t\t\"city\":\"Paris XVIe\",\r\n\t\t\"postcode\":84848,\r\n\t\t\"number\":4,\r\n\t\t\"street\":\"Rue de la Vie\"\r\n\t},\r\n\t\"type\":11,\r\n\t\"date_start\": \"2019-05-31 10:00:00\",\r\n\t\"date_end\": \"2019-05-31 23:00:00\"\r\n}"
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"{{eventId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:53:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event updated.\"\n}"
+						},
 						{
 							"name": "Update partial info - new place",
 							"originalRequest": {
@@ -693,7 +1731,7 @@
 							"body": ""
 						},
 						{
-							"name": "Update partial info - Existing Place",
+							"name": "EVENT - PATCH : minimum de champs",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [
@@ -706,7 +1744,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"date_start\":\"2022-05-22 20:22:59\",\r\n\t\"place\":\"{{placeId}}\"\r\n}"
+									"raw": "{\r\n\t\"title\":\"Révisions maths : Le retour du roi\"\r\n}"
 								},
 								"url": {
 									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
@@ -724,15 +1762,27 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Mon, 29 Apr 2019 12:01:39 GMT"
+									"value": "Sun, 26 May 2019 13:54:08 GMT"
 								},
 								{
 									"key": "Server",
 									"value": "Apache/2.4.29 (Ubuntu)"
 								},
 								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
 									"key": "Content-Length",
-									"value": "0"
+									"value": "28"
 								},
 								{
 									"key": "Keep-Alive",
@@ -748,12 +1798,12 @@
 								}
 							],
 							"cookie": [],
-							"body": ""
+							"body": "{\n    \"message\": \"Event updated.\"\n}"
 						}
 					]
 				},
 				{
-					"name": "Delete",
+					"name": "Delete a specific event",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -772,19 +1822,19 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/10",
+							"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"path": [
-								"10"
+								"{{eventId}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Join",
+					"name": "Join an event",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -813,10 +1863,75 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "EVENT - JOIN",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/join",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"{{eventId}}",
+										"join"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:55:32 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event joined.\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Leave",
+					"name": "Leave zn event",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -845,10 +1960,75 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "EVENT - LEAVE",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/{{eventId}}/leave",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"{{eventId}}",
+										"leave"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 13:55:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event leaved.\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Read Multple (OFFSET et LIMIT)",
+					"name": "Read Multiple events using an OFFSET and a LIMIT",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -867,14 +2047,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events?from=0&limit=20",
+							"raw": "{{serverUrl}}{{apiVersion}}events?from=28&limit=20",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
 							],
 							"query": [
 								{
 									"key": "from",
-									"value": "0"
+									"value": "28"
 								},
 								{
 									"key": "limit",
@@ -921,8 +2101,18 @@
 					]
 				},
 				{
-					"name": "Search",
+					"name": "Search for an event based on its title",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenKey}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -937,7 +2127,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serverUrl}}{{apiVersion}}events/search/?q=ma+recherche&opt=date+participe",
+							"raw": "{{serverUrl}}{{apiVersion}}events/search/?q=r%C3%A9vision+maths+%22retour%22",
 							"host": [
 								"{{serverUrl}}{{apiVersion}}events"
 							],
@@ -948,19 +2138,103 @@
 							"query": [
 								{
 									"key": "q",
-									"value": "ma+recherche"
+									"value": "r%C3%A9vision+maths+%22retour%22"
 								},
 								{
 									"key": "opt",
-									"value": "date+participe"
+									"value": "date+participe",
+									"disabled": true
 								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "EVENT - SEARCH : Possibilité de mettre plusieurs mot-clés et également des guillments comme sur un moteur eg: \"soirée\" (à encoder)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/search/?q=r%C3%A9vision+maths+%22retour%22",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"search",
+										""
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "r%C3%A9vision+maths+%22retour%22"
+										},
+										{
+											"key": "opt",
+											"value": "date+participe",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 14:56:57 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "551"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id_event\": 37,\n        \"title\": \"Révisions maths : Le retour du roi\",\n        \"description\": \"Venez réviser c'est trop bien !\",\n        \"date_start\": \"2019-05-31 10:00:00\",\n        \"date_end\": \"2019-05-31 23:00:00\",\n        \"date_created\": \"2019-05-26 15:48:17\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n        \"participation\": 1,\n        \"place\": {\n            \"id_place\": 35,\n            \"postcode\": 84848,\n            \"street\": \"Rue de la Vie\",\n            \"number\": 4,\n            \"city\": \"Paris XVIe\",\n            \"name\": \"Chez Antoine\"\n        },\n        \"type\": {\n            \"id_type\": 11,\n            \"name\": \"cours\"\n        }\n    }\n]"
+						}
+					]
 				},
 				{
-					"name": "Read Multiple (last events)",
+					"name": "Read Multiple events, next 10 events to come",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -986,10 +2260,71 @@
 						},
 						"description": "Read a bunch of events"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "EVENT - READ MULTIPLE : Récupère les 10 événements à venir prochainement ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 15:04:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3184"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id_event\": 34,\n        \"title\": \"Révision maths\",\n        \"description\": \"Venez réviser c'est trop bien !\",\n        \"date_start\": \"2019-05-31 10:00:00\",\n        \"date_end\": \"2019-05-31 15:30:00\",\n        \"date_created\": \"2019-05-26 15:44:46\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n        \"participation\": 1,\n        \"place\": {\n            \"id_place\": 31,\n            \"postcode\": 444333,\n            \"street\": \"Rue de L'IMAC\",\n            \"number\": 12,\n            \"city\": \"Marne-la-Vallée\",\n            \"name\": \"La coloc infernale\"\n        },\n        \"type\": null\n    },\n    {\n        \"id_event\": 35,\n        \"title\": \"Révision maths\",\n        \"description\": \"Venez réviser c'est trop bien !\",\n        \"date_start\": \"2019-05-31 10:00:00\",\n        \"date_end\": \"2019-05-31 15:30:00\",\n        \"date_created\": \"2019-05-26 15:45:09\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n        \"participation\": 1,\n        \"place\": {\n            \"id_place\": 32,\n            \"postcode\": 444333,\n            \"street\": \"Rue de L'IMAC\",\n            \"number\": 12,\n            \"city\": \"Marne-la-Vallée\",\n            \"name\": \"La coloc infernale\"\n        },\n        \"type\": null\n    },\n    {\n        \"id_event\": 36,\n        \"title\": \"Révision maths\",\n        \"description\": \"Venez réviser c'est trop bien !\",\n        \"date_start\": \"2019-05-31 10:00:00\",\n        \"date_end\": \"2019-05-31 15:30:00\",\n        \"date_created\": \"2019-05-26 15:45:27\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n        \"participation\": 1,\n        \"place\": {\n            \"id_place\": 33,\n            \"postcode\": 444333,\n            \"street\": \"Rue de L'IMAC\",\n            \"number\": 12,\n            \"city\": \"Marne-la-Vallée\",\n            \"name\": \"La coloc infernale !\"\n        },\n        \"type\": null\n    },\n    {\n        \"id_event\": 37,\n        \"title\": \"Révisions maths : Le retour du roi\",\n        \"description\": \"Venez réviser c'est trop bien !\",\n        \"date_start\": \"2019-05-31 10:00:00\",\n        \"date_end\": \"2019-05-31 23:00:00\",\n        \"date_created\": \"2019-05-26 15:48:17\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\",\n        \"participation\": 1,\n        \"place\": {\n            \"id_place\": 35,\n            \"postcode\": 84848,\n            \"street\": \"Rue de la Vie\",\n            \"number\": 4,\n            \"city\": \"Paris XVIe\",\n            \"name\": \"Chez Antoine\"\n        },\n        \"type\": {\n            \"id_type\": 11,\n            \"name\": \"cours\"\n        }\n    },\n    {\n        \"id_event\": 1,\n        \"title\": \"aoezdaazu\",\n        \"description\": \"c'est le lol\",\n        \"date_start\": \"2019-07-31 00:00:00\",\n        \"date_end\": \"2018-12-12 00:00:00\",\n        \"date_created\": \"2019-04-27 00:00:00\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\",\n        \"participation\": 2,\n        \"place\": null,\n        \"type\": {\n            \"id_type\": 2,\n            \"name\": \"salu\"\n        }\n    },\n    {\n        \"id_event\": 4,\n        \"title\": \"aoezdaazu\",\n        \"description\": null,\n        \"date_start\": \"2019-07-31 00:00:00\",\n        \"date_end\": null,\n        \"date_created\": \"2019-05-16 15:19:07\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\",\n        \"participation\": 0,\n        \"place\": null,\n        \"type\": null\n    },\n    {\n        \"id_event\": 5,\n        \"title\": \"aoezdraazu\",\n        \"description\": null,\n        \"date_start\": \"2019-07-31 00:00:00\",\n        \"date_end\": null,\n        \"date_created\": \"2019-05-16 15:20:03\",\n        \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\",\n        \"participation\": 0,\n        \"place\": null,\n        \"type\": null\n    }\n]"
+						}
+					]
 				},
 				{
-					"name": "Get ICS link for 1 event",
+					"name": "Get ICS link for one specific event",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1018,7 +2353,132 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "EVENT - SINGLE ICS LINK : Erreur lorsque l'événement n'ai pas suffisamment précis pour générer un fichier iCalendar",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/export/{{eventId}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"export",
+										"{{eventId}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 15:06:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"message\": \"Impossible de générer le lien iCalendar, l'événement n'est pas totalement prêt\"\n}"
+						},
+						{
+							"name": "EVENT - SINGLE ICS LINK : Génèrle le lien iCalendar pour un événement",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/export/{{eventId}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"export",
+										"{{eventId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 15:05:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"url\": \"https://www.lolimac.fr/api/ics/fMVGjpDZo4CBdhKd4YnbXg==\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get ICS link for all events",
@@ -1049,7 +2509,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "EVENT - ALL ICS LINK : Génèrle le lien iCalendar pour tous les événements valides",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}events/export",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}events"
+									],
+									"path": [
+										"export"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 15:06:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"url\": \"https://www.lolimac.fr/lolimac-back/api/ics/all/xvKDdMCkUsIFy6LVxQqAzg==\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1060,7 +2584,7 @@
 					"name": "Notifications",
 					"item": [
 						{
-							"name": "Get all my notifications",
+							"name": "Get all current user notifications",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1090,7 +2614,72 @@
 								},
 								"description": "For now, only awnsers to posts that the user created, and new comments an a post that he commented"
 							},
-							"response": []
+							"response": [
+								{
+									"name": "NOTIFICATIONS - READ ALL : Récupère le détail des notifications",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}me/notifications/",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}me"
+											],
+											"path": [
+												"notifications",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2019 15:09:27 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Apache/2.4.29 (Ubuntu)"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2844"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5, max=100"
+										},
+										{
+											"key": "Connection",
+											"value": "Keep-Alive"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"events\": [\n        {\n            \"id_event\": 1,\n            \"date_edit\": \"2019-05-25 19:22:02\",\n            \"type_edit\": \"date_start\",\n            \"title\": \"aoezdaazu\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\"\n        },\n        {\n            \"id_event\": 1,\n            \"date_edit\": \"2019-05-17 18:34:12\",\n            \"type_edit\": \"id\",\n            \"title\": \"aoezdaazu\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\"\n        },\n        {\n            \"id_event\": 1,\n            \"date_edit\": \"2019-05-25 19:22:02\",\n            \"type_edit\": \"photo_url\",\n            \"title\": \"aoezdaazu\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\"\n        },\n        {\n            \"id_event\": 1,\n            \"date_edit\": \"2019-05-25 19:22:02\",\n            \"type_edit\": \"title\",\n            \"title\": \"aoezdaazu\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\"\n        },\n        {\n            \"id_event\": 1,\n            \"date_edit\": \"2019-05-17 19:35:46\",\n            \"type_edit\": \"type\",\n            \"title\": \"aoezdaazu\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1470753937643-efeb931202a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80\"\n        },\n        {\n            \"id_event\": 37,\n            \"date_edit\": \"2019-05-26 15:53:18\",\n            \"type_edit\": \"date_end\",\n            \"title\": \"Révisions maths : Le retour du roi\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 37,\n            \"date_edit\": \"2019-05-26 15:53:18\",\n            \"type_edit\": \"date_start\",\n            \"title\": \"Révisions maths : Le retour du roi\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 37,\n            \"date_edit\": \"2019-05-26 15:53:18\",\n            \"type_edit\": \"place\",\n            \"title\": \"Révisions maths : Le retour du roi\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 37,\n            \"date_edit\": \"2019-05-26 15:54:08\",\n            \"type_edit\": \"title\",\n            \"title\": \"Révisions maths : Le retour du roi\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 37,\n            \"date_edit\": \"2019-05-26 15:53:18\",\n            \"type_edit\": \"type\",\n            \"title\": \"Révisions maths : Le retour du roi\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        },\n        {\n            \"id_event\": 38,\n            \"date_edit\": \"2019-05-26 16:02:09\",\n            \"type_edit\": \"post\",\n            \"title\": \"Soirée crêpes\",\n            \"photo_url\": \"https://images.unsplash.com/photo-1504564321107-4aa3efddb5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80\"\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Get notifications count",
@@ -1122,7 +2711,72 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "NOTIFICATIONS - COUNT : Renvoie le nombre de notifications non lues",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{serverUrl}}{{apiVersion}}me/notifications/count",
+											"host": [
+												"{{serverUrl}}{{apiVersion}}me"
+											],
+											"path": [
+												"notifications",
+												"count"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2019 15:08:52 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Apache/2.4.29 (Ubuntu)"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5, max=100"
+										},
+										{
+											"key": "Connection",
+											"value": "Keep-Alive"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"notifications\": \"8\"\n}"
+								}
+							]
 						}
 					],
 					"_postman_isSubFolder": true
@@ -1133,7 +2787,7 @@
 			"name": "Ics calendar",
 			"item": [
 				{
-					"name": "Get Ics file for 1 event",
+					"name": "Get Ics file for a single event",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1151,7 +2805,75 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "ICS - GET FILE : Télécharge le fichier iCalendar pour un seul événement en déchiffrant le code dans l'URL",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}ics/{{idICS}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}ics"
+									],
+									"path": [
+										"{{idICS}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 15:10:17 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "inline; filename=lolimac-R%C3%A9vision+maths.ics"
+								},
+								{
+									"key": "Content-Length",
+									"value": "356"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/calendar; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "BEGIN:VCALENDAR\r\nMETHOD:REQUEST\r\nVERSION:2.0\r\nPRODID:-//Lolimac Events//Lolimac//FR\r\nBEGIN:VEVENT\r\nSUMMARY:Révision maths\r\nUID:e369853df766fa44e1ed0ff613f563bd\r\nSTATUS:CONFIRMED\r\nDTSTART:20190531T100000Z\r\nDTEND:20190531T153000Z\r\nDTSTAMP:20190526T171017Z\r\nLOCATION:La coloc infernale Marne-la-Vallée 444333 n°12 Rue de L'IMAC\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+						}
+					]
 				},
 				{
 					"name": "Get Ics file for all events",
@@ -1173,7 +2895,76 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "ICS ALL - GET FILE : Télécharge le fichier iCalendar pour tous les événements en déchiffrant le code dans l'URL",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverUrl}}{{apiVersion}}ics/all/{{idAllICS}}",
+									"host": [
+										"{{serverUrl}}{{apiVersion}}ics"
+									],
+									"path": [
+										"all",
+										"{{idAllICS}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 26 May 2019 15:11:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "inline; filename=lolimac-calendar.ics"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1132"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/calendar; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "BEGIN:VCALENDAR\r\nMETHOD:REQUEST\r\nVERSION:2.0\r\nPRODID:-//Lolimac Events//Lolimac//FR\r\nBEGIN:VEVENT\r\nSUMMARY:Révision maths\r\nUID:e369853df766fa44e1ed0ff613f563bd\r\nSTATUS:CONFIRMED\r\nDTSTART:20190531T100000Z\r\nDTEND:20190531T153000Z\r\nDTSTAMP:20190526T171103Z\r\nLOCATION:La coloc infernale Marne-la-Vallée 444333 n°12 Rue de L'IMAC\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nSUMMARY:Révision maths\r\nUID:1c383cd30b7c298ab50293adfecb7b18\r\nSTATUS:CONFIRMED\r\nDTSTART:20190531T100000Z\r\nDTEND:20190531T153000Z\r\nDTSTAMP:20190526T171103Z\r\nLOCATION:La coloc infernale Marne-la-Vallée 444333 n°12 Rue de L'IMAC\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nSUMMARY:Révision maths\r\nUID:19ca14e7ea6328a42e0eb13d585e4c22\r\nSTATUS:CONFIRMED\r\nDTSTART:20190531T100000Z\r\nDTEND:20190531T153000Z\r\nDTSTAMP:20190526T171103Z\r\nLOCATION:La coloc infernale ! Marne-la-Vallée 444333 n°12 Rue de L'IMAC\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nSUMMARY:Révisions maths : Le retour du roi\r\nUID:a5bfc9e07964f8dddeb95fc584cd965d\r\nSTATUS:CONFIRMED\r\nDTSTART:20190531T100000Z\r\nDTEND:20190531T230000Z\r\nDTSTAMP:20190526T171103Z\r\nLOCATION:Chez Antoine Paris XVIe 84848 n°4 Rue de la Vie\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+						}
+					]
 				}
 			]
 		},
@@ -1194,10 +2985,71 @@
 				},
 				"description": "Indique que le serveur fonctionne"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SERVER - INFOS : Informe du status du serveur",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 26 May 2019 15:11:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.29 (Ubuntu)"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"running\",\n    \"commit\": \"fd22213dd31ee317236076e1efcc7512becdd2d1\"\n}"
+				}
+			]
 		},
 		{
-			"name": "Login",
+			"name": "User login",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1220,7 +3072,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pseudo\" : \"nicol\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
+					"raw": "{\r\n    \"pseudo\" : \"nicolnt\",\r\n    \"pwd\" : \"MotDePASSE__F0rt%%\"\r\n}"
 				},
 				"url": {
 					"raw": "{{serverUrl}}{{apiVersion}}login",
@@ -1231,7 +3083,7 @@
 			},
 			"response": [
 				{
-					"name": "Login Nicolnt",
+					"name": "LOGIN : Erreur, mot de passe invalide",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -1244,7 +3096,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"pseudo\" : \"nicolnt\",\r\n    \"pwd\" : \"mot_de_passe\"\r\n}"
+							"raw": "{\r\n    \"pseudo\" : \"nicolnt\",\r\n    \"pwd\" : \"MotDePASSE__0rt%%\"\r\n}"
 						},
 						"url": {
 							"raw": "{{serverUrl}}{{apiVersion}}login",
@@ -1253,10 +3105,116 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": "Text",
-					"header": [],
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 26 May 2019 15:12:50 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.29 (Ubuntu)"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
 					"cookie": [],
-					"body": ""
+					"body": "{\n    \"code\": 401,\n    \"message\": \"Le mot de passe est incorrect.\"\n}"
+				},
+				{
+					"name": "LOGIN - CONNECTION : Permer de générer le token JWT de l'utilisateur",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pseudo\" : \"nicolnt\",\r\n    \"pwd\" : \"MotDePASSE__F0rt%%\"\r\n}"
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}login",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 26 May 2019 15:12:03 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.29 (Ubuntu)"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+						},
+						{
+							"key": "Content-Length",
+							"value": "341"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1NTg4ODM1MjMsImp0aSI6ImV3YU1cL0ZTZ20yVUVJR3BOMzNNTzRoSlBVSVBGaDVjcnNqYlA2S2lUWk9nPSIsImlzcyI6IjEyNy4wLjAuMSIsIm5iZiI6MTU1ODg4MzUzMywiZXhwIjoxNTU4ODk0MzMzLCJkYXRhIjp7InVzZXJJZCI6MjF9fQ.KRWxidPY-ZDvCtb3UFZytJG0SzJ9QPvkkwxyT69dHTJpR2UaUT8-Xr-hiLVBg3b6aeJCfEe7bUkGDxKmanCOWA\",\n    \"id_user\": 21\n}"
 				}
 			]
 		},
@@ -1277,7 +3235,68 @@
 				},
 				"description": "Check server status and las commit id"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SERVER - INFOS : Informe du status du serveur",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverUrl}}{{apiVersion}}",
+							"host": [
+								"{{serverUrl}}{{apiVersion}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 26 May 2019 15:13:22 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.29 (Ubuntu)"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, DELETE, PUT, PATCH, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"running\",\n    \"commit\": \"fd22213dd31ee317236076e1efcc7512becdd2d1\"\n}"
+				}
+			]
 		}
 	],
 	"auth": {
@@ -1314,45 +3333,45 @@
 	],
 	"variable": [
 		{
-			"id": "154ad947-9bbc-426a-86ec-1207c5ad267e",
+			"id": "c3e7a011-f22f-4993-acc1-82628569dafa",
 			"key": "serverUrl",
-			"value": "http://localhost/lolimac-back/",
+			"value": "https://www.lolimac.fr/",
 			"type": "string"
 		},
 		{
-			"id": "ca0a89d3-7f0b-454c-a8ce-82ca382a1fdd",
+			"id": "3748d320-7b15-484a-b6b3-c23546399770",
 			"key": "apiVersion",
 			"value": "api/",
 			"type": "string"
 		},
 		{
-			"id": "e0752f7c-26c9-4fe9-a1ba-47b9aa7fc94a",
+			"id": "d98b0f6f-8327-48f6-9760-0e54681b155a",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "571d6e76-5948-44e9-9a45-2a5663b3cb50",
+			"id": "73c0db5e-8d98-401a-a69a-b98026bf07bb",
 			"key": "eventId",
 			"value": "1",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "922d1c17-729f-40b8-9cbb-7fb3e43f2f17",
+			"id": "132869c7-2a4f-44aa-bce9-d4262dadf588",
 			"key": "placeId",
 			"value": "1",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "a47609cd-71e5-45bf-b916-104687cdcfc6",
+			"id": "b7d9116d-c9b5-4409-828e-934d37126168",
 			"key": "idAllICS",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "fae960f8-17b2-46a2-9b38-c60f45cfe5f2",
+			"id": "8e3b9f38-9dff-4715-bf62-a19d737aa4b3",
 			"key": "idICS",
 			"value": "",
 			"type": "string"
