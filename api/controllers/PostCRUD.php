@@ -74,6 +74,7 @@ class PostCRUD {
                 foreach ($comments as $key2 => $comment) {
                     $commentInfos = $comment->toArray();
                     $userComment = $userManager->readById($comment->getId_user());
+                    $userCommentInfos["id"] = $userComment->getId();
                     $userCommentInfos["firstname"] = $userComment->getFirstname();
                     $userCommentInfos["lastname"] = $userComment->getLastname();
                     $userCommentInfos["photo_url"] = $userComment->getPhoto_url();
@@ -81,6 +82,7 @@ class PostCRUD {
                     $comments[$key2] = $commentInfos;
                 }
                 $user = $userManager->readById($post->getId_user());
+                $userInfos["id"] = $user->getId();
                 $userInfos["firstname"] = $user->getFirstname();
                 $userInfos["lastname"] = $user->getLastname();
                 $userInfos["photo_url"] = $user->getPhoto_url();
