@@ -36,7 +36,10 @@ class UserCRUD {
     $token = new TokenAccess();
     $token->acompteAccess($data["id"]);
     $userManager = new UserManager();
-
+    if (isset($data['pwd'])) {
+        $data['pwd_hash'] = password_hash($data["pwd"], PASSWORD_DEFAULT);
+        unset($data['pwd']);
+    }
 
     $user = $userManager->readById($data["id"]);
       if($user) {
@@ -47,7 +50,7 @@ class UserCRUD {
       }
     echo json_encode([
             "message" => "User updated.",
-    ]);;  
+    ]);;
     }
 
   public function read($dataIn) {
@@ -63,7 +66,7 @@ class UserCRUD {
             "pseudo" => $user->GetPseudo(),
             "photo_url" => $user->GetPhoto_url(),
             "status" => $user->GetStatus(),
-            "phone" => $user->GetPhone(), 
+            "phone" => $user->GetPhone(),
             "mail" => $user->GetMail(),
             "year_promotion" => $user->getYear_promotion()
         ]);

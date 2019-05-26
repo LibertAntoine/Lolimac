@@ -39,7 +39,7 @@ class PostCRUD {
         'post' => 'post'
     ]);
     echo \json_encode([
-        'message' => 'Post updated.'
+        'message' => 'Post added.'
     ]);
     return TRUE;
   }
@@ -91,6 +91,9 @@ class PostCRUD {
     $commentManager = new CommentManager();
     $commentManager->deleteByIdPost($data["id"]);
     $postManager->deleteById($data["id"]);
+    echo \json_encode([
+        'message' => 'Post deleted.'
+    ]);
     return TRUE;
   }
 }
