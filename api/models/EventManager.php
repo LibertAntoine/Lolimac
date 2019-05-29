@@ -46,7 +46,7 @@ class EventManager extends DBAccess {
   public function readOffsetLimit(int $offset, int $limit) {
     $allEvents = [];
 
-    $q = $this->db->prepare("SELECT * FROM events LIMIT :limit OFFSET :offset");
+    $q = $this->db->prepare("SELECT * FROM events WHERE date_start >= DATE_SUB(NOW(), INTERVAL 1 MONTH) OR date_start IS NULL ORDER BY CASE WHEN date_start IS NULL THEN 1 ELSE 0 END, date_start LIMIT :limit OFFSET :offset");
     $q->bindValue(":limit", (int) $limit, \PDO::PARAM_INT);
     $q->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
 	$q->execute();
