@@ -1,0 +1,3 @@
+<app-top-navigation *ngIf="!bMobile && !bVisitor" [notifCount]="notificationCount"></app-top-navigation>
+<router-outlet></router-outlet>
+<app-bottom-navigation *ngIf="bMobile && !bVisitor" [notifCount]="notificationCount"></app-bottom-navigation>

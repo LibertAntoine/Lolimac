@@ -1,0 +1,30 @@
+<nav id="top-nav">
+  <div matRipple routerLink="/tableau-de-bord" routerLinkActive="nav-active" class="nav-btn">
+    <a>
+      Tableau de bord
+    </a>
+  </div>
+  <div matRipple routerLink="/notifications" routerLinkActive="nav-active" class="nav-btn">
+    <a *ngIf="notifCount != 0">
+      Notifications ({{ notifCount }})
+    </a>
+    <a *ngIf="notifCount == 0">
+      Notifications
+    </a>
+  </div>
+  <div matRipple routerLink="/evenements/creation" routerLinkActive="nav-active" class="nav-btn">
+    <a>
+      Créer un évènement
+    </a>
+  </div>
+  <div matRipple routerLink="/profil" routerLinkActive="nav-active" class="nav-btn">
+    <a>
+      Profil
+    </a>
+  </div>
+  <div matRipple routerLink="/recherche" class="nav-btn">
+    <a>
+      <mat-icon>search</mat-icon>
+    </a>
+  </div>
+</nav>

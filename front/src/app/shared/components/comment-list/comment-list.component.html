@@ -1,0 +1,58 @@
+<div *ngFor="let comment of comments" class="comments-container">
+  <div *ngIf="commentIdToUpdate != comment.id" class="comment-container">
+    <div class="avatar-medium">
+      <img src="{{ comment.user.photo_url }}">
+    </div>
+    <div>
+      <div class="grid-horizontal-between">
+        <b *ngIf="comment.user.firstname != ''">{{comment.user.firstname}} {{comment.user.lastname}}</b>
+        <b *ngIf="comment.user.firstname == ''">[Utilisateur supprimé]</b>
+
+        <p class="marg-right" *ngIf="comment.id_user != userId">Le {{ comment.date_edited | date:'dd MMMM' }}</p>
+        <a class="link marg-right" *ngIf="comment.id_user == userId"
+          (click)="bEdit = true; commentIdToUpdate = comment.id; patchForm(comment)">
+          Modifier
+        </a>
+      </div>
+      <div class="comment">
+        <p>{{ comment.content }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="commentIdToUpdate == comment.id">
+    <ng-container *ngTemplateOutlet="form"></ng-container>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="!bEdit">
+  <ng-container *ngTemplateOutlet="form"></ng-container>
+</ng-container>
+
+<ng-template #form>
+  <div class="form-container">
+    <div class="avatar-medium">
+      <img src="{{ userPhotoUrl }}">
+    </div>
+    <form [formGroup]="commentForm" id="commentForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Écrire un commentaire ...</mat-label>
+        <input (keydown.enter)="submitCreateForm()"  matInput placeholder="Concert au Crous" formControlName="content">
+      </mat-form-field>
+
+      <ng-container [ngSwitch]="bEdit">
+        <ng-container *ngSwitchCase="true">
+          <button mat-raised-button color="accent" (click)="submitEditForm()" [disabled]="!commentForm.valid">
+            Valider
+          </button>
+          <button mat-raised-button (click)="deleteComment()" color="warn">
+            Supprimer
+          </button>
+          <button mat-raised-button (click)="commentIdToUpdate = undefined; bEdit = false; patchForm(undefined)">
+            Annuler
+          </button>
+        </ng-container>
+      </ng-container>
+    </form>
+  </div>
+</ng-template>

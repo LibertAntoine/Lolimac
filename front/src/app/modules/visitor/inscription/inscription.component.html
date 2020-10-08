@@ -1,0 +1,103 @@
+<app-top-app-bar *ngIf="bMobile" [title]="'Inscription'" [bReturn]="true" (return)="goTo('/visiteur/login')">
+</app-top-app-bar>
+
+<div id="inscription-page" class="full-page">
+  <h2 *ngIf="!bMobile">Inscription sur Lolimac</h2>
+
+  <mat-horizontal-stepper  [linear]="true" *ngIf="!bInscriptionDone; else success">
+    <mat-step label="Identifiants" [stepControl]="inscriptionForm.get('page1')">
+      <form [formGroup]="inscriptionForm.get('page1')">
+        <mat-form-field appearance="fill">
+          <mat-label>Identifiant</mat-label>
+          <input matInput placeholder="CrousMan" formControlName="pseudo" required>
+          <mat-error>Identifiant invalide !</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="jesuisleroi@dumonde.com" type="email" formControlName="mail" required>
+          <mat-error>Email invalide !</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Promotion</mat-label>
+          <mat-select placeholder="Promotion" formControlName="year_promotion" required>
+            <mat-option value="2021">2021</mat-option>
+            <mat-option value="2020">2020</mat-option>
+            <mat-option value="2019">2019</mat-option>
+            <mat-option value="2018">2018</mat-option>
+            <mat-option value="2017">2017</mat-option>
+            <mat-option value="2016">2016</mat-option>
+            <mat-option value="autre">Autre</mat-option>
+          </mat-select>
+          <mat-error>Veuillez indiquer votre promotion</mat-error>
+        </mat-form-field>
+
+        <button mat-button matStepperNext [disabled]="!inscriptionForm.get('page1').valid">Suite</button>
+      </form>
+    </mat-step>
+
+    <mat-step label="Identité">
+      <form [formGroup]="inscriptionForm.get('page2')">
+        <div class="avatar">
+          <img src="{{ inscriptionForm.get('page2').value.photo_url }}">          
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Avatar</mat-label>
+          <input matInput type="url" formControlName="photo_url">
+          <mat-error>Vous devez spécifier une url d'image</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Prénom</mat-label>
+          <input matInput placeholder="George" formControlName="firstname" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="Brassens" formControlName="lastname" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Téléphone (Optionnel) </mat-label>
+          <input matInput type="tel" formControlName="phone">
+        </mat-form-field>
+  
+        <button mat-button matStepperNext [disabled]="!inscriptionForm.get('page2').valid">Suite</button>
+      </form>
+    </mat-step>
+
+    <mat-step label="Validation">
+      <form [formGroup]="inscriptionForm.get('page3')">
+        <mat-form-field appearance="fill">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" formControlName="pwd" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Confirmation du mot de passe</mat-label>
+          <input matInput type="password" formControlName="confirm_pwd" required>
+          <mat-error>Les mots de passe ne sont pas équivalents</mat-error>  
+        </mat-form-field>
+
+        <button mat-raised-button color="accent"
+          aria-label="S'inscrire sur lolimac"
+          (click)="submitForm()"
+          [disabled]="!inscriptionForm.valid">
+          S'inscrire
+        </button>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+  <ng-template #success>
+    <div class="success">
+      <mat-icon class="success-icon">done</mat-icon>
+      <h3>Inscription validée !</h3>
+      <p>Vous allez être redirigé à la page de login pour vous authentifier</p>
+    </div>
+  </ng-template>
+
+  <a id="subscribe" routerLink="/visiteur/login" *ngIf="!bMobile" class="link">Changement d'avis ? Retour à la page login</a>
+</div>

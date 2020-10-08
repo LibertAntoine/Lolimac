@@ -1,0 +1,642 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>imac-resoi-front documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">imac-resoi-front documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>InvitationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/visitor/invitation/invitation.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-invitation</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./invitation.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./invitation.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bMobile">bMobile</a>
+                            </li>
+                            <li>
+                                <a href="#invitationForm">invitationForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#goTo">goTo</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(m_formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, m_router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, responsiveService: <a href="../injectables/ResponsiveService.html">ResponsiveService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/visitor/invitation/invitation.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>m_formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>m_router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>responsiveService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ResponsiveService.html" target="_self" >ResponsiveService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goTo"></a>
+                    <span class="name">
+                        <b>
+                            goTo
+                        </b>
+                        <a href="#goTo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goTo(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/modules/visitor/invitation/invitation.component.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>url</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/modules/visitor/invitation/invitation.component.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bMobile"></a>
+                        <span class="name">
+                            <b>
+                            bMobile</b>
+                            <a href="#bMobile"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/visitor/invitation/invitation.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="invitationForm"></a>
+                        <span class="name">
+                            <b>
+                            invitationForm</b>
+                            <a href="#invitationForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modules/visitor/invitation/invitation.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { ResponsiveService } from &#x27;app/core/services/responsive.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+@Component({
+  selector: &#x27;app-invitation&#x27;,
+  templateUrl: &#x27;./invitation.component.html&#x27;,
+  styleUrls: [&#x27;./invitation.component.scss&#x27;]
+})
+export class InvitationComponent implements OnInit {
+  invitationForm: FormGroup;
+  bMobile: boolean;
+
+  constructor(private m_formBuilder: FormBuilder,
+    private m_router: Router,
+    responsiveService: ResponsiveService) {
+    responsiveService.isMobile().subscribe(result &#x3D;&gt; {
+      if (result.matches) {
+          this.bMobile &#x3D; false;
+      } else {
+          this.bMobile &#x3D; true;
+      }
+    });
+
+    this.invitationForm &#x3D; this.m_formBuilder.group({
+      email: [&#x27;&#x27;, Validators.compose([
+        Validators.required,
+        Validators.email
+      ])],
+      name: [&#x27;&#x27;, Validators.compose([
+        Validators.required,
+        Validators.minLength(4)
+      ])],
+      promotion: [&#x27;&#x27;, Validators.required],
+      message: [&#x27;&#x27;]
+    });
+  }
+
+  ngOnInit() {
+  }
+
+  goTo(url: string): void {
+    this.m_router.navigate([url]);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-top-app-bar *ngIf&#x3D;&quot;bMobile&quot; [title]&#x3D;&quot;&#x27;Demande d\&#x27;invitation&#x27;&quot; [bReturn]&#x3D;&quot;true&quot; (return)&#x3D;&quot;goTo(&#x27;/visiteur/login&#x27;)&quot;&gt;
+&lt;/app-top-app-bar&gt;
+
+&lt;div id&#x3D;&quot;invitation-page&quot; class&#x3D;&quot;full-page&quot;&gt;
+  &lt;h2 *ngIf&#x3D;&quot;!bMobile&quot;&gt;Demande d&#x27;invitation sur le meilleur site au monde&lt;/h2&gt;
+
+  &lt;form [formGroup]&#x3D;&quot;invitationForm&quot;&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+      &lt;mat-label&gt;Email&lt;/mat-label&gt;
+      &lt;input matInput placeholder&#x3D;&quot;CrousMan89&quot; type&#x3D;&quot;email&quot; formControlName&#x3D;&quot;email&quot;&gt;
+      &lt;mat-error&gt;T&#x27;as cru qu&#x27;on autorisait les fakes ici ?&lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+        &lt;mat-label&gt;Nom&lt;/mat-label&gt;
+        &lt;input matInput placeholder&#x3D;&quot;Secret&quot; type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;name&quot;&gt;
+        &lt;mat-error&gt;La vie est courte, ton nom ne l&#x27;est pas&lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+      &lt;mat-label&gt;Promotion&lt;/mat-label&gt;
+      &lt;mat-select placeholder&#x3D;&quot;Promotion&quot;&gt;
+        &lt;mat-option value&#x3D;&quot;2021&quot;&gt;2021&lt;/mat-option&gt;
+        &lt;mat-option value&#x3D;&quot;2020&quot;&gt;2020&lt;/mat-option&gt;
+        &lt;mat-option value&#x3D;&quot;2019&quot;&gt;2019&lt;/mat-option&gt;
+        &lt;mat-option value&#x3D;&quot;2018&quot;&gt;2018&lt;/mat-option&gt;
+        &lt;mat-option value&#x3D;&quot;2017&quot;&gt;2017&lt;/mat-option&gt;
+        &lt;mat-option value&#x3D;&quot;2016&quot;&gt;2016&lt;/mat-option&gt;
+        &lt;mat-option value&#x3D;&quot;autre&quot;&gt;Autre&lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+      &lt;mat-label&gt;Message de présentation&lt;/mat-label&gt;
+      &lt;textarea matInput placeholder&#x3D;&quot;Je met les pied ou je veux little-John...&quot; formControlName&#x3D;&quot;message&quot;&gt;&lt;/textarea&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;button mat-raised-button color&#x3D;&quot;accent&quot;
+      aria-label&#x3D;&quot;Se connecter à lolimac&quot;
+      [disabled]&#x3D;&quot;!invitationForm.valid&quot;&gt;
+      Demander son invitation
+    &lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;a id&#x3D;&quot;subscribe&quot; *ngIf&#x3D;&quot;!bMobile&quot; routerLink&#x3D;&quot;/visiteur/login&quot;&gt;Changement d&#x27;avis ? Retour à la page login&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./invitation.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+#invitation-page {
+    align-content: stretch;
+    grid-gap: 10px;
+
+    form {
+        display: inline-grid;
+        align-content: center;
+
+        button {
+            margin-top: 40px;
+            justify-self: end;
+        }
+    }
+
+    a {
+        text-align: center;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-top-app-bar *ngIf="bMobile" [title]="\'Demande d\\'invitation\'" [bReturn]="true" (return)="goTo(\'/visiteur/login\')"></app-top-app-bar><div id="invitation-page" class="full-page">  <h2 *ngIf="!bMobile">Demande d\'invitation sur le meilleur site au monde</h2>  <form [formGroup]="invitationForm">    <mat-form-field appearance="fill">      <mat-label>Email</mat-label>      <input matInput placeholder="CrousMan89" type="email" formControlName="email">      <mat-error>T\'as cru qu\'on autorisait les fakes ici ?</mat-error>    </mat-form-field>    <mat-form-field appearance="fill">        <mat-label>Nom</mat-label>        <input matInput placeholder="Secret" type="text" formControlName="name">        <mat-error>La vie est courte, ton nom ne l\'est pas</mat-error>    </mat-form-field>    <mat-form-field appearance="fill">      <mat-label>Promotion</mat-label>      <mat-select placeholder="Promotion">        <mat-option value="2021">2021</mat-option>        <mat-option value="2020">2020</mat-option>        <mat-option value="2019">2019</mat-option>        <mat-option value="2018">2018</mat-option>        <mat-option value="2017">2017</mat-option>        <mat-option value="2016">2016</mat-option>        <mat-option value="autre">Autre</mat-option>      </mat-select>    </mat-form-field>    <mat-form-field appearance="fill">      <mat-label>Message de présentation</mat-label>      <textarea matInput placeholder="Je met les pied ou je veux little-John..." formControlName="message"></textarea>    </mat-form-field>    <button mat-raised-button color="accent"      aria-label="Se connecter à lolimac"      [disabled]="!invitationForm.valid">      Demander son invitation    </button>  </form>  <a id="subscribe" *ngIf="!bMobile" routerLink="/visiteur/login">Changement d\'avis ? Retour à la page login</a></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BottomNavigationComponent', 'selector': 'app-bottom-navigation'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'CommentListComponent', 'selector': 'app-comment-list'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditProfileComponent', 'selector': 'app-edit-profile'},{'name': 'EventCardComponent', 'selector': 'app-event-card'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'ForgotComponent', 'selector': 'app-forgot'},{'name': 'InscriptionComponent', 'selector': 'app-inscription'},{'name': 'InvitationComponent', 'selector': 'app-invitation'},{'name': 'LegalsComponent', 'selector': 'app-legals'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PostListComponent', 'selector': 'app-post-list'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'TopAppBarComponent', 'selector': 'app-top-app-bar'},{'name': 'TopNavigationComponent', 'selector': 'app-top-navigation'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'InvitationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'InvitationComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

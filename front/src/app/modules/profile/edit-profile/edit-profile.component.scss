@@ -1,0 +1,27 @@
+#edit-profile-page {
+    display: grid;
+    grid-auto-flow: row;
+    align-content: center;
+    justify-content: center;
+    grid-gap: 20px;
+
+    mat-vertical-stepper {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        background-color: unset;
+
+        mat-form-field {
+            width: 100%;
+        }
+    }
+
+    button {
+        justify-self: center;
+    }
+
+    .grid-justify-space {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-around;
+    }
+}

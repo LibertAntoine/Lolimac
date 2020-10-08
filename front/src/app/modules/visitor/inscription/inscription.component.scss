@@ -1,0 +1,52 @@
+
+#inscription-page {
+    align-content: stretch;
+    grid-gap: 10px;
+
+    h2 {
+        text-align: center;
+        align-self: end;
+    }
+
+    mat-horizontal-stepper, .success {
+        border-radius: var(--border-radius);
+        align-self: center;
+        overflow: hidden;
+        background-color: unset;
+    }
+
+    .success {
+        display: grid;
+        padding: 24px;
+        grid-auto-flow: row;
+        justify-items: center;
+        text-align: center;
+        background-color: var(--color-primary-lighter);
+
+        .success-icon {
+            font-size: 55px;
+            background-color: var(--color-accent);
+            border-radius: 50px; 
+            height: 70px;
+            width: 70px;
+            line-height: 70px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    form {
+        display: grid;
+        grid-auto-flow: row;
+        grid-gap: 5px;
+
+        button {
+            margin-top: 5px; 
+        }
+    }
+
+    a {
+        text-align: center;
+        justify-self: center;
+    }
+}

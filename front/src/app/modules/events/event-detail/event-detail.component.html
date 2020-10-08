@@ -1,0 +1,110 @@
+<app-top-app-bar *ngIf="bMobile" [bReturn]="true" [title]="'Détail de l\'évènement'" (return)="goTo('tableau-de-bord')">
+</app-top-app-bar>
+
+<ng-container *ngIf="event; else loading">
+  <div id="banner">
+    <img alt="Photo d'illustration de l'évènement" [lazyLoad]="event.photo_url">
+  </div>
+
+  <div class="has-mobile-nav" id="event-detail-page">
+    <div id="event-detail-page-content">
+      <h2>{{ event.title }}</h2>
+      <div id="bloc-accroche">
+        <div id="bloc-createur" *ngIf="event.participation != 1">
+          <ng-container *ngFor="let user of event.participants">
+            <ng-container *ngIf="user.participation == 1">
+              <div class="avatar">
+                <img [lazyLoad]="user.photo_url" alt="avatar">
+              </div>
+              <div>
+                <p>Organisé par</p>
+                <b>{{ user.firstmane }} {{ user.lastname}}</b>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div *ngIf="event.participation == 1">
+          <div>
+            <p>Vous avez organisé cet évènement</p>
+          </div>
+        </div>
+
+        <ng-container [ngSwitch]="event.participation">
+          <button *ngSwitchCase="0" mat-raised-button color="accent"
+            (click)="joinEvent(); event.participation = 2">Participer</button>
+          <button *ngSwitchCase="1" mat-raised-button
+            (click)="goTo('/evenements/edition/' + event.id_event)">Modifier</button>
+          <button *ngSwitchCase="2" mat-stroked-button (click)="leaveEvent(); event.participation = 0">Ne plus
+            participer</button>
+        </ng-container>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="detail-line">
+        <mat-icon>access_time</mat-icon>
+        <div *ngIf="event.date_start; else noDate" class="flex-horizontal-space">
+          <div>
+            <p *ngIf="!bNoHour">Le {{ event.date_start | date:'d MMMM yyyy à HH:mm' }}</p>
+            <p *ngIf="bNoHour">Le {{ event.date_start | date:'d MMMM yyyy' }}</p>
+          </div>
+
+          <a (click)="getIcsLink()" class="mat-icon-text pointer">Exporter le calendrier<mat-icon>keyboard_arrow_right
+            </mat-icon></a>
+        </div>
+
+        <ng-template #noDate>
+          <p>Jour à définir</p>
+        </ng-template>
+      </div>
+      <div class="detail-line">
+        <mat-icon>location_on</mat-icon>
+        <div *ngIf="event.place; else noPlace" class="flex-horizontal-space">
+          <p *ngIf="event.place.name">{{ event.place.name }}</p>
+          <a (click)="scrollToPlace()" class="mat-icon-text pointer">Plus de détails<mat-icon>keyboard_arrow_right</mat-icon></a>
+        </div>
+        <ng-template #noPlace>
+          <p>Lieu à définir</p>
+        </ng-template>
+      </div>
+
+      <h3>Description</h3>
+      <ng-container *ngIf="event.description; else noDescription">
+        <p class="description">{{ event.description }}</p>
+      </ng-container>
+      <ng-template #noDescription>
+        <p class="description">Pas de description pour le moment !</p>
+      </ng-template>
+
+      <h3 *ngIf="event.participants.length > 1">Participants ({{ event.participants.length }})</h3>
+      <h3 *ngIf="event.participants.length == 1">Participant</h3>
+      <div class="participants-container" *ngIf="event.participants.length != 0; else noParticipants">
+        <div *ngFor="let user of event.participants" class="participant-card">
+          <div class="avatar-medium">
+            <img [lazyLoad]="user.photo_url" alt="avatar">
+          </div>
+          <b>{{ user.firstmane }} {{ user.lastname[0] }}.</b>
+        </div>
+      </div>
+      <ng-template #noParticipants>
+        <p>Pas de participant pour le moment !</p>
+      </ng-template>
+
+      <app-post-list [posts]="event.posts" [eventId]="eventId" (updated)="reloadPosts()"></app-post-list>
+
+      <ng-container *ngIf="event.place">
+        <h3 #place >Lieu</h3>
+        <div id="place">
+          <b>{{ event.place.name }}</b>
+          <p *ngIf="event.place.street">{{ event.place.number }} {{ event.place.street }} <span *ngIf="event.place.city">- {{ event.place.city }}</span></p>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <p>Chargement de l'évènement...</p>
+</ng-template>

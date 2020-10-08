@@ -1,0 +1,28 @@
+
+#profile-page {
+    align-content: center;
+    grid-gap: 25px;
+
+    .profile {
+        display: grid;
+        text-align: center;
+        grid-gap: 10px;
+        margin-top: 20px;
+
+        .avatar {
+            justify-self: center;
+        }
+    }
+
+    .events-container {
+        display: grid;
+        grid-auto-flow: row;
+        grid-gap: 10px;
+    }
+
+    .options {
+        display: grid;
+        grid-auto-flow: row;
+        grid-gap: 10px;
+    }
+}

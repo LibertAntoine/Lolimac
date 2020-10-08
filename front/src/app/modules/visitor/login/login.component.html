@@ -1,0 +1,31 @@
+<div id="login-page">
+  <div class="presentation-container">
+    <div class="logo">
+      <img src="/assets/icons/icon-96x96.png">
+    </div>
+    <div class="presentation">
+      <h2>Bienvenue sur Lolimac</h2>
+      <p>L'unique organisateur d'évènements entre gens Crous</p>
+    </div>
+  </div>
+
+  <form [formGroup]="loginForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Identifiant</mat-label>
+      <input matInput placeholder="CrousMan89" formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput placeholder="Blabla..." type="password" formControlName="password"
+        (keyup.enter)="login(loginForm.value.username, loginForm.value.password)">
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" aria-label="Se connecter à lolimac"
+      (click)="login(loginForm.value.username, loginForm.value.password)" [disabled]="!loginForm.valid">
+      Se connecter
+    </button>
+  </form>
+
+  <a id="subscribe" class="link" routerLink="/visiteur/inscription">Pas de compte ? Inscrivez-vous dès maintenant</a>
+</div>

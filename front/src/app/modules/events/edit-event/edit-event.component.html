@@ -1,0 +1,196 @@
+<app-top-app-bar *ngIf="bMobile" [title]="'Édition d\'évènement'" [bReturn]="true"
+  (return)="goTo('/evenements/detail/' + eventId)">
+</app-top-app-bar>
+
+<div class="has-mobile-nav" id="edit-event-page">
+  <form [formGroup]="eventForm">
+    <mat-vertical-stepper [linear]="false">
+      <!-- Step 1 -->
+      <mat-step label="Résumé">
+        <mat-form-field appearance="fill">
+          <mat-label>Nom de l'évènement</mat-label>
+          <input matInput placeholder="Concert au Crous" formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Catégorie</mat-label>
+          <mat-select placeholder="Type d'évènement" formControlName="photo_url">
+            <mat-option
+              value="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80">
+              Soirée
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1485518994577-6cd6324ade8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=944&q=80">
+              Exposition
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+              Cinéma
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+              Soutiens
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+              Goûter
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80">
+              Présentation
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1477248742637-8e90b0dcfb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+              Étrange
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1449358070958-884ac9579399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+              Sport
+            </mat-option>
+            <mat-option
+              value="https://images.unsplash.com/photo-1461344577544-4e5dc9487184?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+              Activité Art.
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-step>
+
+      <!-- Step 2 -->
+      <mat-step label="Date et Heure">
+        <mat-form-field appearance="fill">
+          <mat-label>Date de l'évènement</mat-label>
+          <input matInput [matDatepicker]="datePicker" placeholder="17/05/2022" [min]="minDate"
+            formControlName="date_start">
+          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker startView="month"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="first-item">
+          <mat-label>Heure de début</mat-label>
+          <mat-select placeholder="14h" formControlName="date_start_hour">
+            <mat-option value="0">Indéfinie</mat-option>
+            <mat-option value="6">6h</mat-option>
+            <mat-option value="7">7h</mat-option>
+            <mat-option value="8">8h</mat-option>
+            <mat-option value="9">9h</mat-option>
+            <mat-option value="10">10h</mat-option>
+            <mat-option value="11">11h</mat-option>
+            <mat-option value="12">12h</mat-option>
+            <mat-option value="13">13h</mat-option>
+            <mat-option value="14">14h</mat-option>
+            <mat-option value="15">15h</mat-option>
+            <mat-option value="16">16h</mat-option>
+            <mat-option value="17">17h</mat-option>
+            <mat-option value="18">18h</mat-option>
+            <mat-option value="19">19h</mat-option>
+            <mat-option value="20">20h</mat-option>
+            <mat-option value="21">21h</mat-option>
+            <mat-option value="22">22h</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Minute</mat-label>
+          <mat-select placeholder="30" formControlName="date_start_minute">
+            <mat-option value="0">00</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="20">20</mat-option>
+            <mat-option value="30">30</mat-option>
+            <mat-option value="40">40</mat-option>
+            <mat-option value="50">50</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" *ngIf="bEndDetailControl">
+          <mat-label>Durée</mat-label>
+          <mat-select placeholder="30" formControlName="date_end_offset" (valueChange)="onDateEndDropChange($event)">
+            <mat-option value="0">Indéfinie</mat-option>
+            <mat-option value="1">1h</mat-option>
+            <mat-option value="2">2h</mat-option>
+            <mat-option value="3">3h</mat-option>
+            <mat-option value="4">4h</mat-option>
+            <mat-option value="24">Toute la journée</mat-option>
+            <mat-option value="more">Autre</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <ng-container *ngIf="bEndDetail">
+          <mat-form-field appearance="fill">
+            <mat-label>Date de fin</mat-label>
+            <input matInput [matDatepicker]="datePicker" placeholder="17/05/2022" [min]="minDate"
+              formControlName="date_end">
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker startView="month"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="first-item">
+            <mat-label>Heure de fin</mat-label>
+            <mat-select placeholder="14h" formControlName="date_end_hour">
+              <mat-option value="0">Indéfinie</mat-option>
+              <mat-option value="9">9h</mat-option>
+              <mat-option value="10">10h</mat-option>
+              <mat-option value="11">11h</mat-option>
+              <mat-option value="12">12h</mat-option>
+              <mat-option value="13">13h</mat-option>
+              <mat-option value="14">14h</mat-option>
+              <mat-option value="15">15h</mat-option>
+              <mat-option value="16">16h</mat-option>
+              <mat-option value="17">17h</mat-option>
+              <mat-option value="18">18h</mat-option>
+              <mat-option value="19">19h</mat-option>
+              <mat-option value="20">20h</mat-option>
+              <mat-option value="21">21h</mat-option>
+              <mat-option value="22">22h</mat-option>
+              <mat-option value="23">23h</mat-option>
+              <mat-option value="24">Minuit</mat-option>
+              <mat-option value="1">1h</mat-option>
+              <mat-option value="2">2h</mat-option>
+              <mat-option value="3">3h</mat-option>
+              <mat-option value="4">4h</mat-option>
+              <mat-option value="5">5h</mat-option>
+              <mat-option value="6">6h</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+      </mat-step>
+
+      <mat-step label="Lieu de rencontre">
+        <mat-form-field appearance="fill" formGroupName="place">
+          <mat-label>Nom du point de rencontre</mat-label>
+          <input matInput placeholder="Copernic" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" formGroupName="place">
+          <mat-label>Numéro de rue</mat-label>
+          <input matInput type="number" placeholder="23" formControlName="number">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" formGroupName="place">
+          <mat-label>Nom de rue</mat-label>
+          <input matInput placeholder="Rue de la pinte" formControlName="street">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" formGroupName="place">
+          <mat-label>Ville</mat-label>
+          <input matInput placeholder="Paris XVIe" formControlName="city">
+        </mat-form-field>
+      </mat-step>
+
+      <mat-step label="Détails">
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput rows="10" placeholder="..." formControlName="description"></textarea>
+        </mat-form-field>
+      </mat-step>
+
+      <mat-step label="Zone dangereuse">
+        <button mat-raised-button (click)="deleteEvent()" color="warn">Supprimer l'évènement</button>
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+
+  <div class="grid-justify-space">
+    <button mat-raised-button *ngIf="!bMobile" (click)="goTo('/evenements/detail/' + eventId)">Retour</button>
+    <button mat-raised-button color="accent" [disabled]="!eventForm.valid" (click)="submitForm()">Modifier</button>
+  </div>
+</div>

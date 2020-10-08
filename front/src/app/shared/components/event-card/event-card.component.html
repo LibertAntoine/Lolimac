@@ -1,0 +1,32 @@
+<div class="event-card">
+  <div class="banner">
+    <img alt="photo d'illustration de l'évènement" class="ng-lazy" [lazyLoad]="event.photo_url"
+      (click)="goTo('/evenements/detail/' + event.id_event)">
+  </div>
+
+  <div class="description">
+    <div class="texte">
+      <h2 (click)="goTo('/evenements/detail/' + event.id_event)">{{ event.title }}</h2>
+
+      <ng-container *ngIf="event.place; else noPlace">
+        <p *ngIf="event.place.name">{{ event.place.name }}</p>
+      </ng-container>
+      <ng-template #noPlace>
+        <p>Lieu à définir</p>
+      </ng-template>
+
+      <ng-container *ngIf="event.date_start; else noTime">
+        <p>Le {{ event.date_start | date:'mediumDate' }}</p>
+      </ng-container>
+      <ng-template #noTime>
+        <p>Jour à définir</p>
+      </ng-template>
+    </div>
+
+    <ng-container [ngSwitch]="event.participation">
+      <button *ngSwitchCase="0" mat-raised-button color="accent" (click)="joinEvent(event.id_event); event.participation = 2">Participer</button>
+      <button *ngSwitchCase="1" mat-raised-button (click)="goTo('/evenements/edition/' + event.id_event)">Modifier</button>
+      <button *ngSwitchCase="2" mat-stroked-button (click)="leaveEvent(event.id_event); event.participation = 0">Ne plus participer</button>
+    </ng-container>
+  </div>
+</div>

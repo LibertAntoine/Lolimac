@@ -1,0 +1,70 @@
+<div class="grid-horizontal-between">
+    <ng-container *ngIf="posts; else noPost">
+        <h3 *ngIf="posts.length == 1">Post</h3>
+        <h3 *ngIf="posts.length > 1">Posts ({{ posts.length }})</h3>
+    </ng-container>
+    <ng-template #noPost><h3>Post</h3></ng-template>
+    <button mat-raised-button *ngIf="currentState == postState.Read" color="accent" (click)="currentState = postState.Create">Ajouter un post</button>
+</div>
+
+<ng-container *ngIf="currentState == postState.Create">
+    <ng-container *ngTemplateOutlet="form"></ng-container>
+</ng-container>
+
+<div *ngFor="let post of posts" class="post">
+    <div *ngIf="postIdToUpdate != post.id" class="post-content">
+        <div class="top-bar">
+            <h3>{{ post.title }}</h3>
+            <a class="link" *ngIf="post.id_user == userId" (click)="currentState = postState.Update; postIdToUpdate = post.id; patchForm(post)">
+                Modifier
+            </a>
+            <p *ngIf="post.id_user != userId">
+                Le {{ post.date_edited | date:'dd MMMM' }}
+            </p>
+        </div>
+
+        <p>{{ post.content }}</p>
+        <small *ngIf="post.user">Posté par {{post.user.firstname}} {{post.user.lastname}}</small>
+    </div>
+
+    <div *ngIf="postIdToUpdate == post.id" class="post-content">
+        <ng-container *ngTemplateOutlet="form"></ng-container>
+    </div>
+
+    <app-comment-list [comments]="post.comments" [eventId]="eventId" [postId]="post.id" (updated)="reloadComments()">
+    </app-comment-list>
+</div>
+
+<ng-template #form>
+    <form [formGroup]="postForm" id="postForm" [class.form-no-shadow]="currentState == postState.Update">
+        <mat-form-field appearance="fill">
+            <mat-label>Titre du post</mat-label>
+            <input matInput placeholder="Qui ramène les binouz ?" formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Contenu du post</mat-label>
+            <textarea matInput rows="10" placeholder="..." formControlName="content"></textarea>
+        </mat-form-field>
+
+        <ng-container [ngSwitch]="currentState">
+            <button *ngSwitchCase="postState.Create" mat-raised-button color="accent" (click)="submitCreateForm()"
+                [disabled]="!postForm.valid">
+                Créer
+            </button>
+
+            <ng-container *ngSwitchCase="postState.Update">
+                <button mat-raised-button color="accent" (click)="submitEditForm()" [disabled]="!postForm.valid">
+                    Modifier
+                </button>
+                <button mat-raised-button color="warn" (click)="deletePost()">
+                    Supprimer
+                </button>
+            </ng-container>
+        </ng-container>
+
+        <button mat-button (click)="currentState = postState.Read; postIdToUpdate = undefined; patchForm(undefined)">
+            Annuler
+        </button>
+    </form>
+</ng-template>

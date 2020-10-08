@@ -1,0 +1,30 @@
+
+#top-nav {
+    height: var(--height-topbar);
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    background-color: var(--color-primary);
+    box-shadow: inset 0px -1px 2px rgba(0, 0, 0, 0.25);
+
+    .nav-btn {
+        display: inline-grid;
+        width: 100%;
+        height: 100%;
+        align-content: center;
+        justify-items: center;
+
+        mat-icon {
+            color: var(--color-on-primary);
+        }
+
+        &.nav-active {
+            font-weight: bold;
+        }
+
+        &:hover {
+            color: var(--color-primary-darker);
+            cursor: pointer;
+        }
+    }
+}

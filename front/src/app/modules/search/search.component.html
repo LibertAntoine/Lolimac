@@ -1,0 +1,18 @@
+<form [formGroup]="searchForm" id="search-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Recherche</mat-label>
+    <input matInput placeholder="Crous" formControlName="terms" (keyup)="search(searchForm.value.terms)">
+  </mat-form-field>
+</form>
+
+<div class="has-mobile-nav" id="search-page">
+  <ng-container *ngIf="searchResults$ | async as events">
+    <ng-container *ngIf="events.length > 0; else noResult">
+      <app-event-card *ngFor="let event of events" [event]="event" class="item"></app-event-card>
+    </ng-container>
+
+    <ng-template #noResult>
+      <p>Aucun résultat de recherche !</p>
+    </ng-template>
+  </ng-container>
+</div>

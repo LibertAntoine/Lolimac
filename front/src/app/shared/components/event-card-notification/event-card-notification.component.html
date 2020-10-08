@@ -1,0 +1,15 @@
+<div class="event-card-notification" (click)="goTo('/evenements/detail/' + event.id_event)">
+  <div>
+    <p><b>{{ event.title }}</b></p>
+    <ng-container [ngSwitch]="event.type_edit">
+      <p *ngSwitchCase="'date_end'">La date de fin a été modifiée</p>
+      <p *ngSwitchCase="'date_start'">La date de début a été modifiée</p>
+      <p *ngSwitchCase="'place'">Le lieu a été changé</p>
+      <p *ngSwitchCase="'post'">Quelqu'un a ajouté un post</p>
+      <p *ngSwitchCase="'title'">Le titre de l'évènement a été modifié</p>
+      <p *ngSwitchCase="'type'">L'évènement a changé de type</p>
+    </ng-container>
+  </div>
+  
+  <mat-icon>keyboard_arrow_right</mat-icon>
+</div>

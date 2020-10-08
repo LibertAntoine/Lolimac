@@ -1,0 +1,14 @@
+<app-top-app-bar *ngIf="bMobile" [title]="'Notifications'">
+</app-top-app-bar>
+
+<div id="notifications-page" class="full-page has-mobile-nav">
+  <ng-container *ngIf="notification$ | async as notification; else empty">
+    <h2>Évènements modifiés ({{ notification.events.length }})</h2>
+    <app-event-card-notification *ngFor="let event of notification.events" [event]="event">
+    </app-event-card-notification>
+  </ng-container>
+</div>
+
+<ng-template #empty>
+  <p>Pas de notification !</p>
+</ng-template>

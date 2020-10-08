@@ -1,0 +1,14 @@
+
+#dashboard-page {
+    .events-container {
+        padding: 5px 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .center {
+        text-align: center;
+    }
+}

@@ -1,0 +1,19 @@
+
+#invitation-page {
+    align-content: stretch;
+    grid-gap: 10px;
+
+    form {
+        display: inline-grid;
+        align-content: center;
+
+        button {
+            margin-top: 40px;
+            justify-self: end;
+        }
+    }
+
+    a {
+        text-align: center;
+    }
+}

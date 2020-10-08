@@ -1,0 +1,50 @@
+
+#login-page {
+    display: grid;
+    grid-auto-flow: row;
+    justify-content: center;
+    align-content: stretch;
+    min-height: 100vh;
+    grid-gap: 40px;
+    padding: 0px 15px;
+
+    background: linear-gradient(193deg, #e9bff0, #a88df2, #bce8f4);
+    background-size: 600% 600%;
+    animation: Gradiant 28s ease infinite;
+
+    @keyframes Gradiant { 
+        0%{background-position:0% 87%}
+        50%{background-position:100% 14%}
+        100%{background-position:0% 87%}
+    }
+
+    .presentation-container {
+        display: grid;
+        align-self: end;
+
+        .logo {
+            display: grid;
+            justify-items: center;
+        }
+    
+        .presentation {
+            text-align: center;
+        }
+    }
+
+    form {
+        display: inline-grid;
+        align-content: center;
+
+        button {
+            margin-top: 40px;
+            justify-self: end;
+        }
+    }
+
+    a {
+        text-align: center;
+        align-self: start;
+        justify-self: center;
+    }
+}

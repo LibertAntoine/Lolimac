@@ -1,0 +1,168 @@
+@import '~@angular/material/theming';
+@include mat-core(); // Be sure that you only ever include this mixin once
+
+/* -------------------- Angular material Theme -------------------- */
+
+// Available color palettes: https://material.io/design/color/
+// https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=ECEFF1&secondary.color=00E676
+$default-app-primary: mat-palette($mat-blue-grey, 50);
+$default-app-accent:  mat-palette($mat-teal, A400);
+$default-app-warn:    mat-palette($mat-red);
+$default-app-theme:   mat-light-theme($default-app-primary, $default-app-accent, $default-app-warn);
+
+/* ---------------------- Personnal Theme ----------------------- */
+:root,
+.default {
+    @include angular-material-theme($default-app-theme);
+
+    --color-primary: #eceff1;
+    --color-primary-lighter: #ffffff;
+    --color-primary-darker: #babdbe;
+    --color-on-primary: black;
+
+    --color-accent: #00e676;
+    --color-accent-lighter: #66ffa6;
+    --color-accent-darker: #00b248;
+    --color-on-accent: black;
+
+    --color-warn: red;
+    --color-on-warn: white;
+}
+
+/* ------------------------ Global variables --------------------- */
+
+:root {
+    --padding-page: 0px 20px;
+    --border-radius: 3px;
+    --size-avatar: 80px;
+    --size-avatar-small: 30px;
+    --height-topbar: 56px;
+    --height-bottom-bar: 56px;
+}
+
+/* ------------------------- Fonts ---------------------------- */
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: var(--color-primary);
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+/* ---------------------- Angular Material Overrides --------------- */
+
+:root .mat-form-field-appearance-fill .mat-form-field-flex, .default .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: var(--color-primary-lighter);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+:root .form-no-shadow .mat-form-field-appearance-fill .mat-form-field-flex {
+    box-shadow: unset;
+}
+
+/* --------------------- Page Global Layout ---------------------- */
+
+.full-page {
+    display: grid;
+    grid-auto-flow: row;
+    justify-content: center;
+    min-height: calc(100vh - var(--height-topbar));
+    padding: var(--padding-page);
+}
+
+@media screen and (max-width: 799px) {
+    html {
+        min-height: calc(100vh - calc(var(--height-topbar) + var(--height-bottom-bar)));
+    }
+
+    .has-mobile-nav {
+        padding-bottom: calc(var(--height-bottom-bar) * 3);
+    }
+}
+
+/* -------------------- Common Objects ----------------------- */
+
+.ng-lazy {
+    width: 100%;
+    transition: opacity 1s;
+    opacity: 0;
+    background-color: var(--color-primary);
+}
+
+.ng-lazyloaded {
+    opacity: 1 !important;
+}
+
+.link {
+    &:hover {
+        cursor: pointer;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        margin-top: 5px;
+        width: 0;
+        height: 3px;
+        background: var(--color-accent);
+        transition: width .3s;
+    }
+    
+    &:hover::after {
+        width: 100%;
+    }
+}
+
+.avatar,
+.avatar-medium,
+.avatar-small {
+    border-radius: var(--size-avatar);
+    overflow: hidden;
+    justify-self: center;
+    background-color: var(--color-primary);
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.avatar {
+    height: var(--size-avatar);
+    width: var(--size-avatar);
+}
+
+.avatar-medium {
+    height: calc(var(--size-avatar) / 1.5);
+    width: calc(var(--size-avatar) / 1.5);
+}
+
+.avatar-small {
+    height: calc(var(--size-avatar) / 2);
+    width: calc(var(--size-avatar) / 2);
+}
+
+.separator {
+    background-color: var(--color-primary-darker);
+    height: 2px;
+    width: 100%;
+    margin: 25px 0px;
+}
+
+.grid-horizontal-between {
+    display: grid;
+    justify-content: space-between;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-gap: 20px;
+}
+
+.mat-icon-text {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}

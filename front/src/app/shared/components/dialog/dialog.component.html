@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<mat-dialog-content>
+    <p>{{ data.text }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-stroked-button aria-label="Fermer" [mat-dialog-close]="true">Retour</button>
+    <button mat-flat-button color="warn" aria-label="Accepter" (click)="onValidate()" *ngIf="bValidateBtn">Oui</button>
+</mat-dialog-actions>
+

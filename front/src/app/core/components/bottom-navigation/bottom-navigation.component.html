@@ -1,0 +1,29 @@
+<nav id="bottom-nav">
+  <div matRipple routerLink="/tableau-de-bord" routerLinkActive="nav-active" class="nav-btn">
+    <a>
+      <mat-icon>calendar_today</mat-icon>
+    </a>
+  </div>
+  <div matRipple routerLink="/notifications" routerLinkActive="nav-active" class="nav-btn">
+    <a>
+      <mat-icon>notifications</mat-icon>
+      <span *ngIf="notifCount > 0 && notifCount < 10" class="badge">{{ notifCount }}</span>
+      <span *ngIf="notifCount >= 10" class="badge-large">{{ notifCount }}</span>
+    </a>
+  </div>
+  <div matRipple routerLink="/evenements/creation">
+    <button mat-stroked-button>
+      <mat-icon >add</mat-icon>
+    </button>
+  </div>
+  <div matRipple routerLink="/profil" routerLinkActive="nav-active" class="nav-btn">
+    <a>
+      <mat-icon>person</mat-icon>
+    </a>
+  </div>
+  <div matRipple routerLink="/recherche" routerLinkActive="nav-active" class="nav-btn">
+    <a>
+      <mat-icon>search</mat-icon>
+    </a>
+  </div>
+</nav>
