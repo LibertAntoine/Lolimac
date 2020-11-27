@@ -1,26 +1,28 @@
-# IMAC site d'organisation de soirée - BackEnd
+# :notebook_with_decorative_cover: Lolimac
 
-Actuellement, sont fixés comme limite de taille pour les différents contenus du site : 
-- contenu commentaires : 1000
-- contenu posts : 10 000
-- titre evenements/posts : 255
-- description evenement : 5000
-- nom et prénom des utilisateurs : 22
-- pseudo : 25
-- mail : 50
+<p align="center">
+<img src="doc/readme-img/Lolimac.png?raw=true" width="100%" alt="Lolimac">
+</p>
 
-## Getting started
+## Table of Contents
 
-Besoin de définir 2 fichiers PHP (à mettre à jour en production):
+- [**Configuration**](#Configuration)
+- [**Presentation**](#presentation)
+- [**Main Features**](#main-features)
+- [**Contributors**](#contributors)
 
-`configVar.php` dans `api`
+## Configuration
+
+Need to configure 2 PHP files :
+
+`configVar.php` in `api`
 ```
 <?php 
 $secretKey = "4}_)V'<(ot`dtyDk1ETpCXTGCAh&r,QyW9LK0TAkT6jgi:vC{fDd%(fyZ{J=j=}";
 $ip = "127.0.0.1";
 ```
 
-`dbID.php` dans `api/models`
+`dbID.php` in `api/models`
 ```
 <?php 
 $dbHost = "localhost";
@@ -29,15 +31,36 @@ $dbUsername = "root";
 $dbPassword = "root";
 ```
 
-Il faut aussi vérifier que `Mcrpyt` (déprécié) est bien installé
+## Presentation
+<p>
+Application allowing its users to create events and invite other members to join them. Developed in Angular 7 for the frontend and PHP / MySQL for the backend, this project aimed to help students at IMAC engineering school more easily organize events.
+</p>
+<p>
+This project is an initiative resulting from a lecture about web programming, at the IMAC engineering school.
+</p>
 
-## Inspirations
+Realized in May 2019.
 
-- [REST errors](https://blog.restcase.com/rest-api-error-codes-101/) - Best practices gestion erreurs api rest
-- [Open Api errors](https://github.com/OAI/OpenAPI-Specification/issues/1392) - Proposition d'erreurs standardisés OpenAPI
-- [Best practices](https://medium.com/studioarmix/learn-restful-api-design-ideals-c5ec915a430f) - Conseils quant à la création des endpoints
-- [Microsoft guidelines](https://docs.microsoft.com/fr-fr/azure/architecture/best-practices/api-design) - Autre conseils d'organisations REST
+[**See website**](https://lolimac.antoine-libert.com/)
 
-## Dépendences
+<p align="center">
+<img src="doc/readme-img/Lolimac2.png?raw=true" width="45%" alt="Screenshot">
+<img src="doc/readme-img/Lolimac3.png?raw=true" width="45%" alt="Screenshot">
+</p>
 
-- [JWT](https://jwt.io/) - Json Web Tokens
+
+## Main Features
+* Front responsive with Angular 7.
+* API REST with PHP.
+* Authentification with token JWT.
+
+## Contributors
+
+* Antoine Libert � Architecture back, JWT
+* Jules Fouchy � Backend PHP
+* Nicolas Li�nart � Backend PHP
+* Guillaume Haerinck � Front Angular
+* Monica Lisasek � Front Design
+
+
+
